@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
-  entry: './src/script.js',
+  entry: './src/app.js',
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Weather App',
