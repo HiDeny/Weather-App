@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const apiKey = 'key=0ef9234ffd8140e0bcf145942232508';
 
 const baseURL = 'https://api.weatherapi.com/v1';
@@ -29,16 +30,55 @@ const filterWeatherData = async (weatherData) => {
 
   const { text, icon } = locationData.current.condition;
 
-  const messageHead = `${name} - ${country}`;
-  const messageTemp = `Temp: ${temp_c}C Feels like: ${feelslike_c}C UV: ${uv}`;
-  const messageWind = `Wind: ${wind_kph}K/H Gust: ${gust_kph}K/H Direction: ${wind_dir}`;
-  const messageText = `It's ${text}`;
+  // const messageHead = `${name} - ${country}`;
+  // const messageTemp = `Temp: ${temp_c}C Feels like: ${feelslike_c}C UV: ${uv}`;
+  // const messageWind = `Wind: ${wind_kph}K/H Gust: ${gust_kph}K/H Direction: ${wind_dir}`;
+  // const messageText = `It's ${text}`;
 
-  console.log(messageHead);
-  console.log(messageTemp);
-  console.log(messageWind);
-  console.log(messageText);
+  // console.log(messageHead);
+  // console.log(messageTemp);
+  // console.log(messageWind);
+  // console.log(messageText);
+
+  return {
+    location: {
+      name,
+      region,
+      country,
+    },
+    temp: {
+      c: {
+        current: temp_c,
+        feel: feelslike_c,
+      },
+      f: {
+        current: temp_f,
+        feel: feelslike_f,
+      },
+      uv,
+    },
+    wind: {
+      kph: {
+        speed: wind_kph,
+        gust: gust_kph,
+      },
+      mph: {
+        speed: wind_mph,
+        gust: gust_mph,
+      },
+      dir: wind_dir,
+    },
+    condition: {
+      text,
+      icon: `https:${icon}`,
+    },
+  };
 };
 
-const weatherData = getWeatherData(testLocation);
-filterWeatherData(weatherData);
+const getWeather = async () => {
+  const weatherData = await getWeatherData(testLocation);
+  const cleanData = await filterWeatherData(weatherData);
+  console.log(cleanData);
+};
+
+getWeather();
