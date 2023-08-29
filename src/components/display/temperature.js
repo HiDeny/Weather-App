@@ -1,8 +1,10 @@
-const createTitleElement = () => {
+const createTitle = () => {
   const title = document.createElement('h3');
   title.classList.add('title');
   title.classList.add('temp');
   title.textContent = 'Temperature';
+
+  return title;
 };
 
 const createCurrentElement = (currentTemp) => {
@@ -30,14 +32,14 @@ const createUVIElement = (UVIndex) => {
   return uvIndex;
 };
 
-const createTempInfo = ({ temp }) => {
+const createTempInfo = (temp) => {
   const { current, feel } = temp.c;
   const { uv } = temp;
 
   const tempInfo = document.createElement('div');
   tempInfo.classList.add('tempDiv');
 
-  tempInfo.append(createTitleElement());
+  tempInfo.append(createTitle());
   tempInfo.append(createCurrentElement(current));
   tempInfo.append(createFeelsLikeElement(feel));
   tempInfo.append(createUVIElement(uv));

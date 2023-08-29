@@ -19,6 +19,7 @@ const getWeatherData = async (location) => {
 };
 
 const filterWeatherData = async (weatherData) => {
+  console.log(weatherData);
   const locationData = await weatherData;
   const { name, region, country } = locationData.location;
 

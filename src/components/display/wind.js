@@ -1,8 +1,10 @@
-const createTitleElement = () => {
+const createTitle = () => {
   const title = document.createElement('h3');
   title.classList.add('title');
   title.classList.add('wind');
   title.textContent = 'Wind';
+
+  return title;
 };
 
 const createSpeedElement = (windSpeed) => {
@@ -31,15 +33,15 @@ const createDirectionElement = (windDirection) => {
 };
 
 // eslint-disable-next-line camelcase
-const createWindInfo = ({ wind }) => {
+const createWindInfo = (wind) => {
   const { speed, gust } = wind.kph;
   const { dir } = wind;
-  
+
   const windInfo = document.createElement('div');
   windInfo.classList.add('info');
   windInfo.classList.add('location');
 
-  windInfo.append(createTitleElement());
+  windInfo.append(createTitle());
   windInfo.append(createSpeedElement(speed));
   windInfo.append(createGustElement(gust));
   windInfo.append(createDirectionElement(dir));

@@ -1,17 +1,12 @@
-import getWeather from '../services/weatherapi';
+// const formController = (searchForm) => {
+//   const { searchBar } = searchForm;
 
-const formController = (searchForm) => {
-  const { searchBar } = searchForm;
+//   try {
 
-  try {
-    searchForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const locationToFind = searchBar.value;
-      getWeather(locationToFind);
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
+//     });
+//   } catch (err) {
+//     throw new Error(err);
+//   }
+// };
 
-export default formController;
+// export default formController;

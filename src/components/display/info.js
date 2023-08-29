@@ -23,7 +23,7 @@ const createCountryElement = (country) => {
   return countryElement;
 };
 
-const createInfoElement = ({ name, region, country }) => {
+const createLocationInfo = ({ name, region, country }) => {
   const locationInfo = document.createElement('div');
   locationInfo.classList.add('infoDiv');
 
@@ -34,4 +34,4 @@ const createInfoElement = ({ name, region, country }) => {
   return locationInfo;
 };
 
-export default createInfoElement;
+export default createLocationInfo;
