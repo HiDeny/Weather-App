@@ -11,7 +11,7 @@ const createSpeedElement = (windSpeed) => {
   const speed = document.createElement('p');
   speed.classList.add('speed');
   speed.classList.add('wind');
-  speed.textContent = windSpeed;
+  speed.textContent = `Wind: ${windSpeed}`;
 
   return speed;
 };
@@ -19,7 +19,7 @@ const createGustElement = (windGust) => {
   const gust = document.createElement('p');
   gust.classList.add('gust');
   gust.classList.add('wind');
-  gust.textContent = windGust;
+  gust.textContent = `Gusts: ${windGust}`;
 
   return gust;
 };
@@ -27,7 +27,7 @@ const createDirectionElement = (windDirection) => {
   const direction = document.createElement('p');
   direction.classList.add('direction');
   direction.classList.add('wind');
-  direction.textContent = windDirection;
+  direction.textContent = `Direction: ${windDirection}`;
 
   return direction;
 };

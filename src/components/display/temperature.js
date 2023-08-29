@@ -11,7 +11,7 @@ const createCurrentElement = (currentTemp) => {
   const current = document.createElement('h2');
   current.classList.add('current');
   current.classList.add('temp');
-  current.textContent = currentTemp;
+  current.textContent = `Current: ${currentTemp}°C`;
 
   return current;
 };
@@ -19,7 +19,7 @@ const createFeelsLikeElement = (feelsLikeTemp) => {
   const gust = document.createElement('p');
   gust.classList.add('feelsLike');
   gust.classList.add('temp');
-  gust.textContent = feelsLikeTemp;
+  gust.textContent = `Feels Like: ${feelsLikeTemp}°C`;
 
   return gust;
 };
@@ -27,7 +27,7 @@ const createUVIElement = (UVIndex) => {
   const uvIndex = document.createElement('p');
   uvIndex.classList.add('uv');
   uvIndex.classList.add('temp');
-  uvIndex.textContent = UVIndex;
+  uvIndex.textContent = `UV: ${UVIndex}`;
 
   return uvIndex;
 };

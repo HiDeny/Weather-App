@@ -11,7 +11,7 @@ const createDescription = (weatherDescription) => {
   const description = document.createElement('p');
   description.classList.add('description');
   description.classList.add('conditions');
-  description.textContent = weatherDescription;
+  description.textContent = `It's ${weatherDescription}`;
 
   return description;
 };
