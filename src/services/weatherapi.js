@@ -4,7 +4,7 @@ const apiKey = 'key=0ef9234ffd8140e0bcf145942232508';
 const baseURL = 'https://api.weatherapi.com/v1';
 const currentWeather = '/current.json';
 // const forecast = '/forecast.json';
-const testLocation = 'Pringle Bay';
+// const testLocation = 'Prague';
 
 const getWeatherData = async (location) => {
   const completeURL = `${baseURL}${currentWeather}?${apiKey}&q=${location}`;
@@ -75,10 +75,13 @@ const filterWeatherData = async (weatherData) => {
   };
 };
 
-const getWeather = async () => {
-  const weatherData = await getWeatherData(testLocation);
+const getWeather = async (location) => {
+  const weatherData = await getWeatherData(location);
   const cleanData = await filterWeatherData(weatherData);
   console.log(cleanData);
+  return cleanData;
 };
 
-getWeather();
+// getWeather(testLocation);
+
+export default getWeather;

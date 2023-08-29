@@ -1,6 +1,7 @@
 const createSubmitBtn = () => {
   const submitBtn = document.createElement('button');
   submitBtn.type = 'submit';
+  submitBtn.id = 'submitBtn';
   submitBtn.textContent = 'Search!';
 
   return submitBtn;
@@ -32,5 +33,4 @@ const createSearchForm = () => {
   return searchForm;
 };
 
-const searchForm = createSearchForm();
-export default searchForm;
+export default createSearchForm;
