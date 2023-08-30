@@ -13,7 +13,7 @@ const createSearchBar = () => {
 
   const searchBar = document.createElement('input');
   searchBar.type = 'text';
-  searchBar.placeholder = 'City/Zip/Post';
+  searchBar.placeholder = 'City';
   searchBar.name = 'searchBar';
   searchBar.id = 'searchBar';
 

@@ -29,17 +29,7 @@ const filterWeatherData = async (weatherData) => {
   const { wind_kph, wind_mph, wind_dir } = locationData.current;
   const { gust_kph, gust_mph } = locationData.current;
 
-  const { text, icon } = locationData.current.condition;
-
-  // const messageHead = `${name} - ${country}`;
-  // const messageTemp = `Temp: ${temp_c}C Feels like: ${feelslike_c}C UV: ${uv}`;
-  // const messageWind = `Wind: ${wind_kph}K/H Gust: ${gust_kph}K/H Direction: ${wind_dir}`;
-  // const messageText = `It's ${text}`;
-
-  // console.log(messageHead);
-  // console.log(messageTemp);
-  // console.log(messageWind);
-  // console.log(messageText);
+  const condition = locationData.current.condition.text;
 
   return {
     location: {
@@ -48,31 +38,28 @@ const filterWeatherData = async (weatherData) => {
       country,
     },
     temp: {
-      c: {
-        current: temp_c,
-        feel: feelslike_c,
+      current: {
+        c: temp_c,
+        f: temp_f,
       },
-      f: {
-        current: temp_f,
-        feel: feelslike_f,
+      feel: {
+        c: feelslike_c,
+        f: feelslike_f,
       },
       uv,
     },
     wind: {
-      kph: {
-        speed: wind_kph,
-        gust: gust_kph,
+      speed: {
+        kph: wind_kph,
+        mph: wind_mph,
       },
-      mph: {
-        speed: wind_mph,
-        gust: gust_mph,
+      gust: {
+        kph: gust_kph,
+        mph: gust_mph,
       },
       dir: wind_dir,
     },
-    condition: {
-      text,
-      icon: `https:${icon}`,
-    },
+    condition,
   };
 };
 

@@ -1,11 +1,11 @@
-const createTitle = () => {
-  const title = document.createElement('h3');
-  title.classList.add('title');
-  title.classList.add('temp');
-  title.textContent = 'Temperature';
+// const createTitle = () => {
+//   const title = document.createElement('h3');
+//   title.classList.add('title');
+//   title.classList.add('temp');
+//   title.textContent = 'Temperature';
 
-  return title;
-};
+//   return title;
+// };
 
 const createCurrentElement = (currentTemp) => {
   const current = document.createElement('h2');
@@ -15,6 +15,7 @@ const createCurrentElement = (currentTemp) => {
 
   return current;
 };
+
 const createFeelsLikeElement = (feelsLikeTemp) => {
   const gust = document.createElement('p');
   gust.classList.add('feelsLike');
@@ -23,6 +24,7 @@ const createFeelsLikeElement = (feelsLikeTemp) => {
 
   return gust;
 };
+
 const createUVIElement = (UVIndex) => {
   const uvIndex = document.createElement('p');
   uvIndex.classList.add('uv');
@@ -32,19 +34,19 @@ const createUVIElement = (UVIndex) => {
   return uvIndex;
 };
 
-const createTempInfo = (temp) => {
-  const { current, feel } = temp.c;
-  const { uv } = temp;
+// const createTempInfo = (temp) => {
+//   const { current, feel } = temp.c;
+//   const { uv } = temp;
 
-  const tempInfo = document.createElement('div');
-  tempInfo.classList.add('tempDiv');
+//   const tempInfo = document.createElement('div');
+//   tempInfo.classList.add('tempDiv');
 
-  tempInfo.append(createTitle());
-  tempInfo.append(createCurrentElement(current));
-  tempInfo.append(createFeelsLikeElement(feel));
-  tempInfo.append(createUVIElement(uv));
+//   tempInfo.append(createTitle());
+//   tempInfo.append(createCurrentElement(current));
+//   tempInfo.append(createFeelsLikeElement(feel));
+//   tempInfo.append(createUVIElement(uv));
 
-  return tempInfo;
-};
+//   return tempInfo;
+// };
 
-export default createTempInfo;
+export { createCurrentElement, createFeelsLikeElement, createUVIElement };

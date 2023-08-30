@@ -1,24 +1,88 @@
-import createLocationInfo from './info';
-import createTempInfo from './temperature';
-import createConditionsInfo from './conditions';
-import createWindInfo from './wind';
+import { createNameElement, createRegionElement } from './info';
+import {
+  createCurrentElement,
+  createFeelsLikeElement,
+  createUVIElement,
+} from './temperature';
+import createConditionsElement from './conditions';
+import {
+  createSpeedElement,
+  createGustElement,
+  createDirectionElement,
+} from './wind';
+
+const createComponent = (classGroup, className) => {
+  const component = document.createElement('div');
+  component.classList.add(classGroup);
+  component.classList.add(className);
+
+  return component;
+};
+
+const createDetailsSection = (feelsLikeTemp, uv, wind) => {
+  const details = document.createElement('div');
+  details.classList.add('detailsSection');
+
+  const componentGroup = 'detailComp';
+
+  const feelComp = createComponent(componentGroup, 'feelsLike');
+  feelComp.append(createFeelsLikeElement(feelsLikeTemp));
+  details.append(feelComp);
+
+  // const sunComp = createComponent(componentGroup, 'sun');
+  // createSunElement(sunCond);
+  // details.append(sunComp);
+
+  const uvComp = createComponent(componentGroup, 'uv');
+  uvComp.append(createUVIElement(uv));
+  details.append(uvComp);
+
+  const windComp = createComponent(componentGroup, 'wind');
+  windComp.append(createSpeedElement(wind.speed.kph));
+  windComp.append(createGustElement(wind.gust.kph));
+  windComp.append(createDirectionElement(wind.dir));
+  details.append(windComp);
+
+  return details;
+};
+
+const createForecastSection = () => {
+  // Hour forecast
+  // Day forecast
+};
+
+const createMainSection = (location, currentTemp, conditions) => {
+  const mainDiv = document.createElement('div');
+  mainDiv.classList.add('main');
+
+  const componentGroup = 'mainComp';
+
+  const infoComp = createComponent(componentGroup, 'info');
+  infoComp.append(createNameElement(location.name));
+  infoComp.append(createRegionElement(location.region));
+  mainDiv.append(infoComp);
+
+  const currentComp = createComponent(componentGroup, 'current');
+  currentComp.append(createCurrentElement(currentTemp));
+  currentComp.append(createConditionsElement(conditions));
+  mainDiv.append(currentComp);
+
+  return mainDiv;
+};
 
 const createWeatherCard = async (weatherData) => {
   const { location, temp, wind, condition } = weatherData;
   const weatherCard = document.createElement('div');
   weatherCard.classList.add('weatherCard');
 
-  const locationInfo = createLocationInfo(location);
-  weatherCard.append(locationInfo);
+  const main = createMainSection(location, temp.current.c, condition);
+  weatherCard.append(main);
 
-  const tempInfo = createTempInfo(temp);
-  weatherCard.append(tempInfo);
+  // const forecast = createForecastSection(day, week);
+  // weatherCard.append(forecast);
 
-  const conditionInfo = await createConditionsInfo(condition);
-  weatherCard.append(conditionInfo);
-
-  const windInfo = createWindInfo(wind);
-  weatherCard.append(windInfo);
+  const details = createDetailsSection(temp.feel.c, temp.uv, wind);
+  weatherCard.append(details);
 
   return weatherCard;
 };

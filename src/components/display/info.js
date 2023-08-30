@@ -14,24 +14,24 @@ const createRegionElement = (region) => {
 
   return regionElement;
 };
-const createCountryElement = (country) => {
-  const countryElement = document.createElement('p');
-  countryElement.classList.add('country');
-  countryElement.classList.add('location');
-  countryElement.textContent = country;
+// const createCountryElement = (country) => {
+//   const countryElement = document.createElement('p');
+//   countryElement.classList.add('country');
+//   countryElement.classList.add('location');
+//   countryElement.textContent = country;
 
-  return countryElement;
-};
+//   return countryElement;
+// };
 
-const createLocationInfo = ({ name, region, country }) => {
-  const locationInfo = document.createElement('div');
-  locationInfo.classList.add('infoDiv');
+// const createLocationInfo = ({ name, region }) => {
+//   const locationInfo = document.createElement('div');
+//   locationInfo.classList.add('infoDiv');
 
-  locationInfo.append(createNameElement(name));
-  locationInfo.append(createRegionElement(region));
-  locationInfo.append(createCountryElement(country));
+//   locationInfo.append(createNameElement(name));
+//   locationInfo.append(createRegionElement(region));
+//   // locationInfo.append(createCountryElement(country));
 
-  return locationInfo;
-};
+//   return locationInfo;
+// };
 
-export default createLocationInfo;
+export { createNameElement, createRegionElement };
