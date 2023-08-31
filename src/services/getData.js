@@ -4,7 +4,6 @@ const baseURL = 'https://api.weatherapi.com/v1';
 const forecastWeather = '/forecast.json';
 const forecastDays = 'days=3';
 
-// const currentWeather = '/current.json';
 // const testLocation = 'Prague';
 
 const getWeatherData = async (location) => {
@@ -20,12 +19,4 @@ const getWeatherData = async (location) => {
   }
 };
 
-getWeatherData('Pringle bay').then((response) => {
-  // console.log(response);
-  console.log(response.forecast);
-  console.log(response.forecast.forecastday);
-  // console.log(response.forecast.forecastday[0].day);
-  // console.log(response.forecast.forecastday[0].hour);
-});
-
-// export default getWeatherData;
+export default getWeatherData;
