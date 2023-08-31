@@ -21,10 +21,11 @@ const getWeatherData = async (location) => {
 };
 
 getWeatherData('Pringle bay').then((response) => {
-  console.log(response);
-  console.log(response.forecast.forecastday[0]);
-  console.log(response.forecast.day);
-  console.log(response.forecast.hour);
+  // console.log(response);
+  console.log(response.forecast);
+  console.log(response.forecast.forecastday);
+  // console.log(response.forecast.forecastday[0].day);
+  // console.log(response.forecast.forecastday[0].hour);
 });
 
 // export default getWeatherData;

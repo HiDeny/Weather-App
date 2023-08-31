@@ -1,3 +1,12 @@
 {
-  "cSpell.words": ["feelslike", "weatherapi"]
+  "cSpell.words": [
+    "astro",
+    "averagetemp",
+    "feelslike",
+    "forecastday",
+    "maxtemp",
+    "maxwind",
+    "mintemp",
+    "weatherapi"
+  ]
 }
