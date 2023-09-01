@@ -6,8 +6,10 @@ const getTodayWeather = (weatherData) => {
   const { mintemp_c, mintemp_f } = weatherData.forecast.forecastday[0].day;
   const { condition } = weatherData.current;
   return {
-    c: { current: temp_c, max: maxtemp_c, min: mintemp_c },
-    f: { current: temp_f, max: maxtemp_f, min: mintemp_f },
+    temp: {
+      c: { current: temp_c, max: maxtemp_c, min: mintemp_c },
+      f: { current: temp_f, max: maxtemp_f, min: mintemp_f },
+    },
     condition,
   };
 };
@@ -24,14 +26,17 @@ const getWind = (weatherData) => {
   return {
     kph: { speed: wind_kph, gust: gust_kph, max: maxwind_kph },
     mph: { speed: wind_mph, gust: gust_mph, max: maxwind_mph },
-    wind_dir,
+    dir: wind_dir,
   };
 };
 const getAstro = (weatherData) => {
   const { sunrise, sunset } = weatherData.forecast.forecastday[0].astro;
   const { moonrise, moonset } = weatherData.forecast.forecastday[0].astro;
   const { moon_illumination } = weatherData.forecast.forecastday[0].astro;
-  return { sunrise, sunset, moonrise, moonset, moon_illumination };
+  return {
+    sun: { rise: sunrise, set: sunset },
+    moon: { rise: moonrise, set: moonset, illumination: moon_illumination },
+  };
 };
 
 const getDetails = (weatherData) => {
@@ -41,6 +46,7 @@ const getDetails = (weatherData) => {
 
   return { temp, wind, astro };
 };
+
 const parseHourlyForecast = (weatherData) => {
   const forecastDataHours = weatherData.forecast.forecastday[0].hour;
   const forecastHourly = [];
@@ -73,10 +79,10 @@ const parseDailyForecast = (weatherData) => {
 
     const weatherDay = {
       date,
+      condition,
       temp: {
         c: { avg: avgtemp_c, max: maxtemp_c, min: mintemp_c },
         f: { avg: avgtemp_f, max: maxtemp_f, min: mintemp_f },
-        condition,
       },
     };
 
@@ -86,22 +92,27 @@ const parseDailyForecast = (weatherData) => {
   return forecastDays;
 };
 
+const getForecast = (weatherData) => {
+  const forecastHourly = parseHourlyForecast(weatherData);
+  const forecastDays = parseDailyForecast(weatherData);
+
+  return { hour: forecastHourly, days: forecastDays };
+};
+
 const filterWeatherData = async (weatherData) => {
   console.log(weatherData);
   const { location } = weatherData;
 
-  const locationInfo = { name: location.name, region: location.region };
-  const weatherToday = getTodayWeather(weatherData);
+  const info = { name: location.name, region: location.region };
+  const today = getTodayWeather(weatherData);
+  const forecast = getForecast(weatherData);
   const details = getDetails(weatherData);
-  const forecastHourly = parseHourlyForecast(weatherData);
-  const forecastDays = parseDailyForecast(weatherData);
 
   return {
-    location: locationInfo,
-    weatherToday,
+    info,
+    today,
+    forecast,
     details,
-    forecastHourly,
-    forecastDays,
   };
 };
 

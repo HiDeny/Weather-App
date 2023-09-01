@@ -1,6 +1,6 @@
 const tempClassName = 'temp';
 
-const createCurrentElement = (currentTemp) => {
+const createCurrentTempElement = (currentTemp) => {
   const current = document.createElement('p');
   current.classList.add('current');
   current.classList.add(tempClassName);
@@ -46,7 +46,7 @@ const createUVIElement = (UVIndex) => {
 };
 
 export {
-  createCurrentElement,
+  createCurrentTempElement,
   createMaxTempElement,
   createMinTempElement,
   createFeelsLikeElement,

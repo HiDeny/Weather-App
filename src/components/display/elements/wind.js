@@ -27,15 +27,6 @@ const createMaxSpeedElement = (maxSpeed) => {
   return maxWind;
 };
 
-const createMinSpeedElement = (minSpeed) => {
-  const minWind = document.createElement('p');
-  minWind.classList.add('minWind');
-  minWind.classList.add(windClassName);
-  minWind.textContent = `Min Speed: ${minSpeed}`;
-
-  return minWind;
-};
-
 const createDirectionElement = (windDirection) => {
   const direction = document.createElement('p');
   direction.classList.add('direction');
@@ -47,8 +38,7 @@ const createDirectionElement = (windDirection) => {
 
 export {
   createDirectionElement,
-  createSpeedElement,
   createGustElement,
+  createSpeedElement,
   createMaxSpeedElement,
-  createMinSpeedElement,
 };

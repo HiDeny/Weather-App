@@ -8,15 +8,19 @@ const createConTextElement = ({ text }) => {
 };
 
 const createConIconElement = async ({ icon }) => {
-  const completeURL = `https:${icon}`;
-  const getIcon = await fetch(completeURL);
+  try {
+    const completeURL = `https:${icon}`;
+    const getIcon = await fetch(completeURL);
 
-  const iconImg = document.createElement('img');
-  iconImg.classList.add('icon');
-  iconImg.classList.add('conditions');
-  iconImg.src = getIcon.url;
+    const iconImg = document.createElement('img');
+    iconImg.classList.add('icon');
+    iconImg.classList.add('conditions');
+    iconImg.src = getIcon.url;
 
-  return iconImg;
+    return iconImg;
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 export { createConIconElement, createConTextElement };

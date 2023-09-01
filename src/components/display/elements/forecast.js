@@ -1,5 +1,5 @@
 import {
-  createCurrentElement,
+  createCurrentTempElement,
   createMaxTempElement,
   createMinTempElement,
 } from './temperature';
@@ -7,7 +7,9 @@ import { createConIconElement } from './conditions';
 
 const forecastClassName = 'forecast';
 
-const createHourNode = (hourWeather) => {
+const createHourNode = async (hourWeather) => {
+  const { temp, condition } = hourWeather;
+
   const hourNode = document.createElement('div');
   hourNode.classList.add('hourWeather');
 
@@ -16,29 +18,31 @@ const createHourNode = (hourWeather) => {
   hourTitle.textContent = hourWeather.hour;
   hourNode.append(hourTitle);
 
-  const conditionIcon = createConIconElement(hourWeather.condition.icon);
+  const conditionIcon = await createConIconElement(condition);
   hourNode.append(conditionIcon);
 
-  const temp = createCurrentElement(hourWeather.c);
-  hourNode.append(temp);
+  const currentTemp = createCurrentTempElement(temp.c);
+  hourNode.append(currentTemp);
 
   return hourNode;
 };
 
-const createHourForecast = (hourlyForecastArr) => {
-  const hourForecast = document.createElement('h2');
+const createHourForecast = (hourlyArr) => {
+  const hourForecast = document.createElement('div');
   hourForecast.classList.add(forecastClassName);
   hourForecast.classList.add('hourForecast');
 
-  hourlyForecastArr.forEach((hourWeather) => {
-    const hourNode = createHourNode(hourWeather);
+  hourlyArr.forEach(async (hourWeather) => {
+    const hourNode = await createHourNode(hourWeather);
     hourForecast.append(hourNode);
   });
 
   return hourForecast;
 };
 
-const createDayNode = (dayWeather) => {
+const createDayNode = async (dayWeather) => {
+  const { temp, condition } = dayWeather;
+
   const dayNode = document.createElement('div');
   dayNode.classList.add('dayWeather');
 
@@ -47,28 +51,28 @@ const createDayNode = (dayWeather) => {
   dayTitle.textContent = dayWeather.date;
   dayNode.append(dayTitle);
 
-  const conditionIcon = createConIconElement(dayWeather.condition.icon);
+  const conditionIcon = await createConIconElement(condition);
   dayNode.append(conditionIcon);
 
-  const avgTemp = createCurrentElement(dayWeather.c.avg);
+  const avgTemp = createCurrentTempElement(temp.c.avg);
   dayNode.append(avgTemp);
 
-  const maxTemp = createMaxTempElement(dayWeather.c.max);
+  const maxTemp = createMaxTempElement(temp.c.max);
   dayNode.append(maxTemp);
 
-  const minTemp = createMinTempElement(dayWeather.c.min);
+  const minTemp = createMinTempElement(temp.c.min);
   dayNode.append(minTemp);
 
   return dayNode;
 };
 
-const createDaysForecast = (daysForecastArr) => {
-  const daysForecast = document.createElement('h2');
+const createDaysForecast = (daysArr) => {
+  const daysForecast = document.createElement('div');
   daysForecast.classList.add(forecastClassName);
   daysForecast.classList.add('daysForecast');
 
-  daysForecastArr.forEach((dayWeather) => {
-    const dayNode = createDayNode(dayWeather);
+  daysArr.forEach(async (dayWeather) => {
+    const dayNode = await createDayNode(dayWeather);
     daysForecast.append(dayNode);
   });
 

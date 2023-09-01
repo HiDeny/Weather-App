@@ -2,7 +2,7 @@ const apiKey = 'key=0ef9234ffd8140e0bcf145942232508';
 const baseURL = 'https://api.weatherapi.com/v1';
 
 const forecastWeather = '/forecast.json';
-const forecastDays = 'days=7';
+const forecastDays = 'days=3';
 
 const getWeatherData = async (location) => {
   const weatherURL = `${baseURL}${forecastWeather}?${apiKey}&q=${location}&${forecastDays}`;
@@ -19,8 +19,8 @@ const getWeatherData = async (location) => {
   }
 };
 
-getWeatherData('Cape Town').then(async (result) => {
-  console.log(result);
-});
+// getWeatherData('Cape Town').then(async (result) => {
+//   console.log(result);
+// });
 
-// export default getWeatherData;
+export default getWeatherData;
