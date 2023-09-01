@@ -1,52 +1,54 @@
-// const createTitle = () => {
-//   const title = document.createElement('h3');
-//   title.classList.add('title');
-//   title.classList.add('temp');
-//   title.textContent = 'Temperature';
-
-//   return title;
-// };
+const tempClassName = 'temp';
 
 const createCurrentElement = (currentTemp) => {
   const current = document.createElement('h2');
   current.classList.add('current');
-  current.classList.add('temp');
+  current.classList.add(tempClassName);
   current.textContent = `Current: ${currentTemp}°C`;
 
   return current;
 };
 
 const createFeelsLikeElement = (feelsLikeTemp) => {
-  const gust = document.createElement('p');
-  gust.classList.add('feelsLike');
-  gust.classList.add('temp');
-  gust.textContent = `Feels Like: ${feelsLikeTemp}°C`;
+  const feelsLike = document.createElement('p');
+  feelsLike.classList.add('feelsLike');
+  feelsLike.classList.add(tempClassName);
+  feelsLike.textContent = `Feels Like: ${feelsLikeTemp}°C`;
 
-  return gust;
+  return feelsLike;
+};
+
+const createMinTempElement = (minTempValue) => {
+  const minTemp = document.createElement('p');
+  minTemp.classList.add('minTemp');
+  minTemp.classList.add(tempClassName);
+  minTemp.textContent = `Min.: ${minTempValue}°C`;
+
+  return minTemp;
+};
+
+const createMaxTempElement = (maxTempValue) => {
+  const maxTemp = document.createElement('p');
+  maxTemp.classList.add('maxTemp');
+  maxTemp.classList.add(tempClassName);
+  maxTemp.textContent = `Feels Like: ${maxTempValue}°C`;
+
+  return maxTemp;
 };
 
 const createUVIElement = (UVIndex) => {
   const uvIndex = document.createElement('p');
   uvIndex.classList.add('uv');
-  uvIndex.classList.add('temp');
+  uvIndex.classList.add(tempClassName);
   uvIndex.textContent = `UV: ${UVIndex}`;
 
   return uvIndex;
 };
 
-// const createTempInfo = (temp) => {
-//   const { current, feel } = temp.c;
-//   const { uv } = temp;
-
-//   const tempInfo = document.createElement('div');
-//   tempInfo.classList.add('tempDiv');
-
-//   tempInfo.append(createTitle());
-//   tempInfo.append(createCurrentElement(current));
-//   tempInfo.append(createFeelsLikeElement(feel));
-//   tempInfo.append(createUVIElement(uv));
-
-//   return tempInfo;
-// };
-
-export { createCurrentElement, createFeelsLikeElement, createUVIElement };
+export {
+  createCurrentElement,
+  createMaxTempElement,
+  createMinTempElement,
+  createFeelsLikeElement,
+  createUVIElement,
+};

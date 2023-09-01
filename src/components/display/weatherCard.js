@@ -51,7 +51,7 @@ const createForecastSection = () => {
   // Day forecast
 };
 
-const createMainSection = (location, currentTemp, conditions) => {
+const createTodaySection = ({}) => {
   const mainDiv = document.createElement('div');
   mainDiv.classList.add('main');
 
@@ -70,13 +70,33 @@ const createMainSection = (location, currentTemp, conditions) => {
   return mainDiv;
 };
 
+const createInfoSection = ({ name, region }) => {
+  const infoDiv = document.createElement('div');
+  infoDiv.classList.add('info');
+
+  const componentGroup = 'infoComp';
+
+  const infoComp = createComponent(componentGroup, 'info');
+  infoComp.append(createNameElement(name));
+  infoComp.append(createRegionElement(region));
+  infoDiv.append(infoComp);
+
+  const currentComp = createComponent(componentGroup, 'current');
+  infoDiv.append(currentComp);
+
+  return infoDiv;
+};
+
 const createWeatherCard = async (weatherData) => {
   const { location, temp, wind, condition } = weatherData;
   const weatherCard = document.createElement('div');
   weatherCard.classList.add('weatherCard');
 
-  const main = createMainSection(location, temp.current.c, condition);
-  weatherCard.append(main);
+  const info = createTodaySection(location);
+  weatherCard.append(info);
+
+  const today = createTodaySection(location, temp.current.c, condition);
+  weatherCard.append(today);
 
   // const forecast = createForecastSection(day, week);
   // weatherCard.append(forecast);

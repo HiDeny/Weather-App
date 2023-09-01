@@ -84,6 +84,7 @@ const parseDailyForecast = (weatherData) => {
 };
 
 const filterWeatherData = async (weatherData) => {
+  console.log(weatherData);
   const { location } = weatherData;
 
   const locationInfo = { name: location.name, region: location.region };

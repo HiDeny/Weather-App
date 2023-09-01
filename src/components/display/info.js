@@ -6,6 +6,7 @@ const createNameElement = (name) => {
 
   return nameElement;
 };
+
 const createRegionElement = (region) => {
   const regionElement = document.createElement('p');
   regionElement.classList.add('region');
@@ -14,24 +15,5 @@ const createRegionElement = (region) => {
 
   return regionElement;
 };
-// const createCountryElement = (country) => {
-//   const countryElement = document.createElement('p');
-//   countryElement.classList.add('country');
-//   countryElement.classList.add('location');
-//   countryElement.textContent = country;
-
-//   return countryElement;
-// };
-
-// const createLocationInfo = ({ name, region }) => {
-//   const locationInfo = document.createElement('div');
-//   locationInfo.classList.add('infoDiv');
-
-//   locationInfo.append(createNameElement(name));
-//   locationInfo.append(createRegionElement(region));
-//   // locationInfo.append(createCountryElement(country));
-
-//   return locationInfo;
-// };
 
 export { createNameElement, createRegionElement };
