@@ -1,32 +1,22 @@
-const createConditionsElement = (weatherDescription) => {
+const createConTextElement = ({ text }) => {
   const description = document.createElement('p');
   description.classList.add('description');
   description.classList.add('conditions');
-  description.textContent = `It's ${weatherDescription}`;
+  description.textContent = `It's ${text}`;
 
   return description;
 };
 
-// const createIcon = async (iconURL) => {
-//   const getIcon = await fetch(iconURL);
+const createConIconElement = async ({ icon }) => {
+  const completeURL = `https:${icon}`;
+  const getIcon = await fetch(completeURL);
 
-//   const icon = document.createElement('img');
-//   icon.classList.add('icon');
-//   icon.classList.add('conditions');
-//   icon.src = getIcon.url;
+  const iconImg = document.createElement('img');
+  iconImg.classList.add('icon');
+  iconImg.classList.add('conditions');
+  iconImg.src = getIcon.url;
 
-//   return icon;
-// };
+  return iconImg;
+};
 
-// const createConditionsInfo = async ({ text, icon }) => {
-//   const conditions = document.createElement('div');
-//   conditions.classList.add('conditionsDiv');
-
-//   conditions.append(createTitle());
-//   conditions.append(createDescription(text));
-//   conditions.append(await createIcon(icon));
-
-//   return conditions;
-// };
-
-export default createConditionsElement;
+export { createConIconElement, createConTextElement };

@@ -43,41 +43,44 @@ const getDetails = (weatherData) => {
 };
 const parseHourlyForecast = (weatherData) => {
   const forecastDataHours = weatherData.forecast.forecastday[0].hour;
-  const forecastHourly = {};
+  const forecastHourly = [];
 
   forecastDataHours.forEach((hourData) => {
     const { time, temp_c, temp_f, condition } = hourData;
     const hour = time.split(' ')[1];
 
     const hourWeather = {
+      hour,
+      condition,
       temp: { c: temp_c, f: temp_f },
-      icon: condition.icon,
     };
 
-    forecastHourly[hour] = hourWeather;
+    forecastHourly.push(hourWeather);
   });
 
   return forecastHourly;
 };
 const parseDailyForecast = (weatherData) => {
   const forecastDaysData = weatherData.forecast.forecastday;
-  const forecastDays = {};
+  const forecastDays = [];
 
   forecastDaysData.forEach((forecastDay) => {
     const { date } = forecastDay;
     const { maxtemp_c, maxtemp_f } = forecastDay.day;
     const { mintemp_c, mintemp_f } = forecastDay.day;
     const { avgtemp_c, avgtemp_f } = forecastDay.day;
+    const { condition } = forecastDay.hour[12];
 
     const weatherDay = {
       date,
       temp: {
-        c: { avgtemp_c, maxtemp_c, mintemp_c },
-        f: { avgtemp_f, maxtemp_f, mintemp_f },
+        c: { avg: avgtemp_c, max: maxtemp_c, min: mintemp_c },
+        f: { avg: avgtemp_f, max: maxtemp_f, min: mintemp_f },
+        condition,
       },
     };
 
-    forecastDays[date] = weatherDay;
+    forecastDays.push(weatherDay);
   });
 
   return forecastDays;

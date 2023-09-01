@@ -1,10 +1,10 @@
 const tempClassName = 'temp';
 
 const createCurrentElement = (currentTemp) => {
-  const current = document.createElement('h2');
+  const current = document.createElement('p');
   current.classList.add('current');
   current.classList.add(tempClassName);
-  current.textContent = `Current: ${currentTemp}°C`;
+  current.textContent = `${currentTemp}°C`;
 
   return current;
 };
