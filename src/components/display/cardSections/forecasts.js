@@ -1,11 +1,10 @@
 import { createHourForecast, createDaysForecast } from '../elements/forecast';
 
-const createForecastSection = ({ hour, days }) => {
-  
+const createForecastSection = async ({ hour, days }) => {
   const forecastSection = document.createElement('section');
   forecastSection.classList.add('forecast');
 
-  const hourForecast = createHourForecast(hour);
+  const hourForecast = await createHourForecast(hour);
   forecastSection.append(hourForecast);
 
   const daysForecast = createDaysForecast(days);

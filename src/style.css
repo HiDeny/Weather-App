@@ -46,3 +46,115 @@ html {
 #searchBar {
   padding: 3px 5px;
 }
+
+/* Inline #2 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
+
+.info {
+}
+
+.hourForecast,
+.daysForecast {
+  display: flex;
+  overflow: scroll;
+}
+
+/* Inline #0 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
+
+.weatherCard {
+  /* grid-template-rows: 50% 20% 20%; */
+  /* height: 100%; */
+  /* gap: 5%; */
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  height: 900px;
+}
+
+.detailsSection {
+  /* grid-auto-columns: 10rem; */
+  grid-auto-columns: 8rem;
+}
+
+/* Inline #1 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
+
+html {
+  overflow: scroll;
+}
+
+/* Inline #3 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
+
+.today {
+  display: grid;
+  grid-template-rows: 70% 30%;
+  justify-content: center;
+  text-align: center;
+}
+
+.today > .current.temp {
+  font-size: 5rem;
+  margin: 0;
+  padding: 0;
+  align-self: end;
+}
+
+.today > .description.conditions {
+  margin: 0;
+}
+
+.name.locationInfo {
+  font-size: 2.5rem;
+}
+
+.region.locationInfo {
+  margin: 0;
+}
+
+section {
+  background: aliceblue;
+}
+
+/* Inline #0 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
+
+.info {
+  text-align: center;
+  align-content: center;
+}
+
+/* Inline #2 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
+
+.searchForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Inline #2 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
+
+.searchForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hourWeather {
+  text-align: center;
+}
+
+.daysForecast {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.dayWeather {
+  text-align: center;
+}
+
+/* Inline #0 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
+
+/* .hourForecast, .daysForecast { */
+.hourForecast {
+  /* overflow: scroll; */
+  overflow-y: scroll;
+  width: 50rem;
+}

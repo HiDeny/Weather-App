@@ -27,13 +27,19 @@ const createHourNode = async (hourWeather) => {
   return hourNode;
 };
 
-const createHourForecast = (hourlyArr) => {
+const createHourForecast = async (hourlyArr) => {
   const hourForecast = document.createElement('div');
   hourForecast.classList.add(forecastClassName);
   hourForecast.classList.add('hourForecast');
 
-  hourlyArr.forEach(async (hourWeather) => {
-    const hourNode = await createHourNode(hourWeather);
+  const hourNodes = await Promise.all(
+    hourlyArr.map(async (hourWeather) => {
+      return await createHourNode(hourWeather);
+    })
+  );
+  console.log(hourNodes);
+
+  hourNodes.forEach((hourNode) => {
     hourForecast.append(hourNode);
   });
 

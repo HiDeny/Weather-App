@@ -23,6 +23,7 @@ const createSearchBar = () => {
 
 const createSearchForm = () => {
   const searchForm = document.createElement('form');
+  searchForm.classList.add('searchForm');
 
   const searchBar = createSearchBar();
   searchForm.append(searchBar);

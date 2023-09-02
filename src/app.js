@@ -14,10 +14,20 @@ const body = document.querySelector('body');
 
 const displayWeather = async (searchResult) => {
   const weatherData = await getWeather(searchResult);
-  const weatherCard = createWeatherCard(weatherData);
+  const weatherCard = await createWeatherCard(weatherData);
 
   body.append(weatherCard);
 };
+
+const successCallback = (position) => {
+  const { latitude, longitude } = position.coords;
+  const searchVal = `${latitude},${longitude}`;
+  displayWeather(searchVal);
+};
+
+const errorCallback = (error) => error;
+
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 const search = () => {
   const searchForm = createSearchForm();
@@ -25,6 +35,7 @@ const search = () => {
 
   searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
+
     const { searchBar } = searchForm;
     displayWeather(searchBar.value);
   });

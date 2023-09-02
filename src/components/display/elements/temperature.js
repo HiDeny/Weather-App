@@ -22,7 +22,7 @@ const createMinTempElement = (minTempValue) => {
   const minTemp = document.createElement('p');
   minTemp.classList.add('minTemp');
   minTemp.classList.add(tempClassName);
-  minTemp.textContent = `Min.: ${minTempValue}°C`;
+  minTemp.textContent = `Min: ${minTempValue}°C`;
 
   return minTemp;
 };
@@ -31,7 +31,7 @@ const createMaxTempElement = (maxTempValue) => {
   const maxTemp = document.createElement('p');
   maxTemp.classList.add('maxTemp');
   maxTemp.classList.add(tempClassName);
-  maxTemp.textContent = `Feels Like: ${maxTempValue}°C`;
+  maxTemp.textContent = `Max: ${maxTempValue}°C`;
 
   return maxTemp;
 };
