@@ -1,14 +1,22 @@
-import { createHourForecast, createDaysForecast } from '../elements/forecast';
+import createForecast from '../elements/forecast';
 
 const createForecastSection = async ({ hour, days }) => {
   const forecastSection = document.createElement('section');
   forecastSection.classList.add('forecast');
 
-  const hourForecast = await createHourForecast(hour);
-  forecastSection.append(hourForecast);
+  try {
+    if (hour) {
+      const hourForecast = await createForecast(hour, true);
+      forecastSection.append(hourForecast);
+    }
 
-  const daysForecast = createDaysForecast(days);
-  forecastSection.append(daysForecast);
+    if (days) {
+      const daysForecast = await createForecast(days);
+      forecastSection.append(daysForecast);
+    }
+  } catch (err) {
+    console.error('Error crating forecast section:', err);
+  }
 
   return forecastSection;
 };

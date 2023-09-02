@@ -3,86 +3,60 @@ import {
   createMaxTempElement,
   createMinTempElement,
 } from './temperature';
+
 import { createConIconElement } from './conditions';
 
-const forecastClassName = 'forecast';
+const createWeatherNode = async (weatherData, isHourly) => {
+  const { temp, condition } = weatherData;
 
-const createHourNode = async (hourWeather) => {
-  const { temp, condition } = hourWeather;
+  const nodeClass = isHourly ? 'hourWeather' : 'dayWeather';
+  const nodeTitle = isHourly ? weatherData.hour : weatherData.date;
 
-  const hourNode = document.createElement('div');
-  hourNode.classList.add('hourWeather');
+  const weatherNode = document.createElement('div');
+  weatherNode.classList.add(nodeClass);
 
-  const hourTitle = document.createElement('p');
-  hourTitle.classList.add('hourTitle');
-  hourTitle.textContent = hourWeather.hour;
-  hourNode.append(hourTitle);
+  const weatherTitle = document.createElement('p');
+  weatherTitle.classList.add('nodeTitle');
+  weatherTitle.textContent = nodeTitle;
+  weatherNode.append(weatherTitle);
 
   const conditionIcon = await createConIconElement(condition);
-  hourNode.append(conditionIcon);
+  weatherNode.append(conditionIcon);
 
-  const currentTemp = createCurrentTempElement(temp.c);
-  hourNode.append(currentTemp);
+  if (isHourly) {
+    const currentTemp = createCurrentTempElement(temp.c);
+    weatherNode.append(currentTemp);
+  } else {
+    const avgTemp = createCurrentTempElement(temp.c.avg);
+    weatherNode.append(avgTemp);
 
-  return hourNode;
+    const maxTemp = createMaxTempElement(temp.c.max);
+    weatherNode.append(maxTemp);
+
+    const minTemp = createMinTempElement(temp.c.min);
+    weatherNode.append(minTemp);
+  }
+
+  return weatherNode;
 };
 
-const createHourForecast = async (hourlyArr) => {
-  const hourForecast = document.createElement('div');
-  hourForecast.classList.add(forecastClassName);
-  hourForecast.classList.add('hourForecast');
+const createForecast = async (weatherDataArr, isHourly) => {
+  const forecastClass = isHourly ? 'hourForecast' : 'daysForecast';
 
-  const hourNodes = await Promise.all(
-    hourlyArr.map(async (hourWeather) => {
-      return await createHourNode(hourWeather);
-    })
+  const forecast = document.createElement('div');
+  forecast.classList.add(forecastClass);
+
+  const weatherNodes = await Promise.all(
+    weatherDataArr.map(async (weatherData) =>
+      createWeatherNode(weatherData, isHourly)
+    )
   );
-  console.log(hourNodes);
 
-  hourNodes.forEach((hourNode) => {
-    hourForecast.append(hourNode);
+  weatherNodes.forEach((weatherNode) => {
+    forecast.append(weatherNode);
   });
 
-  return hourForecast;
+  return forecast;
 };
 
-const createDayNode = async (dayWeather) => {
-  const { temp, condition } = dayWeather;
-
-  const dayNode = document.createElement('div');
-  dayNode.classList.add('dayWeather');
-
-  const dayTitle = document.createElement('p');
-  dayTitle.classList.add('dayTitle');
-  dayTitle.textContent = dayWeather.date;
-  dayNode.append(dayTitle);
-
-  const conditionIcon = await createConIconElement(condition);
-  dayNode.append(conditionIcon);
-
-  const avgTemp = createCurrentTempElement(temp.c.avg);
-  dayNode.append(avgTemp);
-
-  const maxTemp = createMaxTempElement(temp.c.max);
-  dayNode.append(maxTemp);
-
-  const minTemp = createMinTempElement(temp.c.min);
-  dayNode.append(minTemp);
-
-  return dayNode;
-};
-
-const createDaysForecast = (daysArr) => {
-  const daysForecast = document.createElement('div');
-  daysForecast.classList.add(forecastClassName);
-  daysForecast.classList.add('daysForecast');
-
-  daysArr.forEach(async (dayWeather) => {
-    const dayNode = await createDayNode(dayWeather);
-    daysForecast.append(dayNode);
-  });
-
-  return daysForecast;
-};
-
-export { createHourForecast, createDaysForecast };
+export default createForecast;

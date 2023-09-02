@@ -27,7 +27,7 @@ const successCallback = (position) => {
 
 const errorCallback = (error) => error;
 
-navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+// navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 const search = () => {
   const searchForm = createSearchForm();
