@@ -1,48 +1,35 @@
-import {
-  createFeelsLikeElement,
-  createUVIElement,
-} from '../elements/temperature';
+import { createElementWithClass, setContent } from '../elements/helperFunc';
 
-import {
-  createSpeedElement,
-  createGustElement,
-  createDirectionElement,
-  createMaxSpeedElement,
-} from '../elements/wind';
-
-import {
-  createSunriseElement,
-  createSunsetElement,
-  createMoonriseElement,
-  createMoonsetElement,
-  createMoonIllElement,
-} from '../elements/astro';
-
-const createMoonCard = ({ rise, set, illumination }) => {
+const createCard = (title, className, content) => {
   const card = document.createElement('div');
-  card.classList.add('moon');
+  card.classList.add('detailCard');
+  card.classList.add(`${className}Card`);
 
-  const moonriseInfo = createMoonriseElement(rise);
-  card.append(moonriseInfo);
+  const titleElement = createElementWithClass('h4', `${className}Title`, title);
+  card.append(titleElement);
 
-  const moonsetInfo = createMoonsetElement(set);
-  card.append(moonsetInfo);
-
-  const moonIllInfo = createMoonIllElement(illumination);
-  card.append(moonIllInfo);
+  if (content) {
+    const contentElement = setContent(`${className}Content`, content);
+    card.append(contentElement);
+  }
 
   return card;
 };
 
-const createSunCard = ({ rise, set }) => {
-  const card = document.createElement('div');
-  card.classList.add('sun');
+const createAstroCard = (astroData, isMoon) => {
+  const { rise, set, illumination } = astroData;
 
-  const sunriseInfo = createSunriseElement(rise);
-  card.append(sunriseInfo);
+  const cardName = isMoon ? 'Moon' : 'Sun';
+  const cardClass = isMoon ? 'moon' : 'sun';
 
-  const sunsetInfo = createSunsetElement(set);
-  card.append(sunsetInfo);
+  const card = createCard(cardName, cardClass);
+
+  card.append(setContent('astroRise', `Rise: ${rise}`));
+  card.append(setContent('astroSet', `Set: ${set}`));
+
+  if (isMoon) {
+    card.append(setContent('astroIll', `Illumination: ${illumination}`));
+  }
 
   return card;
 };
@@ -50,40 +37,13 @@ const createSunCard = ({ rise, set }) => {
 const createWindCard = (wind) => {
   const { speed, gust, max } = wind.kph;
   const { dir } = wind;
-  const card = document.createElement('div');
-  card.classList.add('wind');
 
-  const speedInfo = createSpeedElement(speed);
-  card.append(speedInfo);
+  const card = createCard('Wind', 'wind');
 
-  const gustInfo = createGustElement(gust);
-  card.append(gustInfo);
-
-  const maxInfo = createMaxSpeedElement(max);
-  card.append(maxInfo);
-
-  const dirInfo = createDirectionElement(dir);
-  card.append(dirInfo);
-
-  return card;
-};
-
-const createUVICard = (uvVal) => {
-  const card = document.createElement('div');
-  card.classList.add('uv');
-
-  const element = createUVIElement(uvVal);
-  card.append(element);
-
-  return card;
-};
-
-const createFeelsLikeCard = (feelsLikeTemp) => {
-  const card = document.createElement('div');
-  card.classList.add('feelsLike');
-
-  const element = createFeelsLikeElement(feelsLikeTemp);
-  card.append(element);
+  card.append(setContent('windSpeed', `Speed: ${speed}`));
+  card.append(setContent('windGust', `Gust: ${gust}`));
+  card.append(setContent('windMax', `Max Speed: ${max}`));
+  card.append(setContent('windDir', `Direction: ${dir}`));
 
   return card;
 };
@@ -95,20 +55,14 @@ const createDetailsSection = ({ temp, wind, astro }) => {
   const detailsSection = document.createElement('section');
   detailsSection.classList.add('detailsSection');
 
-  const feelCard = createFeelsLikeCard(feel.c);
-  detailsSection.append(feelCard);
-
-  const uvCard = createUVICard(uv);
-  detailsSection.append(uvCard);
-
+  const feelCard = createCard('Feels Like', 'feelsLike', feel.c);
+  const uvCard = createCard('UV', 'uv', uv);
   const windCard = createWindCard(wind);
-  detailsSection.append(windCard);
+  const sunCard = createAstroCard(sun);
+  const moonCard = createAstroCard(moon, true);
 
-  const sunCard = createSunCard(sun);
-  detailsSection.append(sunCard);
-
-  const moonCard = createMoonCard(moon);
-  detailsSection.append(moonCard);
+  const detailCards = [feelCard, uvCard, windCard, sunCard, moonCard];
+  detailsSection.append(...detailCards);
 
   return detailsSection;
 };

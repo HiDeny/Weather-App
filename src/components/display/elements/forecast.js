@@ -1,10 +1,4 @@
-import {
-  createCurrentTempElement,
-  createMaxTempElement,
-  createMinTempElement,
-} from './temperature';
-
-import { createConIconElement } from './conditions';
+import { setContent, createConIconElement } from './helperFunc';
 
 const createWeatherNode = async (weatherData, isHourly) => {
   const { temp, condition } = weatherData;
@@ -15,26 +9,17 @@ const createWeatherNode = async (weatherData, isHourly) => {
   const weatherNode = document.createElement('div');
   weatherNode.classList.add(nodeClass);
 
-  const weatherTitle = document.createElement('p');
-  weatherTitle.classList.add('nodeTitle');
-  weatherTitle.textContent = nodeTitle;
-  weatherNode.append(weatherTitle);
+  weatherNode.append(setContent('nodeTitle', nodeTitle));
 
   const conditionIcon = await createConIconElement(condition);
   weatherNode.append(conditionIcon);
 
   if (isHourly) {
-    const currentTemp = createCurrentTempElement(temp.c);
-    weatherNode.append(currentTemp);
+    weatherNode.append(setContent('currentTemp', `${temp.c}°C`));
   } else {
-    const avgTemp = createCurrentTempElement(temp.c.avg);
-    weatherNode.append(avgTemp);
-
-    const maxTemp = createMaxTempElement(temp.c.max);
-    weatherNode.append(maxTemp);
-
-    const minTemp = createMinTempElement(temp.c.min);
-    weatherNode.append(minTemp);
+    weatherNode.append(setContent('avgTemp', `${temp.c.avg}°C`));
+    weatherNode.append(setContent('maxTemp', `${temp.c.max}°C`));
+    weatherNode.append(setContent('minTemp', `${temp.c.min}°C`));
   }
 
   return weatherNode;

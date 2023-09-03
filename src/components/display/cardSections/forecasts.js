@@ -15,7 +15,7 @@ const createForecastSection = async ({ hour, days }) => {
       forecastSection.append(daysForecast);
     }
   } catch (err) {
-    console.error('Error crating forecast section:', err);
+    throw new Error('Error crating forecast section:', err);
   }
 
   return forecastSection;

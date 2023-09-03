@@ -1,12 +1,22 @@
-import { createCurrentTempElement } from '../elements/temperature';
-import { createConTextElement } from '../elements/conditions';
+import { createElementWithClass } from '../elements/helperFunc';
 
 const createTodaySection = ({ temp, condition }) => {
   const todaySection = document.createElement('section');
   todaySection.classList.add('today');
 
-  todaySection.append(createCurrentTempElement(temp.c.current));
-  todaySection.append(createConTextElement(condition));
+  const currentTemp = createElementWithClass(
+    'h1',
+    'currentTemp',
+    `${temp.c.current}°C`
+  );
+  todaySection.append(currentTemp);
+
+  const conditionsDesc = createElementWithClass(
+    'h3',
+    'conditionsDesc',
+    condition.text
+  );
+  todaySection.append(conditionsDesc);
 
   return todaySection;
 };

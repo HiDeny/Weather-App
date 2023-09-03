@@ -1,15 +1,9 @@
-const successCallback = (position) => position;
+const successCallback = (position) => {
+  const { latitude, longitude } = position.coords;
+  const searchVal = `${latitude},${longitude}`;
+  displayWeather(searchVal);
+};
 
 const errorCallback = (error) => error;
 
-const getLocation = () => {
-  const location = navigator.geolocation.getCurrentPosition(
-    successCallback,
-    errorCallback
-  );
-
-  return location;
-};
-
-const testLocation = getLocation();
-console.log(testLocation);
+// navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
