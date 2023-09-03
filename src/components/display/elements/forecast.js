@@ -1,15 +1,29 @@
-import { setContent, createConIconElement } from './helperFunc';
+import { isToday, format } from 'date-fns';
+
+import {
+  createElementWithClass,
+  createConIconElement,
+  setContent,
+} from './helperFunc';
+
+const getFormattedDate = (dateString) => {
+  const date = new Date(dateString);
+  const formattedDate = format(date, 'EEEE');
+  return isToday(date) ? 'Today' : formattedDate;
+};
 
 const createWeatherNode = async (weatherData, isHourly) => {
   const { temp, condition } = weatherData;
 
+  let nodeTitle = isHourly
+    ? weatherData.hour
+    : getFormattedDate(weatherData.date);
   const nodeClass = isHourly ? 'hourWeather' : 'dayWeather';
-  const nodeTitle = isHourly ? weatherData.hour : weatherData.date;
 
   const weatherNode = document.createElement('div');
   weatherNode.classList.add(nodeClass);
 
-  weatherNode.append(setContent('nodeTitle', nodeTitle));
+  weatherNode.append(createElementWithClass('h4', 'nodeTitle', nodeTitle));
 
   const conditionIcon = await createConIconElement(condition);
   weatherNode.append(conditionIcon);
@@ -17,9 +31,9 @@ const createWeatherNode = async (weatherData, isHourly) => {
   if (isHourly) {
     weatherNode.append(setContent('currentTemp', `${temp.c}°C`));
   } else {
-    weatherNode.append(setContent('avgTemp', `${temp.c.avg}°C`));
-    weatherNode.append(setContent('maxTemp', `${temp.c.max}°C`));
-    weatherNode.append(setContent('minTemp', `${temp.c.min}°C`));
+    weatherNode.append(setContent('avgTemp', `Avg: ${temp.c.avg}°C`));
+    weatherNode.append(setContent('maxTemp', `Max: ${temp.c.max}°C`));
+    weatherNode.append(setContent('minTemp', `Min: ${temp.c.min}°C`));
   }
 
   return weatherNode;
@@ -31,15 +45,19 @@ const createForecast = async (weatherDataArr, isHourly) => {
   const forecast = document.createElement('div');
   forecast.classList.add(forecastClass);
 
-  const weatherNodes = await Promise.all(
-    weatherDataArr.map(async (weatherData) =>
-      createWeatherNode(weatherData, isHourly)
-    )
-  );
+  try {
+    const weatherNodes = await Promise.all(
+      weatherDataArr.map(async (weatherData) =>
+        createWeatherNode(weatherData, isHourly)
+      )
+    );
 
-  weatherNodes.forEach((weatherNode) => {
-    forecast.append(weatherNode);
-  });
+    weatherNodes.forEach((weatherNode) => {
+      forecast.append(weatherNode);
+    });
+  } catch (err) {
+    throw new Error('Error creating weather nodes:', err);
+  }
 
   return forecast;
 };

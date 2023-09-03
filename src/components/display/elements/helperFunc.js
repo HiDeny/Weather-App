@@ -13,8 +13,7 @@ export const setContent = (className, content) => {
 
 export const createConIconElement = async ({ icon }) => {
   try {
-    const completeURL = `https:${icon}`;
-    const getIcon = await fetch(completeURL);
+    const getIcon = await fetch(`https:${icon}`);
 
     const iconImg = document.createElement('img');
     iconImg.classList.add('conditionsIcon');

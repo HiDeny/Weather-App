@@ -1,13 +1,20 @@
-import getWeatherData from './getData';
-import filterWeatherData from './filterData';
+const apiKey = 'key=0ef9234ffd8140e0bcf145942232508';
+const baseURL = 'https://api.weatherapi.com/v1';
 
-const getWeather = async (location) => {
-  const weatherData = await getWeatherData(location);
-  const cleanData = await filterWeatherData(weatherData);
-  console.log(cleanData);
-  return cleanData;
+const forecastWeather = '/forecast.json';
+const forecastDays = 'days=7';
+
+const getWeatherData = async (location) => {
+  const weatherURL = `${baseURL}${forecastWeather}?${apiKey}&q=${location}&${forecastDays}`;
+
+  try {
+    const weatherResponse = await fetch(weatherURL);
+    const weatherData = await weatherResponse.json();
+
+    return weatherData;
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
-// getWeather('Cape Town');
-
-export default getWeather;
+export default getWeatherData;
