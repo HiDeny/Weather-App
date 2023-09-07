@@ -18,6 +18,16 @@ const createTodaySection = ({ temp, condition }) => {
   );
   todaySection.append(conditionsDesc);
 
+  const highestTemp = createElementWithClass(
+    'h3',
+    'highTemp',
+    `H: ${temp.c.max}°C`
+  );
+  todaySection.append(highestTemp);
+
+  const lowTemp = createElementWithClass('h3', 'lowTemp', `L: ${temp.c.min}°C`);
+  todaySection.append(lowTemp);
+
   return todaySection;
 };
 
