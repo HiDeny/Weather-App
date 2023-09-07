@@ -5,7 +5,10 @@ export const getGeolocation = async (callback) => {
     const { latitude, longitude } = position.coords;
     const searchResult = `${latitude},${longitude}`;
     callback(searchResult);
+    return searchResult;
   };
 
-  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  navigator.geolocation
+    .getCurrentPosition(successCallback, errorCallback)
+    .then((response) => console.log(response));
 };
