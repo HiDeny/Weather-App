@@ -1,8 +1,13 @@
 import createLoadingCard from './display/cardSections/loadingCard';
 
-export const getGeolocation = async (callback) => {
+const getGeoLocation = async (callback) => {
   createLoadingCard();
-  const errorCallback = (error) => console.error(error);
+
+  const errorCallback = (error) => {
+    const loader = document.querySelector('.loader');
+    if (loader) loader.remove();
+    console.error(error);
+  };
 
   const successCallback = (position) => {
     const { latitude, longitude } = position.coords;
@@ -11,7 +16,7 @@ export const getGeolocation = async (callback) => {
     return Promise.resolve(searchResult);
   };
 
-  navigator.geolocation
-    .getCurrentPosition(successCallback, errorCallback)
-    .then((response) => console.log(response));
+  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 };
+
+export default getGeoLocation;

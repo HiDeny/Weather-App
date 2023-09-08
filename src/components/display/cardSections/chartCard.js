@@ -1,10 +1,11 @@
 import Chart from 'chart.js/auto';
 
-export const createChart = (hoursWeatherArr) => {
+const createChart = (hoursWeatherArr) => {
   const canvas = document.createElement('canvas');
   canvas.classList.add('myChart');
+  canvas.height = 100;
 
-  new Chart(canvas, {
+  const myChart = new Chart(canvas, {
     type: 'line',
     data: {
       labels: hoursWeatherArr.map((data) => data.hour),
@@ -12,14 +13,18 @@ export const createChart = (hoursWeatherArr) => {
         {
           label: 'Temperature',
           data: hoursWeatherArr.map((data) => data.temp.c),
-          borderColor: 'rgb(75, 192, 192)',
+          borderColor: '#0173DB',
+
           tension: 0.3,
           fill: true,
+          display: false,
         },
       ],
     },
     options: {},
   });
 
-  document.body.append(canvas);
+  return myChart;
 };
+
+export default createChart;

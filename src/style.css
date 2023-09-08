@@ -234,3 +234,8 @@ section {
     transform: rotate(360deg);
   }
 }
+
+.unitsActive {
+  background-color: pink;
+  width: 10rem;
+}

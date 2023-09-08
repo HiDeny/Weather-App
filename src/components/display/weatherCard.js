@@ -9,7 +9,7 @@ import createDetailsSection from './cardSections/detailCards';
 
 const createWeatherCard = async (weatherData) => {
   const { info, today, forecast, details } = weatherData;
-  console.log(forecast);
+
   const weatherCard = document.createElement('div');
   weatherCard.classList.add('weatherCard');
 
