@@ -235,6 +235,11 @@ section {
   }
 }
 
+.unitsBtn {
+  width: 5rem;
+  transform: all 1s;
+}
+
 .unitsActive {
   background-color: pink;
   width: 10rem;

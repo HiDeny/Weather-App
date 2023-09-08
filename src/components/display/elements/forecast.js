@@ -15,7 +15,7 @@ const getFormattedDate = (dateString) => {
 const createWeatherNode = async (weatherData, isHourly) => {
   const { temp, condition } = weatherData;
 
-  let nodeTitle = isHourly
+  const nodeTitle = isHourly
     ? weatherData.hour
     : getFormattedDate(weatherData.date);
   const nodeClass = isHourly ? 'hourWeather' : 'dayWeather';
