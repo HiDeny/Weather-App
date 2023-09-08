@@ -5,7 +5,8 @@ import { searchBar } from './components/searchBar/searchBar';
 import getWeather from './components/weather';
 import createWeatherCard from './components/display/weatherCard';
 import { getGeolocation } from './components/geolocation';
-import { createLoadingCard } from './components/display/cardSections/loadingCard';
+import createLoadingCard from './components/display/cardSections/loadingCard';
+import { createChart } from './components/display/cardSections/chartCard';
 
 const body = document.querySelector('body');
 
@@ -24,6 +25,5 @@ const displayWeather = async (searchResult) => {
   loadingCard.replaceWith(weatherCard);
 };
 
-getGeolocation(displayWeather);
-
 searchBar(displayWeather);
+getGeolocation(displayWeather);

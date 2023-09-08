@@ -1,11 +1,14 @@
+import createLoadingCard from './display/cardSections/loadingCard';
+
 export const getGeolocation = async (callback) => {
+  createLoadingCard();
   const errorCallback = (error) => console.error(error);
 
   const successCallback = (position) => {
     const { latitude, longitude } = position.coords;
     const searchResult = `${latitude},${longitude}`;
     callback(searchResult);
-    return searchResult;
+    return Promise.resolve(searchResult);
   };
 
   navigator.geolocation

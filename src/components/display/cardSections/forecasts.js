@@ -1,8 +1,11 @@
 import createForecast from '../elements/forecast';
+import { createChart } from './chartCard';
 
 const createForecastSection = async ({ hour, days }) => {
   const forecastSection = document.createElement('section');
   forecastSection.classList.add('forecast');
+
+  createChart(hour);
 
   try {
     if (hour) {

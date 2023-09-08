@@ -5,7 +5,7 @@ const createCard = (title, className, content) => {
   card.classList.add('detailCard');
   card.classList.add(`${className}Card`);
 
-  const titleElement = createElementWithClass('h4', `${className}Title`, title);
+  const titleElement = createElementWithClass('h4', `title`, title);
   card.append(titleElement);
 
   if (content) {
@@ -40,10 +40,10 @@ const createWindCard = (wind) => {
 
   const card = createCard('Wind', 'wind');
 
-  card.append(setContent('windSpeed', `Speed: ${speed}`));
-  card.append(setContent('windGust', `Gust: ${gust}`));
-  card.append(setContent('windMax', `Max Speed: ${max}`));
-  card.append(setContent('windDir', `Direction: ${dir}`));
+  card.append(setContent('speed', `Speed: ${speed}`));
+  card.append(setContent('gust', `Gust: ${gust}`));
+  card.append(setContent('max', `Max Speed: ${max}`));
+  card.append(setContent('dir', `Direction: ${dir}`));
 
   return card;
 };

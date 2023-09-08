@@ -197,12 +197,15 @@ section {
   border: 1px solid;
   border-radius: 20px;
   padding: 1rem;
+  width: 10rem;
+  height: 10rem;
 }
 
 .detailCard.windCard {
-  grid: ;
   grid-row: 3;
   grid-column: 1/3;
+
+  width: 15rem;
 }
 
 /* Inline #0 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
