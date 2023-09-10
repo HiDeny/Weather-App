@@ -5,7 +5,9 @@ const getTodayWeather = (weatherData) => {
   const { maxtemp_c, maxtemp_f } = weatherData.forecast.forecastday[0].day;
   const { mintemp_c, mintemp_f } = weatherData.forecast.forecastday[0].day;
   const { condition } = weatherData.current;
+  const time = weatherData.current.last_updated.split(' ')[1];
   return {
+    time,
     temp: {
       c: { current: temp_c, max: maxtemp_c, min: mintemp_c },
       f: { current: temp_f, max: maxtemp_f, min: mintemp_f },
@@ -43,8 +45,9 @@ const getDetails = (weatherData) => {
   const temp = getTemp(weatherData);
   const wind = getWind(weatherData);
   const astro = getAstro(weatherData);
+  const { humidity } = weatherData.current;
 
-  return { temp, wind, astro };
+  return { temp, wind, astro, humidity };
 };
 
 const parseHourlyForecast = (weatherData) => {

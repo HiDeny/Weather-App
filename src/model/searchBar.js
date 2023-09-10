@@ -1,4 +1,4 @@
-import createSearchForm from './searchBarElement';
+import createSearchForm from '../view/searchBar/searchBarElement';
 
 export const searchBar = async (callback) => {
   const searchForm = createSearchForm();
