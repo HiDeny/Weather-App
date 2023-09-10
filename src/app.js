@@ -1,30 +1,32 @@
-import './style.css';
-import 'normalize.css';
+import MainController from './controller/mainController';
 
-import { searchBar } from './components/searchBar/searchBar';
-import getWeather from './components/weather';
-import createWeatherCard from './components/display/weatherCard';
-import getGeoLocation from './components/geoLocation';
-import createLoadingCard from './components/display/cardSections/loadingCard';
-import selectUnits from './components/display/elements/unitSelect';
+const mainController = new MainController();
+mainController.getWeather();
 
-const body = document.querySelector('body');
+// import { searchBar } from './components/searchBar/searchBar';
+// import getWeather from './components/weather';
+// import createWeatherCard from './components/display/weatherCard';
+// import getGeoLocation from './components/geoLocation';
+// import createLoadingCard from './components/display/cardSections/loadingCard';
+// import selectUnits from './components/display/elements/unitSelect';
 
-const displayWeather = async (searchResult) => {
-  const currentWeatherCard = document.querySelector('.weatherCard');
-  const currentLoadingCard = document.querySelector('.loader');
+// const body = document.querySelector('body');
 
-  const loadingCard = createLoadingCard();
-  if (currentLoadingCard) currentLoadingCard.replaceWith(loadingCard);
-  if (currentWeatherCard) currentWeatherCard.replaceWith(loadingCard);
-  if (!currentWeatherCard && !currentLoadingCard) body.append(loadingCard);
+// const displayWeather = async (searchResult) => {
+//   const currentWeatherCard = document.querySelector('.weatherCard');
+//   const currentLoadingCard = document.querySelector('.loader');
 
-  const weatherData = await getWeather(searchResult);
-  const weatherCard = await createWeatherCard(weatherData);
+//   const loadingCard = createLoadingCard();
+//   if (currentLoadingCard) currentLoadingCard.replaceWith(loadingCard);
+//   if (currentWeatherCard) currentWeatherCard.replaceWith(loadingCard);
+//   if (!currentWeatherCard && !currentLoadingCard) body.append(loadingCard);
 
-  loadingCard.replaceWith(weatherCard);
-};
+//   const weatherData = await getWeather(searchResult);
+//   const weatherCard = await createWeatherCard(weatherData);
 
-selectUnits();
-searchBar(displayWeather);
-getGeoLocation(displayWeather);
+//   loadingCard.replaceWith(weatherCard);
+// };
+
+// selectUnits();
+// searchBar(displayWeather);
+// getGeoLocation(displayWeather);

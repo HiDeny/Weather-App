@@ -1,3 +1,6 @@
+import './style.css';
+import 'normalize.css';
+
 import createInfoSection from './cardSections/locationInfo';
 import createTodaySection from './cardSections/todayWeather';
 import createForecastSection from './cardSections/forecasts';
