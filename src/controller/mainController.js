@@ -1,5 +1,5 @@
 import getWeatherData from '../model/data/getWeatherData';
-import filterWeatherData from '../model/data/filter/filterWeatherData';
+import filterWeatherData from '../model/data/filterWeatherData';
 
 // import filterWeatherData from '../services/filterData';
 export default class MainController {

@@ -20,8 +20,8 @@ const getUpcomingData = (rawData, isMetric) => {
       daily_chance_of_rain,
       totalprecip_mm,
       totalprecip_in,
+      condition,
     } = forecastData.day;
-    const { icon } = forecastData.day.condition;
 
     const dayWeather = {
       date: { number: date, weekDayName: nameOfDay },
@@ -38,7 +38,10 @@ const getUpcomingData = (rawData, isMetric) => {
         total: isMetric ? totalprecip_mm : totalprecip_in,
       },
       humidity: avghumidity,
-      conditionIcon: icon,
+      condition: {
+        text: condition.text,
+        icon: `https:${condition.icon}`,
+      },
     };
 
     return dayWeather;

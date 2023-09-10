@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
-import getTodayData from './filterToday';
-import getUpcomingData from './filterUpcoming';
+import getTodayData from './filter/filterToday';
+import getUpcomingData from './filter/filterUpcoming';
 
 const getLocationData = (rawData) => {
   const { name, country } = rawData.location;

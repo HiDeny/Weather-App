@@ -56,7 +56,10 @@ const getTodayData = (rawData, isMetric) => {
       min: isMetric ? mintemp_c : mintemp_f,
       feel: isMetric ? feelslike_c : feelslike_f,
     },
-    condition,
+    condition: {
+      text: condition.text,
+      icon: `https:${condition.icon}`,
+    },
     uv,
     wind: {
       speed: isMetric ? wind_kph : wind_mph,
