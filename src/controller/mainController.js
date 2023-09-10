@@ -10,7 +10,6 @@ export default class MainController {
   getWeather = async (search = this.defaultLocation) => {
     try {
       const rawData = await getWeatherData(search);
-      console.log(rawData);
       const cleanData = filterWeatherData(rawData, this.isMetric);
       console.log(cleanData);
     } catch (err) {

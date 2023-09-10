@@ -22,7 +22,10 @@ const parseForecastHour = (hourlyForecastRaw, isMetric) =>
       hour,
       isDay: is_day,
       temp: isMetric ? temp_c : temp_f,
-      condition,
+      condition: {
+        text: condition.text,
+        icon: `https:${condition.icon}`,
+      },
       wind: {
         speed: isMetric ? wind_kph : wind_mph,
         gust: isMetric ? gust_kph : gust_mph,
