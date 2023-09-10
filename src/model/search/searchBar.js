@@ -1,9 +1,4 @@
-import createSearchForm from '../../view/searchBar/searchBarElement';
-
-export const searchBar = async (callback) => {
-  const searchForm = createSearchForm();
-  document.body.append(searchForm);
-
+const searchControl = async (searchBar) => {
   searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const { searchBar } = searchForm;
@@ -13,3 +8,5 @@ export const searchBar = async (callback) => {
     callback(searchResult);
   });
 };
+
+export default searchControl;

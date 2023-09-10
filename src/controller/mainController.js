@@ -1,11 +1,24 @@
 import getWeatherData from '../model/data/getWeatherData';
 import filterWeatherData from '../model/data/filterWeatherData';
 
-// import filterWeatherData from '../services/filterData';
+import createSearchBar from '../view/searchBar/searchElement';
+
 export default class MainController {
   isMetric = true;
 
   defaultLocation = 'Cape Town';
+
+  geolocation = false;
+
+  searchLocation = '';
+
+  launch = () => {
+    const searchBar = createSearchBar();
+    searchBar.addEventListener('submit', (event) => {
+      event.preventDefault;
+    });
+    document.body.append();
+  };
 
   getWeather = async (search = this.defaultLocation) => {
     try {

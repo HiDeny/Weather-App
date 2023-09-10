@@ -1,7 +1,10 @@
+import './view/style.css'
+import 'normalize.css'
 import MainController from './controller/mainController';
 
 const mainController = new MainController();
 mainController.getWeather();
+mainController.launch();
 
 // import { searchBar } from './components/searchBar/searchBar';
 // import getWeather from './components/weather';
