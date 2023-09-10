@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import format from 'date-fns/format';
 import parseForecastHour from './parseForecastHour';
 
 const getTodayData = (rawData, isMetric) => {
@@ -27,6 +28,12 @@ const getTodayData = (rawData, isMetric) => {
     vis_miles,
   } = current;
 
+  const lastUpdatedTime = last_updated.split(' ')[1];
+  const lastUpdatedDate = format(
+    new Date(last_updated.split(' ')[0]),
+    'd LLLL yyyy'
+  );
+
   const {
     avgtemp_c,
     avgtemp_f,
@@ -48,7 +55,7 @@ const getTodayData = (rawData, isMetric) => {
   const forecastHourly = parseForecastHour(forecastToday.hour, isMetric);
 
   return {
-    updateTime: last_updated,
+    lastUpdate: `${lastUpdatedTime} ${lastUpdatedDate}`,
     temp: {
       current: isMetric ? temp_c : temp_f,
       avg: isMetric ? avgtemp_c : avgtemp_f,
