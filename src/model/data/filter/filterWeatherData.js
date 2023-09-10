@@ -8,11 +8,15 @@ const getLocationData = (rawData) => {
 };
 
 const filterWeatherData = (rawData, isMetric = true) => {
-  const location = getLocationData(rawData);
-  const today = getTodayData(rawData, isMetric);
-  const upcoming = getUpcomingData(rawData, isMetric);
+  try {
+    const location = getLocationData(rawData);
+    const today = getTodayData(rawData, isMetric);
+    const upcoming = getUpcomingData(rawData, isMetric);
 
-  return { location, today, upcoming };
+    return { location, today, upcoming };
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 export default filterWeatherData;

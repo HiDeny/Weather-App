@@ -3,7 +3,7 @@ import parseForecastHour from './parseForecastHour';
 
 const getTodayData = (rawData, isMetric) => {
   const { current, forecast } = rawData;
-  const forecastToday = forecast[0];
+  const forecastToday = forecast.forecastday[0];
 
   const {
     last_updated,

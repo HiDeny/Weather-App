@@ -2,9 +2,9 @@
 import { format } from 'date-fns';
 
 const getUpcomingData = (rawData, isMetric) => {
-  const { forecast } = rawData;
+  const { forecastday } = rawData.forecast;
 
-  const upcomingWeather = forecast.map((forecastData) => {
+  const upcomingWeather = forecastday.map((forecastData) => {
     const { date } = forecastData;
     const nameOfDay = format(new Date(date), 'EEEE');
     const {
