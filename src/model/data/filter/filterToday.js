@@ -61,7 +61,7 @@ const getTodayData = (rawData, isMetric) => {
       avg: isMetric ? avgtemp_c : avgtemp_f,
       max: isMetric ? maxtemp_c : maxtemp_f,
       min: isMetric ? mintemp_c : mintemp_f,
-      feel: isMetric ? feelslike_c : feelslike_f,
+      feelsLike: isMetric ? feelslike_c : feelslike_f,
     },
     condition: {
       text: condition.text,
