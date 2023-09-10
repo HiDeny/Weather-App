@@ -1,14 +1,20 @@
 import getWeatherData from '../model/data/getWeatherData';
+import filterWeatherData from '../model/data/filter/filterWeatherData';
 
 // import filterWeatherData from '../services/filterData';
 export default class MainController {
-  alternativeUnits = false;
+  isMetric = true;
 
   defaultLocation = 'Cape Town';
 
   getWeather = async (search = this.defaultLocation) => {
-    const rawData = await getWeatherData(search);
-    console.log(rawData);
+    try {
+      const rawData = await getWeatherData(search);
+      const cleanData = await filterWeatherData(rawData, this.isMetric);
+      console.log(cleanData);
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 }
 
