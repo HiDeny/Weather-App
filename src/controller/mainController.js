@@ -5,6 +5,7 @@ import createSearchElement from '../view/elements/searchElement';
 import getGeolocation from '../model/search/geoLocation';
 
 import createSettings from '../view/elements/userSettings';
+import createCurrentInfo from '../view/currentInfo';
 
 export default class MainController {
   config = {
@@ -78,6 +79,8 @@ export default class MainController {
     try {
       const rawData = await getWeatherData(search);
       const cleanData = filterWeatherData(rawData, this.config.isMetric);
+      const currentInfo = createCurrentInfo(cleanData.currentInfo);
+      document.body.append(currentInfo);
       console.log(cleanData);
     } catch (err) {
       throw new Error(err);

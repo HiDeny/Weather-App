@@ -1,4 +1,4 @@
-export const customElementWithClass = (tagName, className, content) => {
+export const createElementWithClass = (tagName, className, content) => {
   const element = document.createElement(tagName);
   element.className = className;
   element.textContent = content;

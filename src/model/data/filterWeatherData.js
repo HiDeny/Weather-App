@@ -10,12 +10,13 @@ const getLocationData = (rawData) => {
 const getCurrentInfo = (locationData, todayData) => {
   const { name, country } = locationData;
   const { current, min, max } = todayData.temp;
-  const { condition } = todayData;
+  const { condition, lastUpdate } = todayData;
 
   return {
     location: { name, country },
     temp: { current, min, max },
     condition,
+    lastUpdate,
   };
 };
 
@@ -42,6 +43,7 @@ const filterWeatherData = (rawData, isMetric = true) => {
   const upcomingData = getUpcomingData(rawData, isMetric);
 
   const currentInfo = getCurrentInfo(locationData, todayData);
+  console.log(currentInfo);
   const forecasts = getForecasts(todayData, upcomingData);
   const detailsInfo = getDetails(todayData);
 
