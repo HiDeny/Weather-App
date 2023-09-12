@@ -244,3 +244,18 @@ section {
   background-color: pink;
   width: 10rem;
 }
+
+.settingsMenu {
+  display: grid;
+  grid-template-rows: repeat(3, 3rem);
+  justify-content: center;
+
+  border: 1px solid black;
+  padding: 1rem;
+
+  transition: display ease 2s;
+}
+
+.hide {
+  display: none;
+}

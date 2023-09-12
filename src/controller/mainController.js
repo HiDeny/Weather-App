@@ -21,7 +21,8 @@ export default class MainController {
     const geoLocationBtn = document.getElementById('geoLocationBtn');
     geoLocationBtn.addEventListener('click', async () => {
       const geoLocation = await getGeoLocation();
-      this.getWeather(geoLocation);
+      console.log(geoLocation);
+      this.getWeather(await geoLocation);
     });
 
     const searchField = document.getElementById('searchField');
@@ -34,17 +35,27 @@ export default class MainController {
       event.preventDefault();
       this.getWeather(this.searchLocation);
     });
+
+    // if (this.defaultLocation) this.getWeather(this.defaultLocation);
   };
 
   initSettings = () => {
     createSettings(this.defaultLocation, this.isMetric);
 
-    // const showSettingsBtn = document.getElementById('.showSettingsBtn');
-    // const saveBtn = document.getElementById('saveBtn');
-    // const settingsMenu = document.getElementById('settings');
+    const settingsMenu = document.getElementById('settings');
+    const showSettingsBtn = document.getElementById('showSettingsBtn');
+    const saveBtn = document.getElementById('saveBtn');
     const setDefaultLocation = document.getElementById('setDefaultLocation');
     const metricBtn = document.querySelector('.metricUnits');
     const imperialBtn = document.querySelector('.imperialUnits');
+
+    showSettingsBtn.addEventListener('click', () => {
+      settingsMenu.classList.remove('hide');
+    });
+
+    saveBtn.addEventListener('click', () => {
+      settingsMenu.classList.add('hide');
+    });
 
     setDefaultLocation.addEventListener('input', (event) => {
       this.defaultLocation = event.target.value;
@@ -63,7 +74,7 @@ export default class MainController {
     });
   };
 
-  getWeather = async (search = this.defaultLocation) => {
+  getWeather = async (search) => {
     try {
       const rawData = await getWeatherData(search);
       const cleanData = filterWeatherData(rawData, this.isMetric);
