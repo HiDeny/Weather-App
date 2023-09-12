@@ -21,7 +21,6 @@ const createSubmitBtn = () => {
 const createSearchField = () => {
   const label = document.createElement('label');
   label.for = 'searchField';
-  label.textContent = 'Default Location';
 
   const searchBar = document.createElement('input');
   searchBar.type = 'text';

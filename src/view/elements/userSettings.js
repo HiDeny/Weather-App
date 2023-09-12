@@ -45,6 +45,7 @@ const createSelectUnits = (isMetric) => {
 const createSelectDefaultLocation = (currentDefaultLocation) => {
   const label = document.createElement('label');
   label.for = 'setDefaultLocation';
+  label.textContent = 'Default Location:';
 
   const setDefaultLocation = document.createElement('input');
   setDefaultLocation.type = 'text';
