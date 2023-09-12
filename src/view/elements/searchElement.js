@@ -1,6 +1,7 @@
 const createGeoLocationBtn = () => {
   const geoLocationBtn = document.createElement('button');
   geoLocationBtn.classList.add('searchBtn');
+  geoLocationBtn.type = 'button';
   geoLocationBtn.id = 'geoLocationBtn';
   geoLocationBtn.textContent = '🧭';
 

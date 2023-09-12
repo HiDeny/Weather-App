@@ -16,18 +16,18 @@ const createUnitBtn = (unitsName) => {
 };
 
 const createSelectUnits = (isMetric) => {
-  const selectUnitsDiv = document.createElement('div');
-  selectUnitsDiv.classList.add('selectUnits');
+  const selectUnits = document.createElement('div');
+  selectUnits.classList.add('selectUnits');
 
   // Metric (°C, Kilometers, Milliliters)
   const metricBtn = createUnitBtn('Metric (°C, kM, mL)');
   metricBtn.classList.add('metricUnits');
-  selectUnitsDiv.append(metricBtn);
+  selectUnits.append(metricBtn);
 
   // Imperial (°F, Miles, Inches)
   const imperialBtn = createUnitBtn('Imperial (°F, mi, in)');
   imperialBtn.classList.add('imperialUnits');
-  selectUnitsDiv.append(imperialBtn);
+  selectUnits.append(imperialBtn);
 
   if (isMetric) {
     imperialBtn.classList.remove('unitsActive');
@@ -39,7 +39,7 @@ const createSelectUnits = (isMetric) => {
     imperialBtn.classList.add('unitsActive');
   }
 
-  return selectUnitsDiv;
+  return selectUnits;
 };
 
 const createSelectDefaultLocation = (currentDefaultLocation) => {
@@ -65,7 +65,7 @@ const createShowSettingsBtn = () => {
   return showSettingsBtn;
 };
 
-const createSettings = (defaultLocation, isMetric) => {
+const createSettings = ({ defaultLocation, isMetric }) => {
   const showSettingsBtn = createShowSettingsBtn();
   document.body.append(showSettingsBtn);
 

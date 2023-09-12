@@ -7,40 +7,16 @@ import getGeoLocation from '../model/search/geoLocation';
 import createSettings from '../view/elements/userSettings';
 
 export default class MainController {
-  isMetric = true;
-
-  defaultLocation = 'Cape Town';
-
-  geolocation = false;
+  config = {
+    isMetric: true,
+    defaultLocation: 'Cape Town',
+    geolocation: false,
+  };
 
   searchLocation = '';
 
-  initSearchBar = () => {
-    createSearchElement();
-
-    const geoLocationBtn = document.getElementById('geoLocationBtn');
-    geoLocationBtn.addEventListener('click', async () => {
-      const geoLocation = await getGeoLocation();
-      console.log(geoLocation);
-      this.getWeather(await geoLocation);
-    });
-
-    const searchField = document.getElementById('searchField');
-    searchField.addEventListener('input', (event) => {
-      this.searchLocation = event.target.value;
-    });
-
-    const searchBar = document.querySelector('.searchBarElement');
-    searchBar.addEventListener('submit', (event) => {
-      event.preventDefault();
-      this.getWeather(this.searchLocation);
-    });
-
-    // if (this.defaultLocation) this.getWeather(this.defaultLocation);
-  };
-
   initSettings = () => {
-    createSettings(this.defaultLocation, this.isMetric);
+    createSettings(this.config);
 
     const settingsMenu = document.getElementById('settings');
     const showSettingsBtn = document.getElementById('showSettingsBtn');
@@ -58,26 +34,53 @@ export default class MainController {
     });
 
     setDefaultLocation.addEventListener('input', (event) => {
-      this.defaultLocation = event.target.value;
+      this.config.defaultLocation = event.target.value;
     });
 
     metricBtn.addEventListener('click', () => {
-      this.isMetric = true;
+      this.config.isMetric = true;
       imperialBtn.classList.remove('unitsActive');
       metricBtn.classList.add('unitsActive');
     });
 
     imperialBtn.addEventListener('click', () => {
-      this.isMetric = false;
+      this.config.isMetric = false;
       metricBtn.classList.remove('unitsActive');
       imperialBtn.classList.add('unitsActive');
     });
   };
 
+  initSearchBar = () => {
+    createSearchElement();
+
+    const geoLocationBtn = document.getElementById('geoLocationBtn');
+    geoLocationBtn.addEventListener('click', async () => {
+      const geoLocation = await getGeoLocation();
+      const searchResult = await geoLocation;
+
+      console.log(searchResult);
+      this.getWeather(searchResult);
+    });
+
+    const searchField = document.getElementById('searchField');
+    searchField.addEventListener('input', (event) => {
+      this.searchLocation = event.target.value;
+    });
+
+    const searchBar = document.querySelector('.searchBarElement');
+    searchBar.addEventListener('submit', (event) => {
+      event.preventDefault();
+      console.log('Is this running?');
+      this.getWeather(this.searchLocation);
+    });
+
+    // if (this.defaultLocation) this.getWeather(this.defaultLocation);
+  };
+
   getWeather = async (search) => {
     try {
       const rawData = await getWeatherData(search);
-      const cleanData = filterWeatherData(rawData, this.isMetric);
+      const cleanData = filterWeatherData(rawData, this.config.isMetric);
       console.log(cleanData);
     } catch (err) {
       throw new Error(err);
