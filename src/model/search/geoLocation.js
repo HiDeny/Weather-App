@@ -1,4 +1,4 @@
-const getGeoLocation = async () =>
+const getGeolocation = async () =>
   new Promise((resolve, reject) => {
     const errorCallback = (error) => {
       reject(new Error(error));
@@ -6,11 +6,10 @@ const getGeoLocation = async () =>
 
     const successCallback = (position) => {
       const { latitude, longitude } = position.coords;
-      const searchResult = `${latitude},${longitude}`;
-      resolve(searchResult);
+      resolve(`${latitude},${longitude}`);
     };
 
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
   });
-  
-export default getGeoLocation;
+
+export default getGeolocation;

@@ -21,6 +21,7 @@ const createSubmitBtn = () => {
 const createSearchField = () => {
   const label = document.createElement('label');
   label.for = 'searchField';
+  label.textContent = 'Default Location';
 
   const searchBar = document.createElement('input');
   searchBar.type = 'text';
@@ -45,7 +46,7 @@ const createSearchElement = () => {
   const submitBtn = createSubmitBtn();
   completeSearchBar.append(submitBtn);
 
-  document.body.append(completeSearchBar);
+  return completeSearchBar;
 };
 
 export default createSearchElement;

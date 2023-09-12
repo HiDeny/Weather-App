@@ -2,7 +2,7 @@ import getWeatherData from '../model/data/getWeatherData';
 import filterWeatherData from '../model/data/filterWeatherData';
 
 import createSearchElement from '../view/elements/searchElement';
-import getGeoLocation from '../model/search/geoLocation';
+import getGeolocation from '../model/search/geoLocation';
 
 import createSettings from '../view/elements/userSettings';
 
@@ -51,15 +51,13 @@ export default class MainController {
   };
 
   initSearchBar = () => {
-    createSearchElement();
+    const completeSearchBar = createSearchElement();
+    document.body.append(completeSearchBar);
 
     const geoLocationBtn = document.getElementById('geoLocationBtn');
     geoLocationBtn.addEventListener('click', async () => {
-      const geoLocation = await getGeoLocation();
-      const searchResult = await geoLocation;
-
-      console.log(searchResult);
-      this.getWeather(searchResult);
+      const geolocation = await getGeolocation();
+      this.getWeather(geolocation);
     });
 
     const searchField = document.getElementById('searchField');
@@ -70,7 +68,6 @@ export default class MainController {
     const searchBar = document.querySelector('.searchBarElement');
     searchBar.addEventListener('submit', (event) => {
       event.preventDefault();
-      console.log('Is this running?');
       this.getWeather(this.searchLocation);
     });
 
@@ -87,9 +84,3 @@ export default class MainController {
     }
   };
 }
-
-// const getWeather = async (location) => {
-//   const weatherData = await getWeatherData(location);
-//   const cleanData = await filterWeatherData(weatherData);
-//   return cleanData;
-// };

@@ -1,4 +1,4 @@
-export const createElementWithClass = (tagName, className, content) => {
+export const customElementWithClass = (tagName, className, content) => {
   const element = document.createElement(tagName);
   element.className = className;
   element.textContent = content;
@@ -6,7 +6,7 @@ export const createElementWithClass = (tagName, className, content) => {
   return element;
 };
 
-export const setContent = (className, content) => {
+export const pContent = (className, content) => {
   const nodeContent = createElementWithClass('p', className, content);
   return nodeContent;
 };
