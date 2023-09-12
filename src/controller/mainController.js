@@ -1,7 +1,8 @@
 import getWeatherData from '../model/data/getWeatherData';
 import filterWeatherData from '../model/data/filterWeatherData';
 
-import createSearchBar from '../view/searchBar/searchElement';
+import createSearchElement from '../view/elements/searchElement';
+import getGeoLocation from '../model/search/geoLocation';
 
 export default class MainController {
   isMetric = true;
@@ -12,12 +13,25 @@ export default class MainController {
 
   searchLocation = '';
 
-  launch = () => {
-    const searchBar = createSearchBar();
-    searchBar.addEventListener('submit', (event) => {
-      event.preventDefault;
+  initSearchBar = () => {
+    createSearchElement();
+
+    const geoLocationBtn = document.getElementById('geoLocationBtn');
+    geoLocationBtn.addEventListener('click', async () => {
+      const geoLocation = await getGeoLocation();
+      this.getWeather(geoLocation);
     });
-    document.body.append();
+
+    const searchField = document.getElementById('searchField');
+    searchField.addEventListener('input', (event) => {
+      this.searchLocation = event.target.value;
+    });
+
+    const searchBar = document.querySelector('.searchBarElement');
+    searchBar.addEventListener('submit', (event) => {
+      event.preventDefault();
+      this.getWeather(this.searchLocation);
+    });
   };
 
   getWeather = async (search = this.defaultLocation) => {

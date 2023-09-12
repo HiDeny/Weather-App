@@ -1,12 +1,16 @@
-const searchControl = async (searchBar) => {
-  searchForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const { searchBar } = searchForm;
-    const searchResult = searchBar.value;
-    searchBar.value = '';
+const getSearchResult = (searchBarElement) => {
+  const { searchBar } = searchBarElement;
+  const searchResult = searchBar.value;
+  searchBar.value = '';
 
-    callback(searchResult);
+  return Promise.resolve(searchResult);
+};
+
+const searchController = async (searchBarElement) => {
+  searchBarElement.addEventListener('submit', (event) => {
+    event.preventDefault();
+    getSearchResult(searchBarElement);
   });
 };
 
-export default searchControl;
+export default searchController;

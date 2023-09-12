@@ -18,34 +18,34 @@ const createSubmitBtn = () => {
   return submitBtn;
 };
 
-const createSearchBar = () => {
+const createSearchField = () => {
   const label = document.createElement('label');
-  label.for = 'searchBar';
+  label.for = 'searchField';
 
   const searchBar = document.createElement('input');
   searchBar.type = 'text';
   searchBar.placeholder = 'City';
-  searchBar.name = 'searchBar';
-  searchBar.id = 'searchBar';
+  searchBar.name = 'searchField';
+  searchBar.id = 'searchField';
 
   label.append(searchBar);
   return label;
 };
 
-const createSearch = () => {
-  const searchForm = document.createElement('form');
-  searchForm.classList.add('searchForm');
+const createSearchElement = () => {
+  const completeSearchBar = document.createElement('form');
+  completeSearchBar.classList.add('searchBarElement');
 
   const geoLocationBtn = createGeoLocationBtn();
-  searchForm.append(geoLocationBtn);
+  completeSearchBar.append(geoLocationBtn);
 
-  const searchBar = createSearchBar();
-  searchForm.append(searchBar);
+  const searchField = createSearchField();
+  completeSearchBar.append(searchField);
 
   const submitBtn = createSubmitBtn();
-  searchForm.append(submitBtn);
+  completeSearchBar.append(submitBtn);
 
-  return searchForm;
+  document.body.append(completeSearchBar);
 };
 
-export default createSearch;
+export default createSearchElement;
