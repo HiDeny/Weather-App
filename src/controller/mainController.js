@@ -4,6 +4,8 @@ import filterWeatherData from '../model/data/filterWeatherData';
 import createSearchElement from '../view/elements/searchElement';
 import getGeoLocation from '../model/search/geoLocation';
 
+import createSettings from '../view/elements/userSettings';
+
 export default class MainController {
   isMetric = true;
 
@@ -31,6 +33,33 @@ export default class MainController {
     searchBar.addEventListener('submit', (event) => {
       event.preventDefault();
       this.getWeather(this.searchLocation);
+    });
+  };
+
+  initSettings = () => {
+    createSettings(this.defaultLocation, this.isMetric);
+
+    // const showSettingsBtn = document.getElementById('.showSettingsBtn');
+    // const saveBtn = document.getElementById('saveBtn');
+    // const settingsMenu = document.getElementById('settings');
+    const setDefaultLocation = document.getElementById('setDefaultLocation');
+    const metricBtn = document.querySelector('.metricUnits');
+    const imperialBtn = document.querySelector('.imperialUnits');
+
+    setDefaultLocation.addEventListener('input', (event) => {
+      this.defaultLocation = event.target.value;
+    });
+
+    metricBtn.addEventListener('click', () => {
+      this.isMetric = true;
+      imperialBtn.classList.remove('unitsActive');
+      metricBtn.classList.add('unitsActive');
+    });
+
+    imperialBtn.addEventListener('click', () => {
+      this.isMetric = false;
+      metricBtn.classList.remove('unitsActive');
+      imperialBtn.classList.add('unitsActive');
     });
   };
 

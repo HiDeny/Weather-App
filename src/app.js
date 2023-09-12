@@ -4,6 +4,7 @@ import MainController from './controller/mainController';
 
 const mainController = new MainController();
 mainController.initSearchBar();
+mainController.initSettings();
 
 // import { searchBar } from './components/searchBar/searchBar';
 // import getWeather from './components/weather';
