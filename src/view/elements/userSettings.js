@@ -73,23 +73,26 @@ const createShowSettingsBtn = () => {
 };
 
 const createSettings = ({ defaultLocation, isMetric }) => {
-  const showSettingsBtn = createShowSettingsBtn();
-  document.body.append(showSettingsBtn);
+  const settingsElement = createElementWithClass('div', 'settingsElement');
 
-  const settings = document.createElement('div');
-  settings.classList.add('settingsMenu');
-  settings.id = 'settings';
+  const showSettingsBtn = createShowSettingsBtn();
+  settingsElement.append(showSettingsBtn);
+
+  const settingsMenu = document.createElement('div');
+  settingsMenu.classList.add('settingsMenu');
+  settingsMenu.id = 'settingsMenu';
+  settingsElement.append(settingsMenu);
 
   const selectDefaultLocation = createSelectDefaultLocation(defaultLocation);
-  settings.append(selectDefaultLocation);
+  settingsMenu.append(selectDefaultLocation);
 
   const selectUnits = createSelectUnits(isMetric);
-  settings.append(selectUnits);
+  settingsMenu.append(selectUnits);
 
   const submitBtn = createSubmitBtn();
-  settings.append(submitBtn);
+  settingsMenu.append(submitBtn);
 
-  document.body.append(settings);
+  return settingsElement;
 };
 
 export default createSettings;

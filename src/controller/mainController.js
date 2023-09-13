@@ -17,9 +17,10 @@ export default class MainController {
   searchLocation = '';
 
   initSettings = () => {
-    createSettings(this.config);
+    const settings = createSettings(this.config);
+    document.body.append(settings);
 
-    const settingsMenu = document.getElementById('settings');
+    const settingsMenu = document.getElementById('settingsMenu');
     const showSettingsBtn = document.getElementById('showSettingsBtn');
     const saveBtn = document.getElementById('saveBtn');
     const setDefaultLocation = document.getElementById('setDefaultLocation');
@@ -81,7 +82,11 @@ export default class MainController {
     try {
       const rawData = await getWeatherData(search);
       const cleanData = filterWeatherData(rawData, this.config.isMetric);
-      const currentInfo = createCurrentInfo(cleanData.currentInfo);
+      const currentInfo = createCurrentInfo(
+        cleanData.currentInfo,
+        this.config.isMetric
+      );
+
       document.body.append(currentInfo);
       console.log(cleanData);
     } catch (err) {
