@@ -34,7 +34,7 @@ const createSearchField = () => {
 
 const createSearchElement = () => {
   const completeSearchBar = document.createElement('form');
-  completeSearchBar.classList.add('searchBarElement');
+  completeSearchBar.classList.add('searchElement');
 
   const geoLocationBtn = createGeoLocationBtn();
   completeSearchBar.append(geoLocationBtn);

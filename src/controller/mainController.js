@@ -66,7 +66,7 @@ export default class MainController {
       this.searchLocation = event.target.value;
     });
 
-    const searchBar = document.querySelector('.searchBarElement');
+    const searchBar = document.querySelector('.searchElement');
     searchBar.addEventListener('submit', (event) => {
       event.preventDefault();
       this.getWeather(this.searchLocation);

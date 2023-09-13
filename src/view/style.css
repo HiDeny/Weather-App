@@ -36,19 +36,31 @@ section {
   border-radius: 1rem;
 }
 
-.searchBarElement {
+/** SEARCH ELEMENT */
+.searchElement {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
 
-#searchBar {
+#searchField {
   border-radius: 1rem;
   border: 1px solid gray;
   padding: 5px 10px;
   width: 15rem;
+  text-align: center;
 }
+
+.searchBtn {
+  width: 2rem;
+  height: 2rem;
+
+  border: #b3b3b3 solid 1px;
+  border-radius: 100%;
+}
+
+/** SETTINGS  */
 
 .weatherCard {
   display: grid;
