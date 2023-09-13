@@ -1,6 +1,8 @@
+import { createElementWithClass } from '../helperFunc';
+
 const createSubmitBtn = () => {
   const submitBtn = document.createElement('button');
-  submitBtn.classList.add('settingsBtn');
+  submitBtn.classList.add('saveSettingsBtn');
   submitBtn.id = 'saveBtn';
   submitBtn.textContent = 'Save!';
 
@@ -24,6 +26,9 @@ const createSelectUnits = (isMetric) => {
   metricBtn.classList.add('metricUnits');
   selectUnits.append(metricBtn);
 
+  const split = createElementWithClass('p', 'unitsSplit', 'OR');
+  selectUnits.append(split);
+
   // Imperial (°F, Miles, Inches)
   const imperialBtn = createUnitBtn('Imperial (°F, mi, in)');
   imperialBtn.classList.add('imperialUnits');
@@ -45,7 +50,8 @@ const createSelectUnits = (isMetric) => {
 const createSelectDefaultLocation = (currentDefaultLocation) => {
   const label = document.createElement('label');
   label.for = 'setDefaultLocation';
-  label.textContent = 'Default Location:';
+  label.textContent = 'Default Location';
+  label.className = 'defaultLocationLabel';
 
   const setDefaultLocation = document.createElement('input');
   setDefaultLocation.type = 'text';

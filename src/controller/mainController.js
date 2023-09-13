@@ -27,11 +27,13 @@ export default class MainController {
     const imperialBtn = document.querySelector('.imperialUnits');
 
     showSettingsBtn.addEventListener('click', () => {
-      settingsMenu.classList.remove('hide');
+      const isVisible = settingsMenu.classList[1] === 'showSettings';
+      if (isVisible) settingsMenu.classList.remove('showSettings');
+      if (!isVisible) settingsMenu.classList.add('showSettings');
     });
 
     saveBtn.addEventListener('click', () => {
-      settingsMenu.classList.add('hide');
+      settingsMenu.classList.remove('showSettings');
     });
 
     setDefaultLocation.addEventListener('input', (event) => {

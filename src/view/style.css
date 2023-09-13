@@ -25,7 +25,7 @@ html {
 
 body {
   display: grid;
-  grid-template-rows: 5rem repeat(3, auto) 2rem;
+  grid-template-rows: 5rem repeat(3, auto) 5rem;
   height: 100vh;
 }
 
@@ -37,6 +37,7 @@ section {
 }
 
 /** SEARCH ELEMENT */
+
 .searchElement {
   display: flex;
   justify-content: center;
@@ -46,8 +47,8 @@ section {
 
 #searchField {
   border-radius: 1rem;
-  border: 1px solid gray;
-  padding: 5px 10px;
+  border: #b3b3b3 solid 1px;
+  padding: 0.5rem 0.3rem;
   width: 15rem;
   text-align: center;
 }
@@ -61,6 +62,104 @@ section {
 }
 
 /** SETTINGS  */
+#showSettingsBtn {
+  align-self: center;
+  justify-self: center;
+
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  border: #b3b3b3 solid 1px;
+  grid-row-end: -1;
+}
+
+.settingsMenu {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 250%);
+
+  display: grid;
+  grid-template-rows: 5rem 8rem 4rem;
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(222, 222, 222, 0.513);
+  border: #b3b3b3 solid 1px;
+  border-radius: 0.5rem;
+  padding: 2rem 4rem;
+
+  transition: transform ease 1s;
+}
+
+.showSettings {
+  transform: translate(-50%, -50%);
+}
+
+.defaultLocationLabel {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+#setDefaultLocation {
+  align-self: center;
+
+  width: 11rem;
+  border-radius: 0.5rem;
+  border: #b3b3b3 solid 1px;
+  padding: 0.5rem 0.3rem;
+  margin-top: 0.3rem;
+
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.selectUnits {
+  align-self: center;
+  align-items: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.unitBtn {
+  width: 100%;
+  padding: 0.5rem 0.3rem;
+
+  background-color: #b3b3b3;
+  border-radius: 0.5rem;
+  border: #b3b3b3 solid 1px;
+
+  font-size: 0.9rem;
+
+  transition: background-color 1s;
+}
+
+.unitsActive {
+  background-color: pink;
+}
+
+.unitsSplit {
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+.saveSettingsBtn {
+  justify-self: center;
+  width: 8rem;
+  padding: 0.5rem 0.25rem;
+
+  background-color: rgb(123, 145, 255);
+  border: #ffffff solid 1px;
+  border-radius: 1rem;
+
+  color: white;
+}
 
 .weatherCard {
   display: grid;
@@ -245,29 +344,4 @@ section {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.unitsBtn {
-  width: 5rem;
-  transform: all 1s;
-}
-
-.unitsActive {
-  background-color: pink;
-  width: 10rem;
-}
-
-.settingsMenu {
-  display: grid;
-  grid-template-rows: repeat(3, 3rem);
-  justify-content: center;
-
-  border: 1px solid black;
-  padding: 1rem;
-
-  transition: display ease 2s;
-}
-
-.hide {
-  display: none;
 }
