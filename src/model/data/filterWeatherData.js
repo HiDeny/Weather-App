@@ -43,7 +43,6 @@ const filterWeatherData = (rawData, isMetric = true) => {
   const upcomingData = getUpcomingData(rawData, isMetric);
 
   const currentInfo = getCurrentInfo(locationData, todayData);
-  console.log(currentInfo);
   const forecasts = getForecasts(todayData, upcomingData);
   const detailsInfo = getDetails(todayData);
 

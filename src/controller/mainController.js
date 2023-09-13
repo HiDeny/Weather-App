@@ -7,6 +7,8 @@ import getGeolocation from '../model/search/geoLocation';
 import createSettings from '../view/elements/userSettings';
 import createCurrentInfo from '../view/currentInfo';
 
+import createForecasts from '../view/cardSections/forecasts';
+
 export default class MainController {
   config = {
     isMetric: true,
@@ -21,6 +23,7 @@ export default class MainController {
     document.body.append(settings);
 
     const settingsMenu = document.getElementById('settingsMenu');
+    settingsMenu.classList.add('hideSettings');
     const showSettingsBtn = document.getElementById('showSettingsBtn');
     const saveBtn = document.getElementById('saveBtn');
     const setDefaultLocation = document.getElementById('setDefaultLocation');
@@ -29,8 +32,22 @@ export default class MainController {
 
     showSettingsBtn.addEventListener('click', () => {
       const isVisible = settingsMenu.classList[1] === 'showSettings';
-      if (isVisible) settingsMenu.classList.remove('showSettings');
-      if (!isVisible) settingsMenu.classList.add('showSettings');
+      if (isVisible) {
+        showSettingsBtn.disabled = true;
+        settingsMenu.classList.remove('showSettings');
+        setTimeout(() => {
+          settingsMenu.classList.add('hideSettings');
+          showSettingsBtn.disabled = false;
+        }, 1500);
+      }
+      if (!isVisible) {
+        showSettingsBtn.disabled = true;
+        settingsMenu.classList.remove('hideSettings');
+        setTimeout(() => {
+          settingsMenu.classList.add('showSettings');
+          showSettingsBtn.disabled = false;
+        }, 500);
+      }
     });
 
     saveBtn.addEventListener('click', () => {
@@ -78,16 +95,28 @@ export default class MainController {
     // if (this.defaultLocation) this.getWeather(this.defaultLocation);
   };
 
+  displayWeather = async (cleanData) => {
+    const { currentInfo, forecasts, detailsInfo } = cleanData;
+
+    const showCurrentInfo = createCurrentInfo(
+      currentInfo,
+      this.config.isMetric
+    );
+    document.body.append(showCurrentInfo);
+
+    const showForecasts = await createForecasts(
+      forecasts,
+      this.config.isMetric
+    );
+    document.body.append(showForecasts);
+  };
+
   getWeather = async (search) => {
     try {
       const rawData = await getWeatherData(search);
       const cleanData = filterWeatherData(rawData, this.config.isMetric);
-      const currentInfo = createCurrentInfo(
-        cleanData.currentInfo,
-        this.config.isMetric
-      );
 
-      document.body.append(currentInfo);
+      this.displayWeather(cleanData);
       console.log(cleanData);
     } catch (err) {
       throw new Error(err);

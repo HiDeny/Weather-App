@@ -1,34 +1,23 @@
 import './style.css';
 import 'normalize.css';
 
-import createInfoSection from './cardSections/locationInfo';
-import createTodaySection from './cardSections/todayWeather';
-import createForecastSection from './cardSections/forecasts';
-import createDetailsSection from './cardSections/detailCards';
-
+// import createInfoSection from './cardSections/locationInfo';
+// import createTodaySection from './cardSections/todayWeather';
+// import createForecastSection from './cardSections/forecasts';
+// import createDetailsSection from './cardSections/detailCards';
+import createCurrentInfo from './currentInfo';
 // Credit
 // Powered by <a href="https://www.weatherapi.com/" title="Free Weather API">WeatherAPI.com</a>
 // <a href="https://www.weatherapi.com/" title="Free Weather API"><img src='//cdn.weatherapi.com/v4/images/weatherapi_logo.png' alt="Weather data by WeatherAPI.com" border="0"></a>
 
-const createWeatherCard = async (weatherData) => {
-  const { info, today, forecast, details } = weatherData;
+const createWeatherCard = (weatherData) => {
+  const { currentInfo, forecasts, detailsInfo } = weatherData;
 
-  const weatherCard = document.createElement('div');
-  weatherCard.classList.add('weatherCard');
+  const currentInfo = createCurrentInfo(currentInfo);
 
-  const infoSec = createInfoSection(info);
-  weatherCard.append(infoSec);
+  const forecastSection = createForecastSection(forecasts);
 
-  const todaySec = createTodaySection(today);
-  weatherCard.append(todaySec);
-
-  const forecastSec = await createForecastSection(forecast);
-  weatherCard.append(forecastSec);
-
-  const detailsSec = createDetailsSection(details);
-  weatherCard.append(detailsSec);
-
-  return weatherCard;
+  return { currentInfo };
 };
 
 export default createWeatherCard;

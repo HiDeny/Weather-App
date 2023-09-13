@@ -30,6 +30,7 @@ body {
 }
 
 section {
+  width: 70%;
   background: #f0f0f042;
 }
 
@@ -74,7 +75,6 @@ section {
 
   display: grid;
   grid-template-rows: 5rem 8rem 4rem;
-
   justify-content: center;
   align-items: center;
 
@@ -98,6 +98,10 @@ section {
 
 .showSettings {
   transform: translate(-50%, -50%);
+}
+
+.hideSettings {
+  display: none;
 }
 
 .defaultLocationLabel {
@@ -234,7 +238,17 @@ section {
 }
 
 .lastUpdated {
+  align-self: end;
   font-size: 0.8rem;
+}
+
+/* *Forecast  */
+.forecasts {
+  width: 70%;
+}
+
+.todayForecast {
+  width: 100%;
 }
 
 .today {
