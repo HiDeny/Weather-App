@@ -52,7 +52,9 @@ const createForecastHourly = (todayData) => {
       ],
     },
 
-    options: {},
+    options: {
+      maintainAspectRatio: false,
+    },
   });
 
   return canvas;
