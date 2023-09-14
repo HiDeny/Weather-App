@@ -19,10 +19,10 @@ const createForecasts = async (forecastsData, isMetric) => {
   const upcomingDiv = createElementWithClass('div', 'upcoming');
   forecastSection.append(upcomingDiv);
 
-  const upcomingDay1 = await createUpcomingCard(upcoming.firstDay);
+  const upcomingDay1 = await createUpcomingCard(upcoming.firstDay, isMetric);
   upcomingDiv.append(upcomingDay1);
 
-  const upcomingDay2 = await createUpcomingCard(upcoming.secondDay);
+  const upcomingDay2 = await createUpcomingCard(upcoming.secondDay, isMetric);
   upcomingDiv.append(upcomingDay2);
 
   return forecastSection;

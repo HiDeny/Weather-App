@@ -12,22 +12,21 @@ const createCard = (className, title) => {
 };
 
 const createFeelCard = (feelsLikeTemp, isMetric) => {
-  const card = createCard('feelsLike', 'Feels Like');
+  const correctVal = isMetric ? '°C' : '°F';
 
-  const correctFeelsLike = isMetric
-    ? `${feelsLikeTemp}°C`
-    : `${feelsLikeTemp}°F`;
-  card.append(pElementWithClass('feelsLikeTemp', correctFeelsLike));
+  const card = createCard('feelsLike', 'Feels Like');
+  card.append(
+    pElementWithClass('feelsLikeTemp', `${feelsLikeTemp}${correctVal}`)
+  );
 
   return card;
 };
 
 const createRainCard = (rain, isMetric) => {
   const { chance, precip, total } = rain;
-
-  const card = createCard('rain', 'Rain');
   const correctVal = isMetric ? 'mm' : 'in';
 
+  const card = createCard('rain', 'Rain');
   card.append(pElementWithClass('precip', `Precip: ${precip} ${correctVal}`));
   card.append(pElementWithClass('chance', `Chance of rain: ${chance}%`));
   card.append(pElementWithClass('total', `Total: ${total} ${correctVal}`));
@@ -37,12 +36,10 @@ const createRainCard = (rain, isMetric) => {
 
 const createAstroCard = (astroData, isMoon) => {
   const { rise, set, illumination } = astroData;
-
   const cardName = isMoon ? 'Moon' : 'Sun';
   const cardClass = isMoon ? 'moon' : 'sun';
 
   const card = createCard(cardClass, cardName);
-
   card.append(pElementWithClass('astroRise', `Rise: ${rise}`));
   card.append(pElementWithClass('astroSet', `Set: ${set}`));
 
@@ -57,10 +54,9 @@ const createAstroCard = (astroData, isMoon) => {
 
 const createWindCard = (wind, isMetric) => {
   const { speed, gust, max, dir, degree } = wind;
-
-  const card = createCard('wind', 'Wind');
   const correctVal = isMetric ? 'km/h' : 'm/h';
 
+  const card = createCard('wind', 'Wind');
   card.append(pElementWithClass('speed', `Speed: ${speed} ${correctVal}`));
   card.append(pElementWithClass('gust', `Gust: ${gust} ${correctVal}`));
   card.append(pElementWithClass('max', `Max Speed: ${max} ${correctVal}`));
@@ -70,10 +66,9 @@ const createWindCard = (wind, isMetric) => {
 };
 
 const createVisibilityCard = (visibility, isMetric) => {
-  const card = createCard('visibility', 'Visibility');
-
   const correctVal = isMetric ? 'km' : 'mi';
 
+  const card = createCard('visibility', 'Visibility');
   card.append(
     pElementWithClass('visibilityValue', `${visibility} ${correctVal}`)
   );

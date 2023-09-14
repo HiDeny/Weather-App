@@ -1,5 +1,5 @@
 import getWeatherData from '../model/data/getWeatherData';
-import filterWeatherData from '../model/data/filterWeatherData';
+import filterWeatherData from '../model/data/filter/filterWeatherData';
 
 import createSearchElement from '../view/cardSections/searchElement';
 import getGeolocation from '../model/search/geoLocation';
@@ -96,12 +96,14 @@ export default class MainController {
   };
 
   displayWeather = async (cleanData) => {
+    const currentWeatherCard = document.querySelector('.weatherCard');
     const weatherCard = await createWeatherCard(
       cleanData,
       this.config.isMetric
     );
 
-    document.body.append(weatherCard);
+    if (currentWeatherCard) currentWeatherCard.replaceWith(weatherCard);
+    if (!currentWeatherCard) document.body.append(weatherCard);
   };
 
   getWeather = async (search) => {

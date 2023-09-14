@@ -7,6 +7,8 @@ const getUpcomingData = (rawData, isMetric) => {
   const upcomingWeather = forecastday.map((forecastData) => {
     const { date } = forecastData;
     const nameOfDay = format(new Date(date), 'EEEE');
+    const formatedDate = format(new Date(date), 'd LLLL');
+
     const {
       avgtemp_c,
       avgtemp_f,
@@ -24,7 +26,7 @@ const getUpcomingData = (rawData, isMetric) => {
     } = forecastData.day;
 
     const dayWeather = {
-      date: { number: date, weekDayName: nameOfDay },
+      date: { number: formatedDate, weekDayName: nameOfDay },
       temp: {
         avg: isMetric ? avgtemp_c : avgtemp_f,
         max: isMetric ? maxtemp_c : maxtemp_f,

@@ -1,71 +1,73 @@
-import { createElementWithClass, createConIconElement } from '../helperFunc';
+import {
+  createElementWithClass,
+  pElementWithClass,
+  createConIconElement,
+} from '../helperFunc';
 
 const createCardTitle = (date) => {
   const { weekDayName, number } = date;
   const cardTitleDiv = createElementWithClass('div', 'title');
 
-  const cardTitleDay = createElementWithClass('p', 'day', weekDayName);
-  cardTitleDiv.append(cardTitleDay);
-
-  const cardTitleDate = createElementWithClass('p', 'date', number);
+  const cardTitleDate = pElementWithClass('date', number);
   cardTitleDiv.append(cardTitleDate);
+
+  const cardTitleDay = pElementWithClass('day', weekDayName);
+  cardTitleDiv.append(cardTitleDay);
 
   return cardTitleDiv;
 };
 
 const createCardTemp = (temp, isMetric) => {
   const { avg, max, min } = temp;
+  const correctVal = isMetric ? '°C' : '°F';
 
   const container = createElementWithClass('div', 'tempContainer');
 
-  const title = createElementWithClass('p', 'title', 'Temperature');
+  const title = pElementWithClass('title', 'Temperature');
   container.append(title);
 
-  const avgTemp = createElementWithClass('p', 'avgTemp', `${avg}`);
+  const avgTemp = pElementWithClass('avgTemp', `${avg}${correctVal}`);
   container.append(avgTemp);
 
-  const maxTemp = createElementWithClass('p', 'maxTemp', `H: ${max}`);
+  const maxTemp = pElementWithClass('maxTemp', `H: ${max}${correctVal}`);
   container.append(maxTemp);
 
-  const minTemp = createElementWithClass('p', 'minTemp', `L: ${min}`);
+  const minTemp = pElementWithClass('minTemp', `L: ${min}${correctVal}`);
   container.append(minTemp);
 
   return container;
 };
 
-const createCardWind = (wind) => {
+const createCardWind = (wind, isMetric) => {
   const { max } = wind;
+  const correctVal = isMetric ? 'km/h' : 'm/h';
 
   const container = createElementWithClass('div', 'windContainer');
 
-  const title = createElementWithClass('p', 'title', 'Wind');
+  const title = pElementWithClass('title', 'Wind');
   container.append(title);
 
-  const maxWind = createElementWithClass('p', 'wind', `${max}`);
+  const maxWind = pElementWithClass('wind', `${max} ${correctVal}`);
   container.append(maxWind);
 
   return container;
 };
 
-const createCardRain = (rain) => {
+const createCardRain = (rain, isMetric) => {
   const { chance, total } = rain;
+  const correctVal = isMetric ? 'mm' : 'in';
 
   const container = createElementWithClass('div', 'rainContainer');
 
-  const title = createElementWithClass('p', 'title', 'Rain');
+  const title = pElementWithClass('title', 'Rain');
   container.append(title);
 
-  const chanceRain = createElementWithClass(
-    'p',
-    'chance',
-    `Chance of rain: ${chance}%`
-  );
+  const chanceRain = pElementWithClass('chance', `Chance: ${chance}%`);
   container.append(chanceRain);
 
-  const totalRain = createElementWithClass(
-    'p',
+  const totalRain = pElementWithClass(
     'total',
-    `Total Precipitation: ${total}`
+    `Total Pcpn: ${total} ${correctVal}`
   );
   container.append(totalRain);
 

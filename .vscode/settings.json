@@ -2,12 +2,14 @@
   "cSpell.words": [
     "astro",
     "averagetemp",
+    "avghumidity",
     "avgtemp",
     "feelslike",
     "forecastday",
     "maxtemp",
     "maxwind",
     "mintemp",
+    "Pcpn",
     "precip",
     "weatherapi"
   ]
