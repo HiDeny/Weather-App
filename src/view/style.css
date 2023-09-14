@@ -332,10 +332,19 @@ section {
   grid-row: 1;
   grid-column: 1 / 3;
   align-self: center;
+}
 
+.upcomingCard > .title > .date,
+.upcomingCard > .title > .day {
   margin: 0;
+}
 
+.upcomingCard > .title > .day {
   font-size: 2rem;
+}
+
+.upcomingCard > .title > .date {
+  font-size: 1rem;
 }
 
 .tempContainer,
@@ -395,6 +404,11 @@ section {
   grid-template-rows: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
+}
+
+.upcomingCard > .rainContainer > .chance,
+.upcomingCard > .rainContainer > .total {
+  font-size: 0.9rem;
 }
 
 .humidityContainer {
