@@ -1,7 +1,7 @@
 import './style.css';
 import 'normalize.css';
 
-import { createElementWithClass } from './helperFunc';
+import { createElementWithClass } from './cardSections/helperFunc';
 
 import createCurrentInfo from './cardSections/currentInfo';
 import createForecasts from './cardSections/forecasts/forecasts';

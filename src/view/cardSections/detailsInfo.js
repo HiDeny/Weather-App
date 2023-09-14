@@ -1,4 +1,4 @@
-import { createElementWithClass, pElementWithClass } from '../helperFunc';
+import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 const createCard = (className, title) => {
   const card = document.createElement('div');
@@ -28,9 +28,9 @@ const createRainCard = (rain, isMetric) => {
   const card = createCard('rain', 'Rain');
   const correctVal = isMetric ? 'mm' : 'in';
 
-  card.append(pElementWithClass('precip', `Precip: ${precip}${correctVal}`));
+  card.append(pElementWithClass('precip', `Precip: ${precip} ${correctVal}`));
   card.append(pElementWithClass('chance', `Chance of rain: ${chance}%`));
-  card.append(pElementWithClass('total', `Total: ${total}${correctVal}`));
+  card.append(pElementWithClass('total', `Total: ${total} ${correctVal}`));
 
   return card;
 };
@@ -47,7 +47,9 @@ const createAstroCard = (astroData, isMoon) => {
   card.append(pElementWithClass('astroSet', `Set: ${set}`));
 
   if (isMoon) {
-    card.append(pElementWithClass('astroIll', `Illumination: ${illumination}`));
+    card.append(
+      pElementWithClass('astroIll', `Illumination: ${illumination}%`)
+    );
   }
 
   return card;
@@ -59,10 +61,22 @@ const createWindCard = (wind, isMetric) => {
   const card = createCard('wind', 'Wind');
   const correctVal = isMetric ? 'km/h' : 'm/h';
 
-  card.append(pElementWithClass('speed', `Speed: ${speed}${correctVal}`));
-  card.append(pElementWithClass('gust', `Gust: ${gust}${correctVal}`));
-  card.append(pElementWithClass('max', `Max Speed: ${max}${correctVal}`));
+  card.append(pElementWithClass('speed', `Speed: ${speed} ${correctVal}`));
+  card.append(pElementWithClass('gust', `Gust: ${gust} ${correctVal}`));
+  card.append(pElementWithClass('max', `Max Speed: ${max} ${correctVal}`));
   card.append(pElementWithClass('dir', `Direction: ${dir}`));
+
+  return card;
+};
+
+const createVisibilityCard = (visibility, isMetric) => {
+  const card = createCard('visibility', 'Visibility');
+
+  const correctVal = isMetric ? 'km' : 'mi';
+
+  card.append(
+    pElementWithClass('visibilityValue', `${visibility} ${correctVal}`)
+  );
 
   return card;
 };
@@ -87,14 +101,13 @@ const createDetailsInfo = (detailsInfoData, isMetric) => {
   const uvCard = createCard('uv', 'UV');
   uvCard.append(pElementWithClass('uvIndex', uv));
 
-  const visibilityCard = createCard('visibility', 'Visibility');
-  visibilityCard.append(pElementWithClass('visibilityValue', visibility));
+  const visibilityCard = createVisibilityCard(visibility, isMetric);
 
   const humidityCard = createCard('humidity', 'Humidity');
-  humidityCard.append(pElementWithClass('uvIndex', humidity.current));
+  humidityCard.append(pElementWithClass('uvIndex', `${humidity.current}%`));
 
   const cloudCard = createCard('clouds', 'Clouds');
-  cloudCard.append(pElementWithClass('cloudsVal', cloud));
+  cloudCard.append(pElementWithClass('cloudsVal', `${cloud}%`));
 
   const detailCards = [
     feelCard,

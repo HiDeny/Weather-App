@@ -1,4 +1,4 @@
-import { createElementWithClass } from '../helperFunc';
+import { createElementWithClass } from './helperFunc';
 
 const createSubmitBtn = () => {
   const submitBtn = document.createElement('button');

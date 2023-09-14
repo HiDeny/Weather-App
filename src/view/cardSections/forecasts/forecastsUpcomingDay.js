@@ -1,4 +1,4 @@
-import { createElementWithClass, createConIconElement } from '../../helperFunc';
+import { createElementWithClass, createConIconElement } from '../helperFunc';
 
 const createCardTitle = (date) => {
   const { weekDayName, number } = date;
@@ -13,7 +13,7 @@ const createCardTitle = (date) => {
   return cardTitleDiv;
 };
 
-const createCardTemp = (temp) => {
+const createCardTemp = (temp, isMetric) => {
   const { avg, max, min } = temp;
 
   const container = createElementWithClass('div', 'tempContainer');
@@ -84,7 +84,7 @@ const createCardHumidity = (humidity) => {
   return container;
 };
 
-const createUpcomingCard = async (upcomingDay) => {
+const createUpcomingCard = async (upcomingDay, isMetric) => {
   const { date, condition, humidity, rain, temp, wind } = upcomingDay;
 
   const card = createElementWithClass('div', 'upcomingCard');
@@ -98,15 +98,15 @@ const createUpcomingCard = async (upcomingDay) => {
   card.append(conditionIcon);
 
   // Temp - Avg, Max, Min
-  const cardTemp = createCardTemp(temp);
+  const cardTemp = createCardTemp(temp, isMetric);
   card.append(cardTemp);
 
   // Wind
-  const cardWind = createCardWind(wind);
+  const cardWind = createCardWind(wind, isMetric);
   card.append(cardWind);
 
   // Rain - Chance, Total
-  const cardRain = createCardRain(rain);
+  const cardRain = createCardRain(rain, isMetric);
   card.append(cardRain);
 
   // Humidity

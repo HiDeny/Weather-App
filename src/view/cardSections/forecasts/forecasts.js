@@ -1,5 +1,5 @@
 // import createForecast from '../elements/forecast';
-import { createElementWithClass } from '../../helperFunc';
+import { createElementWithClass } from '../helperFunc';
 
 import createForecastHourly from './forecastHourly';
 import createUpcomingCard from './forecastsUpcomingDay';
