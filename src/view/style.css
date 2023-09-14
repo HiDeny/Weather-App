@@ -31,7 +31,6 @@ body {
 }
 
 section {
-  width: 70%;
   justify-self: center;
   background: #f0f0f042;
 }
@@ -186,10 +185,19 @@ section {
   color: white;
 }
 
+/** Weather Card */
+
+.weatherCard {
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  gap: 5%;
+  margin: auto;
+}
+
 /** CurrentInfo  */
 
 .currentInfo {
-  grid-row: 2;
+  grid-row: 1;
 
   display: grid;
   grid-template-rows: 7rem 15rem 7rem 3rem;
@@ -227,14 +235,6 @@ section {
   margin: 0;
 
   font-size: 1.5rem;
-}
-
-.weatherCard {
-  display: grid;
-  grid-template-rows: repeat(4, auto);
-  gap: 5%;
-  margin: auto;
-  width: 55rem;
 }
 
 .minmax {
@@ -434,138 +434,40 @@ section {
   grid-row: 2 / 4;
 }
 
-/*! OLD STYLES */
-.today {
+/** Detail Info */
+
+.detailsInfo {
   display: grid;
-  grid-template-rows: 4rem 3rem 2.5rem;
-  grid-template-columns: 1fr 1fr;
-  justify-content: center;
-  text-align: center;
-}
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
 
-.today > .currentTemp {
-  align-self: center;
-  grid-column: 1 / 3;
-
-  margin: 0;
-
-  font-size: 3.5rem;
-  font-family: var(--font-bold);
-}
-
-.conditionsDesc {
-  align-self: center;
-  grid-column: 1 / 3;
-
-  margin: 1rem;
-
-  font-size: 1.2rem;
-  font-family: var(--font-light);
-}
-
-.today > .highTemp {
-  align-self: center;
-  justify-self: end;
-
-  padding-right: 1rem;
-  margin: 0;
-
-  font-family: var(--font-normal);
-  font-size: 1rem;
-}
-
-.today > .lowTemp {
-  align-self: center;
-  justify-self: baseline;
-
-  padding-left: 1rem;
-  margin: 0;
-
-  font-family: var(--font-normal);
-  font-size: 1rem;
-}
-
-.forecast {
-  display: grid;
-  grid-template-rows: repeat(2, auto);
-  gap: 0.5rem;
+  justify-items: center;
   align-items: center;
 }
 
-.hourForecast {
-  overflow-y: scroll;
-  gap: 1rem;
-  padding: 0.5rem;
-  display: flex;
-}
+.detailCard {
+  width: 7rem;
+  height: 7rem;
+  padding: 1rem;
 
-.hourWeather > p {
-  margin: 0;
-}
-
-.daysForecast {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-
-  padding: 0 0.5rem;
-}
-
-.hourWeather,
-.dayWeather {
-  display: grid;
-  gap: 0.3rem;
-
-  background-color: #ffffff3d;
-  border: 1px solid lightgray;
-  border-radius: 1rem;
-  padding: 0.7rem;
-  min-width: 5.5rem;
-
-  text-align: center;
-}
-
-.nodeTitle {
-  margin: 0;
-}
-
-.dayWeather > p {
-  margin: 0.2rem;
-  font-size: 0.9rem;
-  text-align: left;
-}
-
-.detailsSection {
-  display: grid;
-  justify-content: space-evenly;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-flow: row;
+  border: 1px solid;
+  border-radius: 20px;
 }
 
 /* Inline #2 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
 
-.detailCard {
-  border: 1px solid;
-  border-radius: 20px;
-  padding: 1rem;
-  width: 10rem;
-  height: 10rem;
+.detailCard > p,
+.detailCard > h4 {
+  margin: 0;
 }
 
-.detailCard.windCard {
-  grid-row: 3;
-  grid-column: 1/3;
-
-  width: 15rem;
+.detailCard.windInfo {
+  grid-column: 3 / 5;
+  /* width: 90%; */
 }
 
-/* Inline #0 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
-
-.detailsSection {
-  /* grid-template-columns: 1fr 1fr; */
-  grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
-}
+/*! OLD STYLES */
 
 .loader {
   border: 16px solid #f3f3f3; /* Light grey */

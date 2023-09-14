@@ -11,15 +11,26 @@ const createCard = (className, title) => {
   return card;
 };
 
+const createFeelCard = (feelsLikeTemp, isMetric) => {
+  const card = createCard('feelsLike', 'Feels Like');
+
+  const correctFeelsLike = isMetric
+    ? `${feelsLikeTemp}°C`
+    : `${feelsLikeTemp}°F`;
+  card.append(pElementWithClass('feelsLikeTemp', correctFeelsLike));
+
+  return card;
+};
+
 const createRainCard = (rain, isMetric) => {
   const { chance, precip, total } = rain;
 
   const card = createCard('rain', 'Rain');
+  const correctVal = isMetric ? 'mm' : 'in';
 
-  // Set stuff by isMetric
-  card.append(pElementWithClass('precip', precip));
-  card.append(pElementWithClass('chance', chance));
-  card.append(pElementWithClass('total', total));
+  card.append(pElementWithClass('precip', `Precip: ${precip}${correctVal}`));
+  card.append(pElementWithClass('chance', `Chance of rain: ${chance}%`));
+  card.append(pElementWithClass('total', `Total: ${total}${correctVal}`));
 
   return card;
 };
@@ -42,15 +53,15 @@ const createAstroCard = (astroData, isMoon) => {
   return card;
 };
 
-const createWindCard = (wind) => {
-  const { speed, gust, max } = wind.kph;
-  const { dir } = wind;
+const createWindCard = (wind, isMetric) => {
+  const { speed, gust, max, dir, degree } = wind;
 
   const card = createCard('wind', 'Wind');
+  const correctVal = isMetric ? 'km/h' : 'm/h';
 
-  card.append(pElementWithClass('speed', `Speed: ${speed}`));
-  card.append(pElementWithClass('gust', `Gust: ${gust}`));
-  card.append(pElementWithClass('max', `Max Speed: ${max}`));
+  card.append(pElementWithClass('speed', `Speed: ${speed}${correctVal}`));
+  card.append(pElementWithClass('gust', `Gust: ${gust}${correctVal}`));
+  card.append(pElementWithClass('max', `Max Speed: ${max}${correctVal}`));
   card.append(pElementWithClass('dir', `Direction: ${dir}`));
 
   return card;
@@ -63,20 +74,39 @@ const createDetailsInfo = (detailsInfoData, isMetric) => {
   const detailsSection = document.createElement('section');
   detailsSection.classList.add('detailsInfo');
 
-  const feelCard = createCard('feelsLike', 'Feels Like');
-  feelCard.append(pElementWithClass('feelsLikeTemp', feelsLike));
+  const feelCard = createFeelCard(feelsLike, isMetric);
+
+  const windCard = createWindCard(wind, isMetric);
+
+  const rainCard = createRainCard(rain, isMetric);
+
+  const sunCard = createAstroCard(sun);
+
+  const moonCard = createAstroCard(moon, true);
 
   const uvCard = createCard('uv', 'UV');
   uvCard.append(pElementWithClass('uvIndex', uv));
 
-  const windCard = createWindCard(wind);
+  const visibilityCard = createCard('visibility', 'Visibility');
+  visibilityCard.append(pElementWithClass('visibilityValue', visibility));
 
-  const rainCard = createRainCard(rain);
+  const humidityCard = createCard('humidity', 'Humidity');
+  humidityCard.append(pElementWithClass('uvIndex', humidity.current));
 
-  const sunCard = createAstroCard(sun);
-  const moonCard = createAstroCard(moon, true);
+  const cloudCard = createCard('clouds', 'Clouds');
+  cloudCard.append(pElementWithClass('cloudsVal', cloud));
 
-  const detailCards = [feelCard, uvCard, windCard, rainCard, sunCard, moonCard];
+  const detailCards = [
+    feelCard,
+    uvCard,
+    windCard,
+    rainCard,
+    sunCard,
+    moonCard,
+    visibilityCard,
+    humidityCard,
+    cloudCard,
+  ];
   detailsSection.append(...detailCards);
 
   return detailsSection;

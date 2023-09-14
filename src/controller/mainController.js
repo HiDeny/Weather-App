@@ -3,10 +3,10 @@ import filterWeatherData from '../model/data/filterWeatherData';
 
 import createSearchElement from '../view/cardSections/searchElement';
 import getGeolocation from '../model/search/geoLocation';
-
 import createSettings from '../view/cardSections/userSettings';
-import createCurrentInfo from '../view/cardSections/currentInfo';
 
+import createWeatherCard from '../view/weatherCard';
+import createCurrentInfo from '../view/cardSections/currentInfo';
 import createForecasts from '../view/cardSections/forecasts/forecasts';
 
 export default class MainController {
@@ -96,19 +96,12 @@ export default class MainController {
   };
 
   displayWeather = async (cleanData) => {
-    const { currentInfo, forecasts, detailsInfo } = cleanData;
-
-    const showCurrentInfo = createCurrentInfo(
-      currentInfo,
+    const weatherCard = await createWeatherCard(
+      cleanData,
       this.config.isMetric
     );
-    document.body.append(showCurrentInfo);
 
-    const showForecasts = await createForecasts(
-      forecasts,
-      this.config.isMetric
-    );
-    document.body.append(showForecasts);
+    document.body.append(weatherCard);
   };
 
   getWeather = async (search) => {
