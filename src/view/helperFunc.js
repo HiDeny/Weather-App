@@ -6,7 +6,7 @@ export const createElementWithClass = (tagName, className, content) => {
   return element;
 };
 
-export const pContent = (className, content) => {
+export const pElementWithClass = (className, content) => {
   const nodeContent = createElementWithClass('p', className, content);
   return nodeContent;
 };
