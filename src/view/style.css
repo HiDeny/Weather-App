@@ -31,7 +31,9 @@ body {
 }
 
 section {
+  width: 90%;
   justify-self: center;
+
   background: #f0f0f042;
 }
 
@@ -267,7 +269,6 @@ section {
   gap: 2rem;
 
   box-sizing: border-box;
-  width: 70%;
   padding: 1rem;
 
   background: #f8faff;
@@ -438,24 +439,24 @@ section {
 
 .detailsInfo {
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
+  grid-template-rows: repeat(2, 10rem);
+  grid-template-columns: repeat(5, 10rem);
+  gap: 2rem;
 
   justify-items: center;
   align-items: center;
+  justify-content: space-between;
 }
 
 .detailCard {
-  width: 7rem;
-  height: 7rem;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
   padding: 1rem;
 
   border: 1px solid;
   border-radius: 20px;
 }
-
-/* Inline #2 | file:///Users/hidenny/CODE/TheOdinProject/repos/Weather-App/dist/index.html */
 
 .detailCard > p,
 .detailCard > h4 {
@@ -464,7 +465,6 @@ section {
 
 .detailCard.windInfo {
   grid-column: 3 / 5;
-  /* width: 90%; */
 }
 
 /*! OLD STYLES */
