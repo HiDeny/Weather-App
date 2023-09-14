@@ -1,11 +1,16 @@
-// import createForecast from '../elements/forecast';
-import { createConIconElement, createElementWithClass } from '../helperFunc';
-import createForecastHourly from './forecastHourly';
+import { createElementWithClass, createConIconElement } from '../../helperFunc';
 
 const createCardTitle = (date) => {
   const { weekDayName, number } = date;
-  const cardTitle = createElementWithClass('p', 'title', weekDayName);
-  return cardTitle;
+  const cardTitleDiv = createElementWithClass('div', 'title');
+
+  const cardTitleDay = createElementWithClass('p', 'day', weekDayName);
+  cardTitleDiv.append(cardTitleDay);
+
+  const cardTitleDate = createElementWithClass('p', 'date', number);
+  cardTitleDiv.append(cardTitleDate);
+
+  return cardTitleDiv;
 };
 
 const createCardTemp = (temp) => {
@@ -111,28 +116,4 @@ const createUpcomingCard = async (upcomingDay) => {
   return card;
 };
 
-const createForecasts = async (forecastsData, isMetric) => {
-  const { today, upcoming } = forecastsData;
-
-  const forecastSection = document.createElement('section');
-  forecastSection.classList.add('forecasts');
-
-  const forecastHourlyDiv = createElementWithClass('div', 'todayForecast');
-  forecastSection.append(forecastHourlyDiv);
-
-  const forecastHourly = createForecastHourly(today, isMetric);
-  forecastHourlyDiv.append(forecastHourly);
-
-  const upcomingDiv = createElementWithClass('div', 'upcoming');
-  forecastSection.append(upcomingDiv);
-
-  const upcomingDay1 = await createUpcomingCard(upcoming.firstDay);
-  upcomingDiv.append(upcomingDay1);
-
-  const upcomingDay2 = await createUpcomingCard(upcoming.secondDay);
-  upcomingDiv.append(upcomingDay2);
-
-  return forecastSection;
-};
-
-export default createForecasts;
+export default createUpcomingCard;

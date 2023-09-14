@@ -1,4 +1,4 @@
-import { createElementWithClass } from './helperFunc';
+import { createElementWithClass } from '../helperFunc';
 
 const createLocationInfo = ({ location }) => {
   const locationInfo = document.createElement('div');

@@ -1,13 +1,13 @@
 import getWeatherData from '../model/data/getWeatherData';
 import filterWeatherData from '../model/data/filterWeatherData';
 
-import createSearchElement from '../view/elements/searchElement';
+import createSearchElement from '../view/cardSections/searchElement';
 import getGeolocation from '../model/search/geoLocation';
 
-import createSettings from '../view/elements/userSettings';
-import createCurrentInfo from '../view/currentInfo';
+import createSettings from '../view/cardSections/userSettings';
+import createCurrentInfo from '../view/cardSections/currentInfo';
 
-import createForecasts from '../view/cardSections/forecasts';
+import createForecasts from '../view/cardSections/forecasts/forecasts';
 
 export default class MainController {
   config = {
