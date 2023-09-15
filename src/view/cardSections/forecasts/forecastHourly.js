@@ -12,7 +12,7 @@ const createForecastHourly = (todayData) => {
       datasets: [
         {
           label: 'Temperature',
-          data: forecastHourly.map((data) => data.temp),
+          data: forecastHourly.map((data) => `${data.temp}`),
           borderColor: '#0173DB',
 
           tension: 0.3,

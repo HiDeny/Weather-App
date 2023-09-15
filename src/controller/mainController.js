@@ -6,14 +6,13 @@ import getGeolocation from '../model/search/geoLocation';
 import createSettings from '../view/cardSections/userSettings';
 
 import createWeatherCard from '../view/weatherCard';
-import createCurrentInfo from '../view/cardSections/currentInfo';
-import createForecasts from '../view/cardSections/forecasts/forecasts';
+import createErrorCard from '../view/cardSections/errorCard';
 
 export default class MainController {
   config = {
     isMetric: true,
     defaultLocation: 'Cape Town',
-    geolocation: false,
+    lastSearch: false,
   };
 
   searchLocation = '';
@@ -31,17 +30,17 @@ export default class MainController {
     const imperialBtn = document.querySelector('.imperialUnits');
 
     showSettingsBtn.addEventListener('click', () => {
+      showSettingsBtn.disabled = true;
       const isVisible = settingsMenu.classList[1] === 'showSettings';
+      // Update the logic here
       if (isVisible) {
-        showSettingsBtn.disabled = true;
         settingsMenu.classList.remove('showSettings');
         setTimeout(() => {
           settingsMenu.classList.add('hideSettings');
           showSettingsBtn.disabled = false;
-        }, 1500);
+        }, 1000);
       }
       if (!isVisible) {
-        showSettingsBtn.disabled = true;
         settingsMenu.classList.remove('hideSettings');
         setTimeout(() => {
           settingsMenu.classList.add('showSettings');
@@ -52,6 +51,10 @@ export default class MainController {
 
     saveBtn.addEventListener('click', () => {
       settingsMenu.classList.remove('showSettings');
+      setTimeout(() => {
+        settingsMenu.classList.add('hideSettings');
+        showSettingsBtn.disabled = false;
+      }, 1000);
     });
 
     setDefaultLocation.addEventListener('input', (event) => {
@@ -90,20 +93,11 @@ export default class MainController {
     searchBar.addEventListener('submit', (event) => {
       event.preventDefault();
       this.getWeather(this.searchLocation);
+      this.config.lastSearch = this.searchLocation;
+      searchField.value = '';
     });
 
     // if (this.defaultLocation) this.getWeather(this.defaultLocation);
-  };
-
-  displayWeather = async (cleanData) => {
-    const currentWeatherCard = document.querySelector('.weatherCard');
-    const weatherCard = await createWeatherCard(
-      cleanData,
-      this.config.isMetric
-    );
-
-    if (currentWeatherCard) currentWeatherCard.replaceWith(weatherCard);
-    if (!currentWeatherCard) document.body.append(weatherCard);
   };
 
   getWeather = async (search) => {
@@ -114,7 +108,34 @@ export default class MainController {
       this.displayWeather(cleanData);
       console.log(cleanData);
     } catch (err) {
-      throw new Error(err);
+      console.error(err);
+      this.displayError(err);
     }
+  };
+
+  displayWeather = async (cleanData) => {
+    const currentWeatherCard = document.querySelector('.weatherCard');
+    const currentErrorCard = document.querySelector('.errorCard');
+    const weatherCard = await createWeatherCard(
+      cleanData,
+      this.config.isMetric
+    );
+
+    if (currentWeatherCard) currentWeatherCard.replaceWith(weatherCard);
+    if (currentErrorCard) currentErrorCard.replaceWith(weatherCard);
+    if (!currentWeatherCard && !currentErrorCard)
+      document.body.append(weatherCard);
+  };
+
+  displayError = (error) => {
+    const errorMessage = error.message;
+    const currentWeatherCard = document.querySelector('.weatherCard');
+    const currentErrorCard = document.querySelector('.errorCard');
+    const errorCard = createErrorCard(errorMessage);
+
+    if (currentWeatherCard) currentWeatherCard.replaceWith(errorCard);
+    if (currentErrorCard) currentErrorCard.replaceWith(errorCard);
+    if (!currentWeatherCard && !currentErrorCard)
+      document.body.append(errorCard);
   };
 }

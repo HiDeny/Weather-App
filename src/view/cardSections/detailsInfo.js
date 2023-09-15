@@ -61,6 +61,7 @@ const createWindCard = (wind, isMetric) => {
   card.append(pElementWithClass('gust', `Gust: ${gust} ${correctVal}`));
   card.append(pElementWithClass('max', `Max Speed: ${max} ${correctVal}`));
   card.append(pElementWithClass('dir', `Direction: ${dir}`));
+  card.append(pElementWithClass('dir', `Degree: ${degree}`));
 
   return card;
 };
