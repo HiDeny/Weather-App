@@ -1,6 +1,8 @@
 import getWeatherData from '../model/data/getWeatherData';
 import filterWeatherData from '../model/data/filter/filterWeatherData';
 
+import createAttribution from '../view/cardSections/attribution';
+import createWelcomeCard from '../view/cardSections/welcomeCard';
 import createSearchElement from '../view/cardSections/searchElement';
 import getGeolocation from '../model/search/geoLocation';
 import createSettings from '../view/cardSections/userSettings';
@@ -111,6 +113,14 @@ export default class MainController {
     });
 
     // if (this.defaultLocation) this.getWeather(this.defaultLocation);
+  };
+
+  initWelcome = () => {
+    const welcomeCard = createWelcomeCard();
+    document.body.append(welcomeCard);
+
+    const attribution = createAttribution();
+    document.body.append(attribution);
   };
 
   getWeather = async (search) => {
