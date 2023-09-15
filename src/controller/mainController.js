@@ -6,6 +6,7 @@ import getGeolocation from '../model/search/geoLocation';
 import createSettings from '../view/cardSections/userSettings';
 
 import createWeatherCard from '../view/weatherCard';
+import createSkeletonCard from '../view/cardSections/loadingCard';
 import createErrorCard from '../view/cardSections/errorCard';
 
 export default class MainController {
@@ -92,6 +93,18 @@ export default class MainController {
     const searchBar = document.querySelector('.searchElement');
     searchBar.addEventListener('submit', (event) => {
       event.preventDefault();
+      console.log('now');
+      const skeletonCard = createSkeletonCard();
+      const currentWeatherCard = document.querySelector('.weatherCard');
+      const currentErrorCard = document.querySelector('.errorCard');
+      const currentSkeletonCard = document.querySelector('.skeleton');
+
+      if (currentWeatherCard) currentWeatherCard.replaceWith(skeletonCard);
+      if (currentErrorCard) currentErrorCard.replaceWith(skeletonCard);
+      if (currentSkeletonCard) currentSkeletonCard.replaceWith(skeletonCard);
+      if (!currentWeatherCard && !currentErrorCard && !currentSkeletonCard) {
+        document.body.append(skeletonCard);
+      }
       this.getWeather(this.searchLocation);
       this.config.lastSearch = this.searchLocation;
       searchField.value = '';
@@ -116,6 +129,8 @@ export default class MainController {
   displayWeather = async (cleanData) => {
     const currentWeatherCard = document.querySelector('.weatherCard');
     const currentErrorCard = document.querySelector('.errorCard');
+    const currentSkeletonCard = document.querySelector('.skeleton');
+
     const weatherCard = await createWeatherCard(
       cleanData,
       this.config.isMetric
@@ -123,19 +138,24 @@ export default class MainController {
 
     if (currentWeatherCard) currentWeatherCard.replaceWith(weatherCard);
     if (currentErrorCard) currentErrorCard.replaceWith(weatherCard);
-    if (!currentWeatherCard && !currentErrorCard)
+    if (currentSkeletonCard) currentSkeletonCard.replaceWith(weatherCard);
+    if (!currentWeatherCard && !currentErrorCard && !currentSkeletonCard) {
       document.body.append(weatherCard);
+    }
   };
 
   displayError = (error) => {
     const errorMessage = error.message;
     const currentWeatherCard = document.querySelector('.weatherCard');
     const currentErrorCard = document.querySelector('.errorCard');
+    const currentSkeletonCard = document.querySelector('.skeleton');
     const errorCard = createErrorCard(errorMessage);
 
     if (currentWeatherCard) currentWeatherCard.replaceWith(errorCard);
     if (currentErrorCard) currentErrorCard.replaceWith(errorCard);
-    if (!currentWeatherCard && !currentErrorCard)
+    if (currentSkeletonCard) currentSkeletonCard.replaceWith(errorCard);
+    if (!currentWeatherCard && !currentErrorCard && !currentSkeletonCard) {
       document.body.append(errorCard);
+    }
   };
 }
