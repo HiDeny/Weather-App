@@ -3,7 +3,7 @@ import WeatherDataController from './Weather';
 
 export default class MainController {
   config = {
-    clock24H: true,
+    format24H: true,
     isMetric: true,
     defaultLocation: 'Cape Town',
     geolocation: null,
@@ -75,7 +75,8 @@ export default class MainController {
 
   updateSearchField = () => {
     const newPlaceholder = this.searchLocation || this.config.defaultLocation;
-    document.getElementById('searchField').placeholder = newPlaceholder;
-    document.getElementById('searchField').value = '';
+    const searchField = document.getElementById('searchField');
+    searchField.placeholder = newPlaceholder;
+    searchField.value = '';
   };
 }

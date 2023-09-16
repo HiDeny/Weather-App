@@ -1,4 +1,4 @@
-import { createElementWithClass, pElementWithClass } from './helperFunc';
+import { createElementWithClass, pElementWithClass } from '../helperFunc';
 
 const createAttribution = () => {
   // Credit

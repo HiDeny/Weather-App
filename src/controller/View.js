@@ -1,14 +1,14 @@
-import createSearchElement from '../view/cardSections/searchElement';
+import createSearchElement from '../view/cardSections/header/searchElement';
 import createWelcomeCard from '../view/cardSections/welcomeCard';
-import createSettings from '../view/cardSections/userSettings';
-import createAttribution from '../view/cardSections/attribution';
+import createSettings from '../view/cardSections/header/userSettings';
+import createAttribution from '../view/cardSections/header/attribution';
 
 import createWeatherCard from '../view/weatherCard';
 
 import createErrorCard from '../view/cardSections/errorCard';
 import createSkeletonCard from '../view/cardSections/loadingCard';
 
-import { startClock } from '../view/cardSections/dateAtime';
+import { startClock } from '../view/cardSections/header/dateAtime';
 
 const displayComponent = (newComponent) => {
   const currentWelcomeCard = document.querySelector('.welcomeCard');

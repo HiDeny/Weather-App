@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { createElementWithClass, pElementWithClass } from './helperFunc';
+import { createElementWithClass, pElementWithClass } from '../helperFunc';
 
 const showTime = (clock24H) => {
   if (clock24H) return format(new Date(), 'HH:mm:ss');
