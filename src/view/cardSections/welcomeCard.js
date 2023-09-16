@@ -1,6 +1,6 @@
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
-import createDateTimeElement from './header/dateAtime';
+import createDateTimeElement from './header/clockElement';
 
 const createWelcomeCard = () => {
   const welcomeCard = createElementWithClass('section', 'welcomeCard');
