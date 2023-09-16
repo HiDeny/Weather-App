@@ -8,8 +8,8 @@ const setTime = (format24H) => {
 };
 
 const createClockElement = (format24H) => {
-  const div = createElementWithClass('div', 'dateAtime');
-  div.append(pElementWithClass('clock', setTime(format24H)));
+  const div = createElementWithClass('div', 'clockElement');
+  div.append(pElementWithClass('time', setTime(format24H)));
   div.append(pElementWithClass('date', setDate()));
 
   return div;
@@ -17,7 +17,7 @@ const createClockElement = (format24H) => {
 
 export const startClock = (format24H) => {
   const clockInterval = setInterval(() => {
-    const clockElement = document.querySelector('.clock');
+    const clockElement = document.querySelector('.time');
     if (clockElement) clockElement.textContent = setTime(format24H);
     if (!clockElement) clearInterval(clockInterval);
   }, 1000);

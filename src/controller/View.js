@@ -48,11 +48,11 @@ export default class ViewController {
   };
 
   initEventListeners = () => {
-    defaultLocationChangeListener(this.config);
+    startClock(this.config.format24H);
     unitsChangeListener(this.config);
     formatChangeListener(this.config);
+    defaultLocationChangeListener(this.config);
     toggleSettingsVisibility();
-    startClock(this.config.format24H);
   };
 
   displayWeather = async (cleanData) => {
