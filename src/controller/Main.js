@@ -1,8 +1,6 @@
 import ViewController from './View';
 import WeatherDataController from './Weather';
 
-import getGeolocation from '../model/search/geoLocation';
-
 export default class MainController {
   config = {
     isMetric: true,
@@ -16,17 +14,10 @@ export default class MainController {
     this.weather = new WeatherDataController(this.config);
   }
 
-  // initEventListeners = () => {
-  //   document.body.addEventListener('click', (event) => {
-  //     const target = event.target;
-  //     console.log(target);
-  //   });
-  // };
-
   init = () => {
     this.view.initView();
     this.initSearchBar();
-    // if (this.defaultLocation) {
+    // if (this.config.defaultLocation) {
     //   this.view.displaySkeleton();
     //   const weatherData = await this.weather.getWeather(
     //     this.config.searchLocation
@@ -36,15 +27,14 @@ export default class MainController {
   };
 
   initSearchBar = () => {
+    const searchField = document.getElementById('searchField');
     const geoLocationBtn = document.getElementById('geoLocationBtn');
+    const searchBar = document.querySelector('.searchElement');
+
     geoLocationBtn.addEventListener('click', async () => {
       try {
         this.view.displaySkeleton();
-
-        const geolocation = await getGeolocation();
-        this.config.geolocation = geolocation;
-
-        const weatherData = await this.weather.getWeather(geolocation);
+        const weatherData = await this.weather.getGeolocationWeather();
         this.view.displayWeather(weatherData);
       } catch (error) {
         console.error(error);
@@ -52,22 +42,14 @@ export default class MainController {
       }
     });
 
-    const searchField = document.getElementById('searchField');
-    searchField.addEventListener('input', (event) => {
-      this.config.searchLocation = event.target.value;
-    });
-
-    const searchBar = document.querySelector('.searchElement');
     searchBar.addEventListener('submit', async (event) => {
       event.preventDefault();
-      console.log('now');
       try {
         this.view.displaySkeleton();
-
-        const weatherData = await this.weather.getWeather(
+        searchField.value = '';
+        const weatherData = await this.weather.getSearchWeather(
           this.config.searchLocation
         );
-
         this.view.displayWeather(weatherData);
       } catch (error) {
         console.error(error);

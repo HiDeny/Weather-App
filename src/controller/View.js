@@ -34,7 +34,7 @@ export default class ViewController {
 
   initView = () => {
     this.initUI();
-    this.settingsControl();
+    this.initEventListeners();
   };
 
   initUI = () => {
@@ -53,14 +53,18 @@ export default class ViewController {
     document.body.append(...startingPage);
   };
 
-  settingsControl = () => {
+  initEventListeners = () => {
+    const searchField = document.getElementById('searchField');
+    const settingsMenu = document.getElementById('settingsMenu');
     const showSettingsBtn = document.getElementById('showSettingsBtn');
     const saveBtn = document.getElementById('saveBtn');
     const setDefaultLocation = document.getElementById('setDefaultLocation');
     const metricBtn = document.querySelector('.metricUnits');
     const imperialBtn = document.querySelector('.imperialUnits');
-    const settingsMenu = document.getElementById('settingsMenu');
-    settingsMenu.classList.add('hideSettings');
+
+    searchField.addEventListener('input', (event) => {
+      this.config.searchLocation = event.target.value;
+    });
 
     showSettingsBtn.addEventListener('click', () => {
       settingsMenu.classList.toggle('showSettings');
