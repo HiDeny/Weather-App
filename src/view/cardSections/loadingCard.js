@@ -50,6 +50,7 @@ const createLastUpdateDiv = () => {
     'lastUpdatedLabel',
     'Last Updated'
   );
+  lastUpdatedLabel.classList.add('skeleton');
   lastUpdatedDiv.append(lastUpdatedLabel);
 
   const lastUpdateContent = pElementWithClass('lastUpdated', 'Time, Date');
@@ -61,6 +62,7 @@ const createLastUpdateDiv = () => {
 
 const createSkeletonCard = () => {
   const skeleton = createElementWithClass('section', 'currentInfo');
+  skeleton.classList.add('skeletonCard');
 
   const locationInfo = createLocationInfo();
   const tempInfo = createTempDiv();

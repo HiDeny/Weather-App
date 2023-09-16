@@ -35,13 +35,13 @@ const createSelectUnits = (isMetric) => {
   selectUnits.append(imperialBtn);
 
   if (isMetric) {
-    imperialBtn.classList.remove('unitsActive');
     metricBtn.classList.add('unitsActive');
+    imperialBtn.classList.remove('unitsActive');
   }
 
   if (!isMetric) {
-    metricBtn.classList.remove('unitsActive');
     imperialBtn.classList.add('unitsActive');
+    metricBtn.classList.remove('unitsActive');
   }
 
   return selectUnits;

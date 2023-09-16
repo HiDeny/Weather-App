@@ -477,21 +477,23 @@ section {
 
 /** Skeleton*/
 
-.skeleton {
+.skeletonCard {
   grid-row: 2;
   width: 100%;
   height: 100%;
+}
 
+.skeleton {
   opacity: 0.7;
   animation: skeleton-loading 1s ease-in-out infinite alternate;
 }
 
 @keyframes skeleton-loading {
   0% {
-    background-color: #9d9d9db2;
+    color: #9d9d9db2;
   }
   100% {
-    background-color: #e4e4e49c;
+    color: #e4e4e49c;
   }
 }
 

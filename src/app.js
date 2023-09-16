@@ -3,6 +3,4 @@ import 'normalize.css';
 import MainController from './controller/Main';
 
 const mainController = new MainController();
-mainController.initSearchBar();
-mainController.initSettings();
-mainController.initWelcome();
+mainController.init();

@@ -1,124 +1,78 @@
 import ViewController from './View';
 import WeatherDataController from './Weather';
 
-import getWeatherData from '../model/data/getWeatherData';
-import filterWeatherData from '../model/data/filter/filterWeatherData';
-
 import getGeolocation from '../model/search/geoLocation';
 
 export default class MainController {
   config = {
     isMetric: true,
     defaultLocation: 'Cape Town',
-    lastSearch: false,
+    geolocation: null,
+    searchLocation: null,
   };
 
   constructor() {
-    this.view = ViewController(this.config);
-    this.weather = WeatherDataController(this.config);
+    this.view = new ViewController(this.config);
+    this.weather = new WeatherDataController(this.config);
   }
 
-  searchLocation = '';
+  // initEventListeners = () => {
+  //   document.body.addEventListener('click', (event) => {
+  //     const target = event.target;
+  //     console.log(target);
+  //   });
+  // };
 
-  initSettings = () => {
-    const showSettingsBtn = document.getElementById('showSettingsBtn');
-    const saveBtn = document.getElementById('saveBtn');
-    const setDefaultLocation = document.getElementById('setDefaultLocation');
-    const metricBtn = document.querySelector('.metricUnits');
-    const imperialBtn = document.querySelector('.imperialUnits');
-    const settingsMenu = document.getElementById('settingsMenu');
-    settingsMenu.classList.add('hideSettings');
-
-    showSettingsBtn.addEventListener('click', () => {
-      showSettingsBtn.disabled = true;
-      const isVisible = settingsMenu.classList[1] === 'showSettings';
-      // Update the logic here
-      if (isVisible) {
-        settingsMenu.classList.remove('showSettings');
-        setTimeout(() => {
-          settingsMenu.classList.add('hideSettings');
-          showSettingsBtn.disabled = false;
-        }, 1000);
-      }
-      if (!isVisible) {
-        settingsMenu.classList.remove('hideSettings');
-        setTimeout(() => {
-          settingsMenu.classList.add('showSettings');
-          showSettingsBtn.disabled = false;
-        }, 500);
-      }
-    });
-
-    saveBtn.addEventListener('click', () => {
-      settingsMenu.classList.remove('showSettings');
-      setTimeout(() => {
-        settingsMenu.classList.add('hideSettings');
-        showSettingsBtn.disabled = false;
-      }, 1000);
-    });
-
-    setDefaultLocation.addEventListener('input', (event) => {
-      this.config.defaultLocation = event.target.value;
-    });
-
-    metricBtn.addEventListener('click', () => {
-      this.config.isMetric = true;
-      imperialBtn.classList.remove('unitsActive');
-      metricBtn.classList.add('unitsActive');
-    });
-
-    imperialBtn.addEventListener('click', () => {
-      this.config.isMetric = false;
-      metricBtn.classList.remove('unitsActive');
-      imperialBtn.classList.add('unitsActive');
-    });
+  init = () => {
+    this.view.initView();
+    this.initSearchBar();
+    // if (this.defaultLocation) {
+    //   this.view.displaySkeleton();
+    //   const weatherData = await this.weather.getWeather(
+    //     this.config.searchLocation
+    //   );
+    //   this.view.displayWeather(weatherData);
+    // };
   };
 
   initSearchBar = () => {
     const geoLocationBtn = document.getElementById('geoLocationBtn');
     geoLocationBtn.addEventListener('click', async () => {
-      const geolocation = await getGeolocation();
-      this.getWeather(geolocation);
+      try {
+        this.view.displaySkeleton();
+
+        const geolocation = await getGeolocation();
+        this.config.geolocation = geolocation;
+
+        const weatherData = await this.weather.getWeather(geolocation);
+        this.view.displayWeather(weatherData);
+      } catch (error) {
+        console.error(error);
+        this.view.displayError(error);
+      }
     });
 
     const searchField = document.getElementById('searchField');
     searchField.addEventListener('input', (event) => {
-      this.searchLocation = event.target.value;
+      this.config.searchLocation = event.target.value;
     });
 
     const searchBar = document.querySelector('.searchElement');
-    searchBar.addEventListener('submit', (event) => {
+    searchBar.addEventListener('submit', async (event) => {
       event.preventDefault();
       console.log('now');
-      // const skeletonCard = createSkeletonCard();
-      // const currentWeatherCard = document.querySelector('.weatherCard');
-      // const currentErrorCard = document.querySelector('.errorCard');
-      // const currentSkeletonCard = document.querySelector('.skeleton');
+      try {
+        this.view.displaySkeleton();
 
-      // if (currentWeatherCard) currentWeatherCard.replaceWith(skeletonCard);
-      // if (currentErrorCard) currentErrorCard.replaceWith(skeletonCard);
-      // if (currentSkeletonCard) currentSkeletonCard.replaceWith(skeletonCard);
-      // if (!currentWeatherCard && !currentErrorCard && !currentSkeletonCard) {
-      //   document.body.append(skeletonCard);
+        const weatherData = await this.weather.getWeather(
+          this.config.searchLocation
+        );
 
-      this.getWeather(this.searchLocation);
-      this.config.lastSearch = this.searchLocation;
-      searchField.value = '';
+        this.view.displayWeather(weatherData);
+      } catch (error) {
+        console.error(error);
+        this.view.displayError(error);
+      }
     });
-
-    // if (this.defaultLocation) this.getWeather(this.defaultLocation);
-  };
-
-  getWeather = async (search) => {
-    try {
-      const rawData = await getWeatherData(search);
-      const cleanData = filterWeatherData(rawData, this.config.isMetric);
-
-      this.displayWeather(cleanData);
-      console.log(cleanData);
-    } catch (err) {
-      console.error(err);
-      this.displayError(err);
-    }
   };
 }
