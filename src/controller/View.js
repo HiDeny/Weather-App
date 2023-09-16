@@ -8,6 +8,8 @@ import createWeatherCard from '../view/weatherCard';
 import createErrorCard from '../view/cardSections/errorCard';
 import createSkeletonCard from '../view/cardSections/loadingCard';
 
+import { startClock } from '../view/cardSections/dateAtime';
+
 const displayComponent = (newComponent) => {
   const currentWelcomeCard = document.querySelector('.welcomeCard');
   const currentWeatherCard = document.querySelector('.weatherCard');
@@ -89,6 +91,8 @@ export default class ViewController {
       imperialBtn.classList.toggle('unitsActive');
       metricBtn.classList.toggle('unitsActive');
     });
+
+    startClock();
   };
 
   displayWeather = async (cleanData) => {

@@ -3,6 +3,7 @@ import WeatherDataController from './Weather';
 
 export default class MainController {
   config = {
+    clock24H: true,
     isMetric: true,
     defaultLocation: 'Cape Town',
     geolocation: null,
