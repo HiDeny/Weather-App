@@ -1,15 +1,10 @@
+import ViewController from './View';
+import WeatherDataController from './Weather';
+
 import getWeatherData from '../model/data/getWeatherData';
 import filterWeatherData from '../model/data/filter/filterWeatherData';
 
-import createAttribution from '../view/cardSections/attribution';
-import createWelcomeCard from '../view/cardSections/welcomeCard';
-import createSearchElement from '../view/cardSections/searchElement';
 import getGeolocation from '../model/search/geoLocation';
-import createSettings from '../view/cardSections/userSettings';
-
-import createWeatherCard from '../view/weatherCard';
-import createSkeletonCard from '../view/cardSections/loadingCard';
-import createErrorCard from '../view/cardSections/errorCard';
 
 export default class MainController {
   config = {
@@ -18,19 +13,21 @@ export default class MainController {
     lastSearch: false,
   };
 
+  constructor() {
+    this.view = ViewController(this.config);
+    this.weather = WeatherDataController(this.config);
+  }
+
   searchLocation = '';
 
   initSettings = () => {
-    const settings = createSettings(this.config);
-    document.body.append(settings);
-
-    const settingsMenu = document.getElementById('settingsMenu');
-    settingsMenu.classList.add('hideSettings');
     const showSettingsBtn = document.getElementById('showSettingsBtn');
     const saveBtn = document.getElementById('saveBtn');
     const setDefaultLocation = document.getElementById('setDefaultLocation');
     const metricBtn = document.querySelector('.metricUnits');
     const imperialBtn = document.querySelector('.imperialUnits');
+    const settingsMenu = document.getElementById('settingsMenu');
+    settingsMenu.classList.add('hideSettings');
 
     showSettingsBtn.addEventListener('click', () => {
       showSettingsBtn.disabled = true;
@@ -78,9 +75,6 @@ export default class MainController {
   };
 
   initSearchBar = () => {
-    const completeSearchBar = createSearchElement();
-    document.body.append(completeSearchBar);
-
     const geoLocationBtn = document.getElementById('geoLocationBtn');
     geoLocationBtn.addEventListener('click', async () => {
       const geolocation = await getGeolocation();
@@ -96,31 +90,23 @@ export default class MainController {
     searchBar.addEventListener('submit', (event) => {
       event.preventDefault();
       console.log('now');
-      const skeletonCard = createSkeletonCard();
-      const currentWeatherCard = document.querySelector('.weatherCard');
-      const currentErrorCard = document.querySelector('.errorCard');
-      const currentSkeletonCard = document.querySelector('.skeleton');
+      // const skeletonCard = createSkeletonCard();
+      // const currentWeatherCard = document.querySelector('.weatherCard');
+      // const currentErrorCard = document.querySelector('.errorCard');
+      // const currentSkeletonCard = document.querySelector('.skeleton');
 
-      if (currentWeatherCard) currentWeatherCard.replaceWith(skeletonCard);
-      if (currentErrorCard) currentErrorCard.replaceWith(skeletonCard);
-      if (currentSkeletonCard) currentSkeletonCard.replaceWith(skeletonCard);
-      if (!currentWeatherCard && !currentErrorCard && !currentSkeletonCard) {
-        document.body.append(skeletonCard);
-      }
+      // if (currentWeatherCard) currentWeatherCard.replaceWith(skeletonCard);
+      // if (currentErrorCard) currentErrorCard.replaceWith(skeletonCard);
+      // if (currentSkeletonCard) currentSkeletonCard.replaceWith(skeletonCard);
+      // if (!currentWeatherCard && !currentErrorCard && !currentSkeletonCard) {
+      //   document.body.append(skeletonCard);
+
       this.getWeather(this.searchLocation);
       this.config.lastSearch = this.searchLocation;
       searchField.value = '';
     });
 
     // if (this.defaultLocation) this.getWeather(this.defaultLocation);
-  };
-
-  initWelcome = () => {
-    const welcomeCard = createWelcomeCard();
-    document.body.append(welcomeCard);
-
-    const attribution = createAttribution();
-    document.body.append(attribution);
   };
 
   getWeather = async (search) => {
@@ -133,39 +119,6 @@ export default class MainController {
     } catch (err) {
       console.error(err);
       this.displayError(err);
-    }
-  };
-
-  displayWeather = async (cleanData) => {
-    const currentWeatherCard = document.querySelector('.weatherCard');
-    const currentErrorCard = document.querySelector('.errorCard');
-    const currentSkeletonCard = document.querySelector('.skeleton');
-
-    const weatherCard = await createWeatherCard(
-      cleanData,
-      this.config.isMetric
-    );
-
-    if (currentWeatherCard) currentWeatherCard.replaceWith(weatherCard);
-    if (currentErrorCard) currentErrorCard.replaceWith(weatherCard);
-    if (currentSkeletonCard) currentSkeletonCard.replaceWith(weatherCard);
-    if (!currentWeatherCard && !currentErrorCard && !currentSkeletonCard) {
-      document.body.append(weatherCard);
-    }
-  };
-
-  displayError = (error) => {
-    const errorMessage = error.message;
-    const currentWeatherCard = document.querySelector('.weatherCard');
-    const currentErrorCard = document.querySelector('.errorCard');
-    const currentSkeletonCard = document.querySelector('.skeleton');
-    const errorCard = createErrorCard(errorMessage);
-
-    if (currentWeatherCard) currentWeatherCard.replaceWith(errorCard);
-    if (currentErrorCard) currentErrorCard.replaceWith(errorCard);
-    if (currentSkeletonCard) currentSkeletonCard.replaceWith(errorCard);
-    if (!currentWeatherCard && !currentErrorCard && !currentSkeletonCard) {
-      document.body.append(errorCard);
     }
   };
 }

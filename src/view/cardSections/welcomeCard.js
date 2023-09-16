@@ -1,7 +1,7 @@
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 const createWelcomeCard = () => {
-  const welcomeCard = createElementWithClass('div', 'welcomeCard');
+  const welcomeCard = createElementWithClass('section', 'welcomeCard');
 
   const welcomeMessage = createElementWithClass(
     'h1',

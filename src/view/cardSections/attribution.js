@@ -3,8 +3,6 @@ import { createElementWithClass, pElementWithClass } from './helperFunc';
 const createAttribution = () => {
   // Credit
   const weatherApiDiv = createElementWithClass('div', 'attWeatherApi');
-  const test = document.createElement('p');
-  test.textContent;
 
   const weatherApiTextClick = createElementWithClass('a', 'weatherApiClick');
   weatherApiTextClick.href = 'https://www.weatherapi.com/';
