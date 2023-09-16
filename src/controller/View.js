@@ -1,7 +1,5 @@
-import createSearchElement from '../view/cardSections/header/searchElement';
+import createHeaderElement from '../view/cardSections/header/headerElement';
 import createWelcomeCard from '../view/cardSections/welcomeCard';
-import createSettings from '../view/cardSections/header/settingsElement';
-import createAttribution from '../view/cardSections/header/attributionElement';
 
 import createWeatherCard from '../view/weatherCard';
 
@@ -11,23 +9,19 @@ import createSkeletonCard from '../view/cardSections/loadingCard';
 import { startClock } from '../view/cardSections/header/clockElement';
 
 const displayComponent = (newComponent) => {
-  const currentWelcomeCard = document.querySelector('.welcomeCard');
-  const currentWeatherCard = document.querySelector('.weatherCard');
-  const currentSkeletonCard = document.querySelector('.skeletonCard');
-  const currentErrorCard = document.querySelector('.errorCard');
+  const currentWelcome = document.querySelector('.welcomeCard');
+  const currentWeather = document.querySelector('.weatherCard');
+  const currentSkeleton = document.querySelector('.skeletonCard');
+  const currentError = document.querySelector('.errorCard');
 
-  if (currentWelcomeCard) currentWelcomeCard.replaceWith(newComponent);
-  if (currentWeatherCard) currentWeatherCard.replaceWith(newComponent);
-  if (currentErrorCard) currentErrorCard.replaceWith(newComponent);
-  if (currentSkeletonCard) currentSkeletonCard.replaceWith(newComponent);
-  if (
-    !currentWeatherCard &&
-    !currentErrorCard &&
-    !currentSkeletonCard &&
-    !currentWelcomeCard
-  ) {
+  if (!currentWeather && !currentError && !currentSkeleton && !currentWelcome) {
     document.body.append(newComponent);
+    return;
   }
+  if (currentWelcome) currentWelcome.replaceWith(newComponent);
+  if (currentWeather) currentWeather.replaceWith(newComponent);
+  if (currentError) currentError.replaceWith(newComponent);
+  if (currentSkeleton) currentSkeleton.replaceWith(newComponent);
 };
 export default class ViewController {
   constructor(config) {
@@ -40,17 +34,10 @@ export default class ViewController {
   };
 
   initUI = () => {
-    const searchElement = createSearchElement();
+    const headerElement = createHeaderElement(this.config);
     const welcomeCard = createWelcomeCard();
-    const settingsElement = createSettings(this.config);
-    const attributionElement = createAttribution();
 
-    const startingPage = [
-      searchElement,
-      welcomeCard,
-      settingsElement,
-      attributionElement,
-    ];
+    const startingPage = [headerElement, welcomeCard];
 
     document.body.append(...startingPage);
   };
