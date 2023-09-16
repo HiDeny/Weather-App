@@ -56,17 +56,12 @@ export default class ViewController {
   };
 
   initEventListeners = () => {
-    const searchField = document.getElementById('searchField');
     const settingsMenu = document.getElementById('settingsMenu');
     const showSettingsBtn = document.getElementById('showSettingsBtn');
     const saveBtn = document.getElementById('saveBtn');
     const setDefaultLocation = document.getElementById('setDefaultLocation');
     const metricBtn = document.querySelector('.metricUnits');
     const imperialBtn = document.querySelector('.imperialUnits');
-
-    searchField.addEventListener('input', (event) => {
-      this.config.searchLocation = event.target.value;
-    });
 
     showSettingsBtn.addEventListener('click', () => {
       settingsMenu.classList.toggle('showSettings');

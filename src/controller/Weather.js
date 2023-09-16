@@ -7,7 +7,7 @@ export default class WeatherDataController {
     this.config = config;
   }
 
-  getSearchWeather = async (search) => {
+  getWeather = async (search) => {
     try {
       const rawData = await getWeatherData(search);
       const cleanData = filterWeatherData(rawData, this.config.isMetric);
@@ -19,16 +19,10 @@ export default class WeatherDataController {
     }
   };
 
-  getGeolocationWeather = async () => {
+  getLocalWeather = async () => {
     try {
       const geolocation = await getGeolocation();
-      this.config.geolocation = geolocation;
-
-      const rawData = await getWeatherData(geolocation);
-      const cleanData = filterWeatherData(rawData, this.config.isMetric);
-
-      console.log(cleanData);
-      return cleanData;
+      return this.getWeather(geolocation);
     } catch (err) {
       throw new Error(err);
     }
