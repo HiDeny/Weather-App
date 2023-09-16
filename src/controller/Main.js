@@ -7,6 +7,7 @@ export default class MainController {
     isMetric: true,
     defaultLocation: 'Cape Town',
     geolocation: null,
+    lastSearch: null,
     lastData: null,
   };
 
@@ -46,6 +47,7 @@ export default class MainController {
       this.view.displaySkeleton();
       const weatherData = await this.weather.getLocalWeather();
       this.config.lastData = weatherData;
+      console.log(this.config.lastData);
       this.view.displayWeather(weatherData);
     } catch (error) {
       this.view.displayError(error);
@@ -63,12 +65,17 @@ export default class MainController {
       this.view.displaySkeleton();
       const weatherData = await this.weather.getWeather(this.searchLocation);
       this.view.displayWeather(weatherData);
-
+      this.updateSearchField();
       this.config.lastData = weatherData;
-      document.getElementById('searchField').value = '';
     } catch (error) {
       this.view.displayError(error);
       throw new Error(error);
     }
+  };
+
+  updateSearchField = () => {
+    const newPlaceholder = this.searchLocation || this.config.defaultLocation;
+    document.getElementById('searchField').placeholder = newPlaceholder;
+    document.getElementById('searchField').value = '';
   };
 }

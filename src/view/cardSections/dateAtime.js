@@ -16,10 +16,16 @@ const createDateTimeElement = (clock24H = false) => {
   return div;
 };
 
+const updateClockElement = () => {
+  const clockElement = document.querySelector('.clock');
+  clockElement.textContent = showTime();
+};
+
 export const startClock = () => {
-  setInterval(() => {
+  const clockInterval = setInterval(() => {
     const clockElement = document.querySelector('.clock');
-    clockElement.textContent = showTime();
+    if (clockElement) updateClockElement();
+    if (!clockElement) clearInterval(clockInterval);
   }, 1000);
 };
 
