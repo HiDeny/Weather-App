@@ -36,9 +36,7 @@ export default class MainController {
     const searchBar = document.querySelector('.searchElement');
 
     geoLocationBtn.addEventListener('click', this.handleGeolocationSearch);
-
     searchField.addEventListener('input', this.handleSearchInput);
-
     searchBar.addEventListener('submit', this.handleSearchSubmit);
   };
 

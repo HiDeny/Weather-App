@@ -2,23 +2,23 @@ import { format } from 'date-fns';
 import { createElementWithClass, pElementWithClass } from '../helperFunc';
 
 const setDate = () => format(new Date(), 'do MMMM');
-const setTime = (format24) => {
-  if (format24) return format(new Date(), 'HH:mm:ss');
-  return format(new Date(), 'h:mm:ss aa');
+const setTime = (format24H) => {
+  if (!format24H) return format(new Date(), 'h:mm:ss aa');
+  return format(new Date(), 'HH:mm:ss');
 };
 
-const createClockElement = (format24 = true) => {
+const createClockElement = (format24H) => {
   const div = createElementWithClass('div', 'dateAtime');
-  div.append(pElementWithClass('clock', setTime(format24)));
+  div.append(pElementWithClass('clock', setTime(format24H)));
   div.append(pElementWithClass('date', setDate()));
 
   return div;
 };
 
-export const startClock = () => {
+export const startClock = (format24H) => {
   const clockInterval = setInterval(() => {
     const clockElement = document.querySelector('.clock');
-    if (clockElement) clockElement.textContent = setTime();
+    if (clockElement) clockElement.textContent = setTime(format24H);
     if (!clockElement) clearInterval(clockInterval);
   }, 1000);
 };

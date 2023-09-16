@@ -52,9 +52,11 @@ const createSelectTimeFormat = (format24H) => {
   const selectFormat = createElementWithClass('div', 'selectFormat');
 
   const format24Btn = createBtn(BUTTON_CLASS_NAME, FORMAT24);
+  format24Btn.classList.add('format24');
   format24Btn.classList.add('formatActive');
 
   const format12Btn = createBtn(BUTTON_CLASS_NAME, FORMAT12);
+  format12Btn.classList.add('format12');
 
   if (!format24H) {
     format12Btn.classList.add('formatActive');
@@ -92,7 +94,7 @@ const createShowSettingsBtn = () => {
   return showSettingsBtn;
 };
 
-const createSettingsElement = ({ defaultLocation, isMetric, format24 }) => {
+const createSettingsElement = ({ defaultLocation, isMetric, format24H }) => {
   const settingsElement = createElementWithClass('div', 'settingsElement');
 
   const showSettingsBtn = createShowSettingsBtn();
@@ -105,7 +107,7 @@ const createSettingsElement = ({ defaultLocation, isMetric, format24 }) => {
 
   const selectDefaultLocation = createSelectDefaultLocation(defaultLocation);
   const selectUnits = createSelectUnits(isMetric);
-  const selectFormat = createSelectTimeFormat(format24);
+  const selectFormat = createSelectTimeFormat(format24H);
   const saveBtn = createSaveBtn();
 
   const menuElements = [
