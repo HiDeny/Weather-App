@@ -92,7 +92,7 @@ const createShowSettingsBtn = () => {
   return showSettingsBtn;
 };
 
-const createSettings = ({ defaultLocation, isMetric, format24 }) => {
+const createSettingsElement = ({ defaultLocation, isMetric, format24 }) => {
   const settingsElement = createElementWithClass('div', 'settingsElement');
 
   const showSettingsBtn = createShowSettingsBtn();
@@ -120,4 +120,4 @@ const createSettings = ({ defaultLocation, isMetric, format24 }) => {
   return settingsElement;
 };
 
-export default createSettings;
+export default createSettingsElement;

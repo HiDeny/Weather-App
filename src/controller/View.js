@@ -1,6 +1,6 @@
 import createSearchElement from '../view/cardSections/header/searchElement';
 import createWelcomeCard from '../view/cardSections/welcomeCard';
-import createSettings from '../view/cardSections/header/userSettings';
+import createSettings from '../view/cardSections/header/settingsElement';
 import createAttribution from '../view/cardSections/header/attribution';
 
 import createWeatherCard from '../view/weatherCard';
