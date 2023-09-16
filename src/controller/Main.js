@@ -44,13 +44,13 @@ export default class MainController {
 
   handleGeolocationSearch = async () => {
     try {
-      this.view.displaySkeleton();
+      ViewController.displaySkeleton();
       const weatherData = await this.weather.getLocalWeather();
       this.config.lastData = weatherData;
       console.log(this.config.lastData);
       this.view.displayWeather(weatherData);
     } catch (error) {
-      this.view.displayError(error);
+      ViewController.displayError(error);
     }
   };
 
@@ -62,13 +62,13 @@ export default class MainController {
     event.preventDefault();
 
     try {
-      this.view.displaySkeleton();
+      ViewController.displaySkeleton();
       const weatherData = await this.weather.getWeather(this.searchLocation);
       this.view.displayWeather(weatherData);
       this.updateSearchField();
       this.config.lastData = weatherData;
     } catch (error) {
-      this.view.displayError(error);
+      ViewController.displayError(error);
       throw new Error(error);
     }
   };

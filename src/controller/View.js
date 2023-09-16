@@ -99,14 +99,14 @@ export default class ViewController {
     displayComponent(weatherCard);
   };
 
-  displayError = (error) => {
+  static displayError = (error) => {
     const errorMessage = error.message;
     const errorCard = createErrorCard(errorMessage);
 
     displayComponent(errorCard);
   };
 
-  displaySkeleton = () => {
+  static displaySkeleton = () => {
     const skeletonCard = createSkeletonCard();
     displayComponent(skeletonCard);
   };
