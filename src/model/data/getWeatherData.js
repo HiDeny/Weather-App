@@ -8,7 +8,7 @@ const getWeatherData = async (location) => {
   // Getting forecast only because current weather is already with it
   const forecast = `${BASE_URL}${FORECAST_WEATHER}?key=${API_KEY}&q=${location}&${FORECAST_DAYS}`;
 
-  const forecastResponse = await fetch(forecast);
+  const forecastResponse = await fetch(forecast, { mode: 'cors' });
   const weatherData = await forecastResponse.json();
 
   if (weatherData.error) {

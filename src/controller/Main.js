@@ -8,6 +8,8 @@ import {
 } from '../view/cardSections/header/controlSettings';
 import { setUserConfig } from '../model/localStorage';
 
+import addressAutocomplete from '../model/autocomplete';
+
 export default class MainController {
   appConfig = {
     geolocation: null,
@@ -26,8 +28,9 @@ export default class MainController {
   init = () => {
     this.view.initUI();
     this.initEventListeners();
+    addressAutocomplete();
 
-    // if (this.config.defaultLocation) {
+    // if (this.userConfig.defaultLocation) {
     //   this.view.displaySkeleton();
     //   const weatherData = await this.weather.getWeather(
     //     this.searchLocation
@@ -58,7 +61,7 @@ export default class MainController {
     const unitButtons = document.querySelectorAll('.unitBtn');
     unitButtons.forEach((unitBtn) => {
       unitBtn.addEventListener('click', () => {
-        this.handleUnitClick();
+        this.toggleUnitsMetricSystem();
         unitButtons.forEach((button) => button.classList.toggle('unitsActive'));
       });
     });
@@ -101,7 +104,7 @@ export default class MainController {
     searchField.value = '';
   };
 
-  handleUnitClick = () => {
+  toggleUnitsMetricSystem = () => {
     this.userConfig.isMetric = !this.userConfig.isMetric;
 
     if (this.appConfig.lastData) {
