@@ -58,7 +58,10 @@ export default class MainController {
   unitsChangeListener = () => {
     const unitButtons = document.querySelectorAll('.unitBtn');
     unitButtons.forEach((unitBtn) => {
-      unitBtn.addEventListener('click', this.handleUnitClick);
+      unitBtn.addEventListener('click', () => {
+        this.handleUnitClick();
+        unitButtons.forEach((button) => button.classList.toggle('unitsActive'));
+      });
     });
   };
 
@@ -92,19 +95,15 @@ export default class MainController {
   };
 
   updateSearchField = () => {
-    const newPlaceholder = this.searchLocation || this.config.defaultLocation;
+    const newPlaceholder =
+      this.searchLocation || this.config.defaultLocation || 'City';
     const searchField = document.getElementById('searchField');
     searchField.placeholder = newPlaceholder;
     searchField.value = '';
   };
 
   handleUnitClick = () => {
-    const metricBtn = document.querySelector('.metricUnits');
-    const imperialBtn = document.querySelector('.imperialUnits');
-
     this.config.isMetric = !this.config.isMetric;
-    imperialBtn.classList.toggle('unitsActive');
-    metricBtn.classList.toggle('unitsActive');
 
     if (this.config.lastData) {
       const newUnitsWeather = this.weather.altUnitsWeather();

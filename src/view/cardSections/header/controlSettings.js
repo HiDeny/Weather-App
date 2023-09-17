@@ -2,21 +2,17 @@ import { startClock } from './clockElement';
 
 /* eslint-disable no-param-reassign */
 export const formatChangeListener = (config) => {
-  const format24Btn = document.querySelector('.format24');
-  const format12Btn = document.querySelector('.format12');
+  const formatButtons = document.querySelectorAll('.formatBtn');
 
-  format24Btn.addEventListener('click', () => {
-    config.format24H = true;
-    startClock(config.format24H);
-    format24Btn.classList.toggle('formatActive');
-    format12Btn.classList.toggle('formatActive');
-  });
+  formatButtons.forEach((formatBtn) => {
+    formatBtn.addEventListener('click', () => {
+      config.format24H = !config.format24H;
+      startClock(config.format24H);
 
-  format12Btn.addEventListener('click', () => {
-    config.format24H = false;
-    startClock(config.format24H);
-    format12Btn.classList.toggle('formatActive');
-    format24Btn.classList.toggle('formatActive');
+      formatButtons.forEach((button) =>
+        button.classList.toggle('formatActive')
+      );
+    });
   });
 
   startClock(config.format24H);
