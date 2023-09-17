@@ -3,15 +3,16 @@ import filterWeatherData from '../model/data/filter/filterWeatherData';
 import getGeolocation from '../model/search/geoLocation';
 
 export default class WeatherDataController {
-  constructor(config) {
-    this.config = config;
+  constructor(userConfig, appConfig) {
+    this.user = userConfig;
+    this.app = appConfig;
   }
 
   getWeather = async (search) => {
     try {
       const rawData = await getWeatherData(search);
-      this.config.lastData = rawData;
-      const cleanData = filterWeatherData(rawData, this.config.isMetric);
+      this.app.lastData = rawData;
+      const cleanData = filterWeatherData(rawData, this.user.isMetric);
 
       console.log(cleanData);
       return cleanData;
@@ -30,10 +31,7 @@ export default class WeatherDataController {
   };
 
   altUnitsWeather = () => {
-    const cleanData = filterWeatherData(
-      this.config.lastData,
-      this.config.isMetric
-    );
+    const cleanData = filterWeatherData(this.app.lastData, this.user.isMetric);
     return cleanData;
   };
 }

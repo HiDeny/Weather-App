@@ -4,22 +4,21 @@ import WeatherDataController from './Weather';
 import {
   formatChangeListener,
   defaultLocationChangeListener,
-  toggleSettingsVisibility,
+  settingsMenuControl,
 } from '../view/cardSections/header/controlSettings';
+import { setUserConfig } from '../model/localStorage';
 
 export default class MainController {
-  config = {
-    format24H: true,
-    isMetric: true,
-    defaultLocation: 'Cape Town',
+  appConfig = {
     geolocation: null,
     lastSearch: null,
     lastData: null,
   };
 
   constructor() {
-    this.view = new ViewController(this.config);
-    this.weather = new WeatherDataController(this.config);
+    this.userConfig = setUserConfig();
+    this.weather = new WeatherDataController(this.userConfig, this.appConfig);
+    this.view = new ViewController(this.userConfig);
   }
 
   searchLocation = null;
@@ -38,11 +37,11 @@ export default class MainController {
   };
 
   initEventListeners = () => {
-    this.unitsChangeListener();
     this.initSearch();
-    formatChangeListener(this.config);
-    defaultLocationChangeListener(this.config);
-    toggleSettingsVisibility();
+    this.unitsChangeListener();
+    formatChangeListener(this.userConfig);
+    defaultLocationChangeListener(this.userConfig);
+    settingsMenuControl(this.userConfig);
   };
 
   initSearch = () => {
@@ -96,16 +95,16 @@ export default class MainController {
 
   updateSearchField = () => {
     const newPlaceholder =
-      this.searchLocation || this.config.defaultLocation || 'City';
+      this.searchLocation || this.userConfig.defaultLocation || 'City';
     const searchField = document.getElementById('searchField');
     searchField.placeholder = newPlaceholder;
     searchField.value = '';
   };
 
   handleUnitClick = () => {
-    this.config.isMetric = !this.config.isMetric;
+    this.userConfig.isMetric = !this.userConfig.isMetric;
 
-    if (this.config.lastData) {
+    if (this.appConfig.lastData) {
       const newUnitsWeather = this.weather.altUnitsWeather();
       this.view.displayWeather(newUnitsWeather);
     }

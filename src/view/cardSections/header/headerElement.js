@@ -5,12 +5,12 @@ import createSearchElement from './searchElement';
 import createSettingsElement from './settingsElement';
 import createAttributionElement from './attributionElement';
 
-const createHeaderElement = (config) => {
+const createHeaderElement = (userConfig) => {
   const header = createElementWithClass('header', 'header');
 
-  const clockElement = createClockElement(config.format24H);
+  const clockElement = createClockElement(userConfig.format24H);
   const searchElement = createSearchElement();
-  const settingsElement = createSettingsElement(config);
+  const settingsElement = createSettingsElement(userConfig);
   const attributionElement = createAttributionElement();
 
   const headerElements = [

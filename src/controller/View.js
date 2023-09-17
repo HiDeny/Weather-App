@@ -22,12 +22,12 @@ const displayComponent = (newComponent) => {
 };
 
 export default class ViewController {
-  constructor(config) {
-    this.config = config;
+  constructor(userConfig) {
+    this.userConfig = userConfig;
   }
 
   initUI = () => {
-    const headerElement = createHeaderElement(this.config);
+    const headerElement = createHeaderElement(this.userConfig);
     const welcomeCard = createWelcomeCard();
 
     const startingPage = [headerElement, welcomeCard];
@@ -37,7 +37,7 @@ export default class ViewController {
   displayWeather = async (cleanData) => {
     const weatherCard = await createWeatherCard(
       cleanData,
-      this.config.isMetric
+      this.userConfig.isMetric
     );
 
     displayComponent(weatherCard);

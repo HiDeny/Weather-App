@@ -1,13 +1,14 @@
 import { startClock } from './clockElement';
+import { saveUserConfig } from '../../../model/localStorage';
 
 /* eslint-disable no-param-reassign */
-export const formatChangeListener = (config) => {
+export const formatChangeListener = (userConfig) => {
   const formatButtons = document.querySelectorAll('.formatBtn');
 
   formatButtons.forEach((formatBtn) => {
     formatBtn.addEventListener('click', () => {
-      config.format24H = !config.format24H;
-      startClock(config.format24H);
+      userConfig.format24H = !userConfig.format24H;
+      startClock(userConfig.format24H);
 
       formatButtons.forEach((button) =>
         button.classList.toggle('formatActive')
@@ -15,18 +16,18 @@ export const formatChangeListener = (config) => {
     });
   });
 
-  startClock(config.format24H);
+  startClock(userConfig.format24H);
 };
 
-export const defaultLocationChangeListener = (config) => {
+export const defaultLocationChangeListener = (userConfig) => {
   const setDefaultLocation = document.getElementById('setDefaultLocation');
 
   setDefaultLocation.addEventListener('input', (event) => {
-    config.defaultLocation = event.target.value;
+    userConfig.defaultLocation = event.target.value;
   });
 };
 
-export const toggleSettingsVisibility = () => {
+export const settingsMenuControl = (userConfig) => {
   const showSettingsBtn = document.getElementById('showSettingsBtn');
   const settingsMenu = document.getElementById('settingsMenu');
   const saveBtn = document.getElementById('saveBtn');
@@ -35,6 +36,13 @@ export const toggleSettingsVisibility = () => {
     settingsMenu.classList.toggle('showSettings');
   };
 
-  showSettingsBtn.addEventListener('click', toggleVisibility);
-  saveBtn.addEventListener('click', toggleVisibility);
+  showSettingsBtn.addEventListener('click', () => {
+    saveUserConfig(userConfig);
+    toggleVisibility();
+  });
+
+  saveBtn.addEventListener('click', () => {
+    saveUserConfig(userConfig);
+    toggleVisibility();
+  });
 };
