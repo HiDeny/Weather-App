@@ -45,7 +45,6 @@ section {
 
 header {
   display: grid;
-  grid-template: ;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-row: 1;
   justify-items: center;
@@ -532,6 +531,12 @@ header {
   100% {
     color: #e4e4e49c;
   }
+}
+
+/** Error Card */
+
+.errorCard {
+  justify-self: center;
 }
 
 /*! UPDATES */

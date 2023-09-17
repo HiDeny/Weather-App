@@ -1,3 +1,5 @@
+import { startClock } from './clockElement';
+
 /* eslint-disable no-param-reassign */
 export const formatChangeListener = (config) => {
   const format24Btn = document.querySelector('.format24');
@@ -5,15 +7,19 @@ export const formatChangeListener = (config) => {
 
   format24Btn.addEventListener('click', () => {
     config.format24H = true;
+    startClock(config.format24H);
     format24Btn.classList.toggle('formatActive');
     format12Btn.classList.toggle('formatActive');
   });
 
   format12Btn.addEventListener('click', () => {
     config.format24H = false;
+    startClock(config.format24H);
     format12Btn.classList.toggle('formatActive');
     format24Btn.classList.toggle('formatActive');
   });
+
+  startClock(config.format24H);
 };
 
 export const unitsChangeListener = (config) => {

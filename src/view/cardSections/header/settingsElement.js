@@ -46,8 +46,8 @@ const createSelectUnits = (isMetric) => {
 };
 const createSelectTimeFormat = (format24H) => {
   const BUTTON_CLASS_NAME = 'formatBtn';
-  const FORMAT24 = '12H';
-  const FORMAT12 = '24H';
+  const FORMAT12 = '12H';
+  const FORMAT24 = '24H';
 
   const selectFormat = createElementWithClass('div', 'selectFormat');
 

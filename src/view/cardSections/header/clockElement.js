@@ -15,11 +15,12 @@ const createClockElement = (format24H) => {
   return div;
 };
 
+let clockInterval;
+
 export const startClock = (format24H) => {
-  const clockInterval = setInterval(() => {
-    const clockElement = document.querySelector('.time');
-    if (clockElement) clockElement.textContent = setTime(format24H);
-    if (!clockElement) clearInterval(clockInterval);
+  clearInterval(clockInterval);
+  clockInterval = setInterval(() => {
+    document.querySelector('.time').textContent = setTime(format24H);
   }, 1000);
 };
 

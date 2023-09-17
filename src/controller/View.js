@@ -48,7 +48,6 @@ export default class ViewController {
   };
 
   initEventListeners = () => {
-    startClock(this.config.format24H);
     unitsChangeListener(this.config);
     formatChangeListener(this.config);
     defaultLocationChangeListener(this.config);

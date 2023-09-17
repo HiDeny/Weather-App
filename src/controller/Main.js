@@ -45,7 +45,6 @@ export default class MainController {
       ViewController.displaySkeleton();
       const weatherData = await this.weather.getLocalWeather();
       this.config.lastData = weatherData;
-      console.log(this.config.lastData);
       this.view.displayWeather(weatherData);
     } catch (error) {
       ViewController.displayError(error);
