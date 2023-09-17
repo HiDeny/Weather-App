@@ -22,13 +22,14 @@ const createSearchField = () => {
   const label = document.createElement('label');
   label.for = 'searchField';
 
-  const searchBar = document.createElement('input');
-  searchBar.type = 'text';
-  searchBar.placeholder = 'City';
-  searchBar.name = 'searchField';
-  searchBar.id = 'searchField';
+  const searchField = document.createElement('input');
+  searchField.autocomplete = 'off';
+  searchField.type = 'text';
+  searchField.placeholder = 'City';
+  searchField.name = 'searchField';
+  searchField.id = 'searchField';
 
-  label.append(searchBar);
+  label.append(searchField);
   return label;
 };
 

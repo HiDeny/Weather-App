@@ -1,16 +1,18 @@
+import displaySuggestions from '../view/cardSections/header/suggestionResults';
+
 const fetchSuggestions = async (value) => {
   const API_KEY = '70a08f7e1b564372a773e30edf51afe3';
   const BASE_URL = 'https://api.geoapify.com/v1/';
   const requestOptions = { method: 'GET' };
 
   const completeSearchValue = encodeURIComponent(value);
-  const completeURL = `${BASE_URL}geocode/autocomplete?text=${completeSearchValue}&apiKey=${API_KEY}`;
+  const completeURL = `${BASE_URL}geocode/autocomplete?text=${completeSearchValue}&format=json&limit=5&apiKey=${API_KEY}`;
 
   try {
     const response = await fetch(completeURL, requestOptions);
     const responseJSON = await response.json();
 
-    console.log(responseJSON);
+    return responseJSON;
   } catch (error) {
     throw new Error(error);
   }
@@ -29,9 +31,12 @@ const addressAutocomplete = () => {
     if (!currentValue || currentValue.length < MIN_ADDRESS_LENGTH) return false;
     if (currentTimeout) clearTimeout(currentTimeout);
 
-    currentTimeout = setTimeout(() => {
+    currentTimeout = setTimeout(async () => {
       currentTimeout = null;
-      fetchSuggestions(currentValue);
+      const suggestionsData = await fetchSuggestions(currentValue);
+      console.log(suggestionsData);
+      const showData = displaySuggestions(suggestionsData);
+      document.querySelector('.searchElement').append(showData);
     }, DEBOUNCE_DELAY);
   });
 };
