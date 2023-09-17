@@ -1,6 +1,12 @@
 import ViewController from './View';
 import WeatherDataController from './Weather';
 
+import {
+  formatChangeListener,
+  defaultLocationChangeListener,
+  toggleSettingsVisibility,
+} from '../view/cardSections/header/controlSettings';
+
 export default class MainController {
   config = {
     format24H: true,
@@ -19,8 +25,9 @@ export default class MainController {
   searchLocation = null;
 
   init = () => {
-    this.view.initView();
-    this.initSearch();
+    this.view.initUI();
+    this.initEventListeners();
+
     // if (this.config.defaultLocation) {
     //   this.view.displaySkeleton();
     //   const weatherData = await this.weather.getWeather(
@@ -28,6 +35,14 @@ export default class MainController {
     //   );
     //   this.view.displayWeather(weatherData);
     // };
+  };
+
+  initEventListeners = () => {
+    this.unitsChangeListener();
+    this.initSearch();
+    formatChangeListener(this.config);
+    defaultLocationChangeListener(this.config);
+    toggleSettingsVisibility();
   };
 
   initSearch = () => {
@@ -40,11 +55,17 @@ export default class MainController {
     searchBar.addEventListener('submit', this.handleSearchSubmit);
   };
 
+  unitsChangeListener = () => {
+    const unitButtons = document.querySelectorAll('.unitBtn');
+    unitButtons.forEach((unitBtn) => {
+      unitBtn.addEventListener('click', this.handleUnitClick);
+    });
+  };
+
   handleGeolocationSearch = async () => {
     try {
       ViewController.displaySkeleton();
       const weatherData = await this.weather.getLocalWeather();
-      this.config.lastData = weatherData;
       this.view.displayWeather(weatherData);
     } catch (error) {
       ViewController.displayError(error);
@@ -59,11 +80,11 @@ export default class MainController {
     event.preventDefault();
 
     try {
+      // Set what location to find when there is no searchLoc
       ViewController.displaySkeleton();
       const weatherData = await this.weather.getWeather(this.searchLocation);
       this.view.displayWeather(weatherData);
       this.updateSearchField();
-      this.config.lastData = weatherData;
     } catch (error) {
       ViewController.displayError(error);
       throw new Error(error);
@@ -75,5 +96,19 @@ export default class MainController {
     const searchField = document.getElementById('searchField');
     searchField.placeholder = newPlaceholder;
     searchField.value = '';
+  };
+
+  handleUnitClick = () => {
+    const metricBtn = document.querySelector('.metricUnits');
+    const imperialBtn = document.querySelector('.imperialUnits');
+
+    this.config.isMetric = !this.config.isMetric;
+    imperialBtn.classList.toggle('unitsActive');
+    metricBtn.classList.toggle('unitsActive');
+
+    if (this.config.lastData) {
+      const newUnitsWeather = this.weather.altUnitsWeather();
+      this.view.displayWeather(newUnitsWeather);
+    }
   };
 }

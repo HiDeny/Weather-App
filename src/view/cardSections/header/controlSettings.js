@@ -22,23 +22,6 @@ export const formatChangeListener = (config) => {
   startClock(config.format24H);
 };
 
-export const unitsChangeListener = (config) => {
-  const metricBtn = document.querySelector('.metricUnits');
-  const imperialBtn = document.querySelector('.imperialUnits');
-
-  metricBtn.addEventListener('click', () => {
-    config.isMetric = true;
-    imperialBtn.classList.toggle('unitsActive');
-    metricBtn.classList.toggle('unitsActive');
-  });
-
-  imperialBtn.addEventListener('click', () => {
-    config.isMetric = false;
-    imperialBtn.classList.toggle('unitsActive');
-    metricBtn.classList.toggle('unitsActive');
-  });
-};
-
 export const defaultLocationChangeListener = (config) => {
   const setDefaultLocation = document.getElementById('setDefaultLocation');
 
@@ -52,11 +35,10 @@ export const toggleSettingsVisibility = () => {
   const settingsMenu = document.getElementById('settingsMenu');
   const saveBtn = document.getElementById('saveBtn');
 
-  showSettingsBtn.addEventListener('click', () => {
+  const toggleVisibility = () => {
     settingsMenu.classList.toggle('showSettings');
-  });
+  };
 
-  saveBtn.addEventListener('click', () => {
-    settingsMenu.classList.toggle('showSettings');
-  });
+  showSettingsBtn.addEventListener('click', toggleVisibility);
+  saveBtn.addEventListener('click', toggleVisibility);
 };

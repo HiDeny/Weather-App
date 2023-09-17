@@ -10,6 +10,7 @@ export default class WeatherDataController {
   getWeather = async (search) => {
     try {
       const rawData = await getWeatherData(search);
+      this.config.lastData = rawData;
       const cleanData = filterWeatherData(rawData, this.config.isMetric);
 
       console.log(cleanData);
@@ -26,5 +27,13 @@ export default class WeatherDataController {
     } catch (err) {
       throw new Error(err);
     }
+  };
+
+  altUnitsWeather = () => {
+    const cleanData = filterWeatherData(
+      this.config.lastData,
+      this.config.isMetric
+    );
+    return cleanData;
   };
 }

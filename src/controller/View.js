@@ -1,17 +1,9 @@
 import createHeaderElement from '../view/cardSections/header/headerElement';
 import createWelcomeCard from '../view/cardSections/welcomeCard';
-import {
-  unitsChangeListener,
-  formatChangeListener,
-  defaultLocationChangeListener,
-  toggleSettingsVisibility,
-} from '../view/cardSections/header/controlSettings';
 
 import createWeatherCard from '../view/weatherCard';
 import createErrorCard from '../view/cardSections/errorCard';
 import createSkeletonCard from '../view/cardSections/loadingCard';
-
-import { startClock } from '../view/cardSections/header/clockElement';
 
 const displayComponent = (newComponent) => {
   const currentWelcome = document.querySelector('.welcomeCard');
@@ -34,24 +26,12 @@ export default class ViewController {
     this.config = config;
   }
 
-  initView = () => {
-    this.initUI();
-    this.initEventListeners();
-  };
-
   initUI = () => {
     const headerElement = createHeaderElement(this.config);
     const welcomeCard = createWelcomeCard();
 
     const startingPage = [headerElement, welcomeCard];
     document.body.append(...startingPage);
-  };
-
-  initEventListeners = () => {
-    unitsChangeListener(this.config);
-    formatChangeListener(this.config);
-    defaultLocationChangeListener(this.config);
-    toggleSettingsVisibility();
   };
 
   displayWeather = async (cleanData) => {

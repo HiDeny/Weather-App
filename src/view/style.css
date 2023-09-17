@@ -197,6 +197,23 @@ header {
   margin: 0;
 }
 
+.formatBtn {
+  width: 100%;
+  padding: 0.5rem 0.3rem;
+
+  background-color: #b3b3b3;
+  border-radius: 0.5rem;
+  border: #b3b3b3 solid 1px;
+
+  font-size: 0.9rem;
+
+  transition: background-color 1s;
+}
+
+.formatActive {
+  background-color: pink;
+}
+
 .saveSettingsBtn {
   justify-self: center;
   width: 8rem;
