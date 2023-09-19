@@ -1,5 +1,6 @@
 import ViewController from './View';
 import WeatherDataController from './Weather';
+import SearchFieldController from './Search';
 
 import {
   formatChangeListener,
@@ -8,22 +9,22 @@ import {
 } from '../view/cardSections/header/controlSettings';
 import { setUserConfig } from '../model/localStorage';
 
-import {
-  addressAutocomplete,
-  suggestionsKeyboardControl,
-} from '../model/autocomplete';
-
 export default class MainController {
   appConfig = {
     geolocation: null,
     lastSearch: null,
     lastData: null,
+    searchValue: null,
   };
 
   constructor() {
     this.userConfig = setUserConfig();
     this.weather = new WeatherDataController(this.userConfig, this.appConfig);
     this.view = new ViewController(this.userConfig);
+    this.searchField = new SearchFieldController(
+      this.userConfig,
+      this.appConfig
+    );
   }
 
   searchLocation = null;
@@ -31,8 +32,7 @@ export default class MainController {
   init = () => {
     this.view.initUI();
     this.initEventListeners();
-    addressAutocomplete();
-    suggestionsKeyboardControl();
+    this.searchField.init();
 
     // if (this.userConfig.defaultLocation) {
     //   this.view.displaySkeleton();
@@ -52,12 +52,10 @@ export default class MainController {
   };
 
   initSearch = () => {
-    const searchField = document.getElementById('searchField');
     const geoLocationBtn = document.getElementById('geoLocationBtn');
     const searchBar = document.querySelector('.searchElement');
 
     geoLocationBtn.addEventListener('click', this.handleGeolocationSearch);
-    searchField.addEventListener('input', this.handleSearchInput);
     searchBar.addEventListener('submit', this.handleSearchSubmit);
   };
 
@@ -81,31 +79,21 @@ export default class MainController {
     }
   };
 
-  handleSearchInput = (event) => {
-    this.searchLocation = event.target.value;
-  };
-
   handleSearchSubmit = async (event) => {
     event.preventDefault();
 
     try {
       // Set what location to find when there is no searchLoc
       ViewController.displaySkeleton();
-      const weatherData = await this.weather.getWeather(this.searchLocation);
+      const weatherData = await this.weather.getWeather(
+        this.appConfig.searchValue
+      );
       this.view.displayWeather(weatherData);
-      this.updateSearchField();
+      this.searchField.updatePlaceholder();
     } catch (error) {
       ViewController.displayError(error);
       throw new Error(error);
     }
-  };
-
-  updateSearchField = () => {
-    const newPlaceholder =
-      this.searchLocation || this.userConfig.defaultLocation || 'City';
-    const searchField = document.getElementById('searchField');
-    searchField.placeholder = newPlaceholder;
-    searchField.value = '';
   };
 
   toggleUnitsMetricSystem = () => {

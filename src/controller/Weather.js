@@ -1,5 +1,5 @@
 import { getWeatherData } from '../model/service/weatherAPI';
-import filterWeatherData from '../model/data/filter/filterWeatherData';
+import filterWeatherData from '../model/filter/filterWeatherData';
 import getGeolocation from '../model/geoLocation';
 
 export default class WeatherDataController {

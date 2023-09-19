@@ -1,15 +1,8 @@
-import displaySuggestions from '../view/cardSections/header/suggestionResults';
+import {
+  displaySuggestions,
+  setActive,
+} from '../view/cardSections/header/suggestionResults';
 import { autocompleteData } from './service/weatherAPI';
-
-const setActive = (suggestions, index) => {
-  if (!suggestions || index < 0) return false;
-
-  Object.values(suggestions).forEach((suggestion) => {
-    suggestion.classList.remove('suggestion-active');
-  });
-
-  suggestions[index].classList.add('suggestion-active');
-};
 
 export const suggestionsKeyboardControl = () => {
   const searchField = document.getElementById('searchField');

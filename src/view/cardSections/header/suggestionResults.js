@@ -1,11 +1,11 @@
 import { createElementWithClass } from '../helperFunc';
 
-const hideSuggestions = () => {
+export const hideSuggestions = () => {
   const currentSuggestions = document.querySelector('.suggestions-items');
   if (currentSuggestions) currentSuggestions.remove();
 };
 
-const displaySuggestions = (suggestionsData) => {
+const createSuggestionsElement = (suggestionsData) => {
   const autocompleteDiv = createElementWithClass('div', 'suggestions-items');
 
   suggestionsData.forEach((result, index) => {
@@ -27,4 +27,18 @@ const displaySuggestions = (suggestionsData) => {
   return autocompleteDiv;
 };
 
-export default displaySuggestions;
+export const displaySuggestions = (suggestionsData) => {
+  const searchElement = document.querySelector('.searchElement');
+  hideSuggestions();
+  searchElement.append(createSuggestionsElement(suggestionsData));
+};
+
+export const setActive = (suggestions, index) => {
+  if (!suggestions || index < 0) return false;
+
+  Object.values(suggestions).forEach((suggestion) => {
+    suggestion.classList.remove('suggestion-active');
+  });
+
+  suggestions[index].classList.add('suggestion-active');
+};
