@@ -16,7 +16,7 @@ export default class SearchFieldController {
     this.focusedItemIndex = -1;
   }
 
-  init = () => {
+  initEventListeners = () => {
     const searchFieldElement = document.getElementById('searchField');
     searchFieldElement.addEventListener('input', this.handleInput);
     searchFieldElement.addEventListener('keydown', this.handleKeyDown);
@@ -31,7 +31,7 @@ export default class SearchFieldController {
     ) {
       hideSuggestions();
       this.focusedItemIndex = -1;
-      return false;
+      return;
     }
     if (this.currentTimeout) clearTimeout(this.currentTimeout);
 
@@ -41,9 +41,9 @@ export default class SearchFieldController {
       const suggestionsData = await autocompleteData(
         this.appConfig.searchValue
       );
-      if (suggestionsData.length < 1) return false;
+      if (suggestionsData.length < 1) return;
 
-      displaySuggestions(suggestionsData);
+      displaySuggestions(suggestionsData, this.appConfig);
     }, DEBOUNCE_DELAY);
   };
 

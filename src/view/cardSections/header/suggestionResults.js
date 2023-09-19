@@ -5,7 +5,13 @@ export const hideSuggestions = () => {
   if (currentSuggestions) currentSuggestions.remove();
 };
 
-const createSuggestionsElement = (suggestionsData) => {
+const updateSearch = (appConfig, searchResult) => {
+  const searchFieldElement = document.getElementById('searchField');
+  appConfig.searchValue = `${searchResult.lat}, ${searchResult.lon}`;
+  searchFieldElement.value = `${searchResult.name}, ${searchResult.region}, ${searchResult.country}`;
+};
+
+const createSuggestionsElement = (suggestionsData, appConfig) => {
   const autocompleteDiv = createElementWithClass('div', 'suggestions-items');
 
   suggestionsData.forEach((result, index) => {
@@ -17,8 +23,10 @@ const createSuggestionsElement = (suggestionsData) => {
 
     suggestionElement.addEventListener('click', () => {
       // Lookup locations weather
+      const searchResult = suggestionsData[index];
+      console.log(searchResult);
       console.log(suggestionsData);
-      console.log(suggestionsData[index]);
+      updateSearch(appConfig, searchResult);
       hideSuggestions();
     });
     autocompleteDiv.append(suggestionElement);
@@ -27,14 +35,14 @@ const createSuggestionsElement = (suggestionsData) => {
   return autocompleteDiv;
 };
 
-export const displaySuggestions = (suggestionsData) => {
+export const displaySuggestions = (suggestionsData, searchValue) => {
   const searchElement = document.querySelector('.searchElement');
   hideSuggestions();
-  searchElement.append(createSuggestionsElement(suggestionsData));
+  searchElement.append(createSuggestionsElement(suggestionsData, searchValue));
 };
 
 export const setActive = (suggestions, index) => {
-  if (!suggestions || index < 0) return false;
+  if (!suggestions || index < 0) return;
 
   Object.values(suggestions).forEach((suggestion) => {
     suggestion.classList.remove('suggestion-active');

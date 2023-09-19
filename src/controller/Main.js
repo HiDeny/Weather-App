@@ -32,7 +32,6 @@ export default class MainController {
   init = () => {
     this.view.initUI();
     this.initEventListeners();
-    this.searchField.init();
 
     // if (this.userConfig.defaultLocation) {
     //   this.view.displaySkeleton();
@@ -53,20 +52,11 @@ export default class MainController {
 
   initSearch = () => {
     const geoLocationBtn = document.getElementById('geoLocationBtn');
-    const searchBar = document.querySelector('.searchElement');
+    const searchElement = document.querySelector('.searchElement');
 
     geoLocationBtn.addEventListener('click', this.handleGeolocationSearch);
-    searchBar.addEventListener('submit', this.handleSearchSubmit);
-  };
-
-  unitsChangeListener = () => {
-    const unitButtons = document.querySelectorAll('.unitBtn');
-    unitButtons.forEach((unitBtn) => {
-      unitBtn.addEventListener('click', () => {
-        this.toggleUnitsMetricSystem();
-        unitButtons.forEach((button) => button.classList.toggle('unitsActive'));
-      });
-    });
+    searchElement.addEventListener('submit', this.handleSearchSubmit);
+    this.searchField.initEventListeners();
   };
 
   handleGeolocationSearch = async () => {
@@ -94,6 +84,16 @@ export default class MainController {
       ViewController.displayError(error);
       throw new Error(error);
     }
+  };
+
+  unitsChangeListener = () => {
+    const unitButtons = document.querySelectorAll('.unitBtn');
+    unitButtons.forEach((unitBtn) => {
+      unitBtn.addEventListener('click', () => {
+        this.toggleUnitsMetricSystem();
+        unitButtons.forEach((button) => button.classList.toggle('unitsActive'));
+      });
+    });
   };
 
   toggleUnitsMetricSystem = () => {
