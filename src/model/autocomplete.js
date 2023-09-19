@@ -1,25 +1,7 @@
 import displaySuggestions from '../view/cardSections/header/suggestionResults';
-
-const fetchSuggestions = async (userInput) => {
-  const API_KEY = '0ef9234ffd8140e0bcf145942232508';
-  const BASE_URL = 'https://api.weatherapi.com/v1';
-
-  const searchURL = `${BASE_URL}/search.json?key=${API_KEY}&q=${userInput}`;
-
-  try {
-    const response = await fetch(searchURL, { mode: 'cors' });
-    const responseJSON = await response.json();
-
-    return responseJSON;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
+import { autocompleteData } from './service/weatherAPI';
 
 const setActive = (suggestions, index) => {
-  console.log(suggestions);
-  const searchField = document.getElementById('searchField');
-
   if (!suggestions || index < 0) return false;
 
   Object.values(suggestions).forEach((suggestion) => {
@@ -27,48 +9,40 @@ const setActive = (suggestions, index) => {
   });
 
   suggestions[index].classList.add('suggestion-active');
-
-  searchField.value = suggestions[index].textContent;
 };
 
 export const suggestionsKeyboardControl = () => {
   const searchField = document.getElementById('searchField');
 
-  let focusedItemIndex = -1;
+  let focusedItemIndex = 0;
 
   searchField.addEventListener('keydown', (event) => {
     const currentSuggestions = document.querySelector('.suggestions-items');
     if (currentSuggestions) {
       const suggestionItems = currentSuggestions.getElementsByTagName('div');
+
       if (event.key === 'ArrowDown') {
         event.preventDefault();
-        const check = focusedItemIndex !== suggestionItems.length - 1;
-        focusedItemIndex = check ? (focusedItemIndex += 1) : 0;
 
-        console.log(focusedItemIndex);
+        focusedItemIndex = (focusedItemIndex + 1) % suggestionItems.length;
         setActive(suggestionItems, focusedItemIndex);
       }
+
       if (event.key === 'ArrowUp') {
         event.preventDefault();
-        focusedItemIndex =
-          focusedItemIndex > 0
-            ? focusedItemIndex - 1
-            : (focusedItemIndex = suggestionItems.length - 1);
 
-        console.log(focusedItemIndex);
+        focusedItemIndex =
+          (focusedItemIndex - 1 + suggestionItems.length) %
+          suggestionItems.length;
+
         setActive(suggestionItems, focusedItemIndex);
       }
       if (event.key === 'Enter') {
         event.preventDefault();
-        if (focusedItemIndex > -1) currentSuggestions.remove();
-      }
-    }
-
-    if (!currentSuggestions) {
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        const evt = new Event('input', true, true);
-        document.dispatchEvent(evt);
+        if (focusedItemIndex > -1) {
+          searchField.value = suggestionItems[focusedItemIndex].textContent;
+          currentSuggestions.remove();
+        }
       }
     }
   });
@@ -93,7 +67,7 @@ export const addressAutocomplete = () => {
 
     currentTimeout = setTimeout(async () => {
       currentTimeout = null;
-      const suggestionsData = await fetchSuggestions(currentValue);
+      const suggestionsData = await autocompleteData(currentValue);
       console.log(suggestionsData);
       if (suggestionsData.length < 1) return false;
       const showData = displaySuggestions(suggestionsData);

@@ -1,4 +1,4 @@
-import getWeatherData from '../model/data/getWeatherData';
+import { getWeatherData } from '../model/service/weatherAPI';
 import filterWeatherData from '../model/data/filter/filterWeatherData';
 import getGeolocation from '../model/geoLocation';
 
