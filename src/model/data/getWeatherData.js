@@ -6,16 +6,16 @@ const FORECAST_DAYS = 'days=3';
 
 const getWeatherData = async (location) => {
   // Getting forecast only because current weather is already with it
-  const forecast = `${BASE_URL}${FORECAST_WEATHER}?key=${API_KEY}&q=${location}&${FORECAST_DAYS}`;
+  const weatherData = `${BASE_URL}${FORECAST_WEATHER}?key=${API_KEY}&q=${location}&${FORECAST_DAYS}`;
 
-  const forecastResponse = await fetch(forecast, { mode: 'cors' });
-  const weatherData = await forecastResponse.json();
+  const response = await fetch(weatherData, { mode: 'cors' });
+  const responseJSON = await response.json();
 
-  if (weatherData.error) {
-    throw new Error(`API Error: ${weatherData.error.code}`);
+  if (responseJSON.error) {
+    throw new Error(`API Error: ${responseJSON.error.code}`);
   }
 
-  return weatherData;
+  return responseJSON;
 };
 
 export default getWeatherData;

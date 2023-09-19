@@ -571,7 +571,7 @@ header {
   background-color: #fff;
 
   z-index: 99;
-  top: 3rem;
+  top: 5rem;
   width: 25rem;
   margin: auto;
 }
@@ -581,6 +581,7 @@ header {
   cursor: pointer;
 }
 
-.suggestions-items div:hover {
+.suggestions-items div:hover,
+.suggestion-active {
   background-color: rgba(0, 0, 0, 0.1);
 }

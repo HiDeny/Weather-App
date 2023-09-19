@@ -8,7 +8,10 @@ import {
 } from '../view/cardSections/header/controlSettings';
 import { setUserConfig } from '../model/localStorage';
 
-import addressAutocomplete from '../model/autocomplete';
+import {
+  addressAutocomplete,
+  suggestionsKeyboardControl,
+} from '../model/autocomplete';
 
 export default class MainController {
   appConfig = {
@@ -29,6 +32,7 @@ export default class MainController {
     this.view.initUI();
     this.initEventListeners();
     addressAutocomplete();
+    suggestionsKeyboardControl();
 
     // if (this.userConfig.defaultLocation) {
     //   this.view.displaySkeleton();

@@ -8,17 +8,17 @@ const hideSuggestions = () => {
 const displaySuggestions = (suggestionsData) => {
   const autocompleteDiv = createElementWithClass('div', 'suggestions-items');
 
-  suggestionsData.results.forEach((result, index) => {
+  suggestionsData.forEach((result, index) => {
     const suggestionElement = createElementWithClass(
       'div',
       'suggestionElement',
-      result.formatted
+      `${result.name}, ${result.region}, ${result.country}`
     );
 
     suggestionElement.addEventListener('click', () => {
       // Lookup locations weather
       console.log(suggestionsData);
-      console.log(suggestionsData.results[index].formatted);
+      console.log(suggestionsData[index]);
       hideSuggestions();
     });
     autocompleteDiv.append(suggestionElement);
