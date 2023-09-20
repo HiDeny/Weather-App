@@ -15,20 +15,11 @@ const fetchData = async (url) => {
 export const getWeatherData = async (location) => {
   // Getting forecast only because current weather is already with it
   const weatherURL = `${BASE_URL}/forecast.json?key=${API_KEY}&q=${location}&days=3`;
-
-  try {
-    return await fetchData(weatherURL);
-  } catch (error) {
-    throw new Error(error);
-  }
+  const data = await fetchData(weatherURL);
+  return data;
 };
 export const autocompleteData = async (userSearch) => {
-  // Getting forecast only because current weather is already with it
   const searchURL = `${BASE_URL}/search.json?key=${API_KEY}&q=${userSearch}`;
-
-  try {
-    return await fetchData(searchURL);
-  } catch (error) {
-    throw new Error(error);
-  }
+  const data = await fetchData(searchURL);
+  return data;
 };

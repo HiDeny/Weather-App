@@ -11,7 +11,7 @@ export const pElementWithClass = (className, content) => {
   return nodeContent;
 };
 
-export const createConIconElement = async ({ icon }) => {
+export const createConditionsIcon = async ({ icon }) => {
   try {
     const getIcon = await fetch(icon);
 

@@ -1,6 +1,7 @@
 const createGeoLocationBtn = () => {
   const geoLocationBtn = document.createElement('button');
   geoLocationBtn.classList.add('searchBtn');
+  geoLocationBtn.classList.add('geoLocationBtn');
   geoLocationBtn.type = 'button';
   geoLocationBtn.id = 'geoLocationBtn';
   geoLocationBtn.textContent = '🧭';
@@ -11,6 +12,7 @@ const createGeoLocationBtn = () => {
 const createSubmitBtn = () => {
   const submitBtn = document.createElement('button');
   submitBtn.classList.add('searchBtn');
+  submitBtn.classList.add('submitBtn');
   submitBtn.type = 'submit';
   submitBtn.id = 'submitBtn';
   submitBtn.textContent = '🔍';
@@ -19,32 +21,23 @@ const createSubmitBtn = () => {
 };
 
 const createSearchField = () => {
-  const label = document.createElement('label');
-  label.for = 'searchField';
-
   const searchField = document.createElement('input');
   searchField.autocomplete = 'off';
   searchField.type = 'text';
   searchField.placeholder = 'City';
   searchField.name = 'searchField';
-  searchField.id = 'searchField';
+  searchField.className = 'searchField';
 
-  label.append(searchField);
-  return label;
+  return searchField;
 };
 
 const createSearchElement = () => {
   const completeSearchBar = document.createElement('form');
   completeSearchBar.classList.add('searchElement');
 
-  const geoLocationBtn = createGeoLocationBtn();
-  completeSearchBar.append(geoLocationBtn);
-
-  const searchField = createSearchField();
-  completeSearchBar.append(searchField);
-
-  const submitBtn = createSubmitBtn();
-  completeSearchBar.append(submitBtn);
+  completeSearchBar.append(createGeoLocationBtn());
+  completeSearchBar.append(createSearchField());
+  completeSearchBar.append(createSubmitBtn());
 
   return completeSearchBar;
 };

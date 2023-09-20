@@ -5,6 +5,7 @@ const createForecastHourly = (todayData) => {
   const canvas = document.createElement('canvas');
   canvas.classList.add('forecastHourly');
 
+  // Update Nodes (Bigger, easier to show info)
   const forecastHourlyChart = new Chart(canvas, {
     type: 'line',
     data: {

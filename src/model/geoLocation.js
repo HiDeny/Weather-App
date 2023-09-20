@@ -1,4 +1,4 @@
-const getGeolocation = async () =>
+const getGeolocation = () =>
   new Promise((resolve, reject) => {
     const errorCallback = (error) => {
       reject(new Error(error));

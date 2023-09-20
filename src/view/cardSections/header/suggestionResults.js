@@ -5,7 +5,10 @@ export const hideSuggestions = () => {
   if (currentSuggestions) currentSuggestions.remove();
 };
 
-const createSuggestionsElement = (suggestionsData, callback) => {
+const createSuggestionsElement = (
+  suggestionsData,
+  handleSuggestionItemClick
+) => {
   const autocompleteDiv = createElementWithClass('div', 'suggestions-items');
 
   suggestionsData.forEach((result, index) => {
@@ -15,12 +18,10 @@ const createSuggestionsElement = (suggestionsData, callback) => {
       `${result.name}, ${result.region}, ${result.country}`
     );
 
-    suggestionElement.addEventListener('click', () => {
+    suggestionElement.addEventListener('click', async () => {
       // Lookup locations weather
       console.log(suggestionsData[index]);
-      console.log(suggestionsData);
-      callback(suggestionsData[index]);
-      hideSuggestions();
+      await handleSuggestionItemClick(index);
     });
     autocompleteDiv.append(suggestionElement);
   });

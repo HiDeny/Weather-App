@@ -2,12 +2,14 @@ export const saveUserConfig = (userConfig) => {
   localStorage.setItem('configWeatherApp', JSON.stringify(userConfig));
 };
 
-export const setUserConfig = () => {
+export const initUserConfig = () => {
   const storedConfig = localStorage.getItem('configWeatherApp');
-  if (storedConfig) return JSON.parse(storedConfig);
-  return {
+  const defaultConfig = {
     format24H: true,
     isMetric: true,
     defaultLocation: null,
   };
+
+  if (storedConfig) return JSON.parse(storedConfig);
+  return defaultConfig;
 };

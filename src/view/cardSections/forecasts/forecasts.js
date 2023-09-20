@@ -6,24 +6,19 @@ import createUpcomingCard from './forecastsUpcomingDay';
 
 const createForecasts = async (forecastsData, isMetric) => {
   const { today, upcoming } = forecastsData;
+  const { firstDay, secondDay } = upcoming;
 
-  const forecastSection = document.createElement('section');
-  forecastSection.classList.add('forecasts');
+  const forecastSection = createElementWithClass('section', 'forecasts');
 
-  const forecastHourlyDiv = createElementWithClass('div', 'todayForecast');
-  forecastSection.append(forecastHourlyDiv);
+  const forecastHourly = createElementWithClass('div', 'todayForecast');
+  forecastHourly.append(createForecastHourly(today, isMetric));
 
-  const forecastHourly = createForecastHourly(today, isMetric);
-  forecastHourlyDiv.append(forecastHourly);
+  const upcomingDays = createElementWithClass('div', 'upcoming');
+  upcomingDays.append(await createUpcomingCard(firstDay, isMetric));
+  upcomingDays.append(await createUpcomingCard(secondDay, isMetric));
 
-  const upcomingDiv = createElementWithClass('div', 'upcoming');
-  forecastSection.append(upcomingDiv);
-
-  const upcomingDay1 = await createUpcomingCard(upcoming.firstDay, isMetric);
-  upcomingDiv.append(upcomingDay1);
-
-  const upcomingDay2 = await createUpcomingCard(upcoming.secondDay, isMetric);
-  upcomingDiv.append(upcomingDay2);
+  const forecastElements = [forecastHourly, upcomingDays];
+  forecastSection.append(...forecastElements);
 
   return forecastSection;
 };
