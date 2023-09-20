@@ -30,8 +30,6 @@ export default class WeatherDataController {
     }
   };
 
-  altUnitsWeather = () => {
-    const cleanData = filterWeatherData(this.app.lastData, this.user.isMetric);
-    return cleanData;
-  };
+  altUnitsWeather = () =>
+    filterWeatherData(this.app.lastData, this.user.isMetric);
 }

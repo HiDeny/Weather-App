@@ -43,45 +43,64 @@ export default class SearchFieldController {
       );
       if (suggestionsData.length < 1) return;
 
-      displaySuggestions(suggestionsData, this.appConfig);
+      displaySuggestions(suggestionsData, this.updateSearchField);
     }, DEBOUNCE_DELAY);
   };
 
   handleKeyDown = (event) => {
-    const searchFieldElement = document.getElementById('searchField');
     const currentSuggestions = document.querySelector('.suggestions-items');
 
     if (currentSuggestions) {
       const suggestionItems = currentSuggestions.getElementsByTagName('div');
 
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
+      if (event.key === 'ArrowDown')
+        this.handleArrowDown(event, suggestionItems);
+      if (event.key === 'ArrowUp') this.handleArrowUp(event, suggestionItems);
 
-        this.focusedItemIndex =
-          (this.focusedItemIndex + 1) % suggestionItems.length;
-        setActive(suggestionItems, this.focusedItemIndex);
-      }
-
-      if (event.key === 'ArrowUp') {
-        event.preventDefault();
-
-        this.focusedItemIndex =
-          (this.focusedItemIndex - 1 + suggestionItems.length) %
-          suggestionItems.length;
-
-        setActive(suggestionItems, this.focusedItemIndex);
-      }
-
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        if (this.focusedItemIndex > -1) {
-          this.appConfig.searchValue =
-            suggestionItems[this.focusedItemIndex].textContent;
-          searchFieldElement.value = this.appConfig.searchValue;
-          currentSuggestions.remove();
-        }
-      }
+      if (event.key === 'Enter') this.handleEnter(event, suggestionItems);
     }
+  };
+
+  handleArrowDown = (event, suggestionItems) => {
+    event.preventDefault();
+
+    this.focusedItemIndex =
+      (this.focusedItemIndex + 1) % suggestionItems.length;
+    setActive(suggestionItems, this.focusedItemIndex);
+  };
+
+  handleArrowUp = (event, suggestionItems) => {
+    event.preventDefault();
+
+    this.focusedItemIndex =
+      (this.focusedItemIndex - 1 + suggestionItems.length) %
+      suggestionItems.length;
+
+    setActive(suggestionItems, this.focusedItemIndex);
+  };
+
+  handleEnter = (event, suggestionItems) => {
+    event.preventDefault();
+
+    const searchFieldElement = document.getElementById('searchField');
+    const currentSuggestions = document.querySelector('.suggestions-items');
+
+    if (this.focusedItemIndex > -1) {
+      this.updateSearchField(
+        suggestionItems[this.focusedItemIndex].textContent
+      );
+      this.appConfig.searchValue =
+        suggestionItems[this.focusedItemIndex].textContent;
+      searchFieldElement.value = this.appConfig.searchValue;
+      currentSuggestions.remove();
+      this.updatePlaceholder();
+    }
+  };
+
+  updateSearchField = (searchResult) => {
+    const searchFieldElement = document.getElementById('searchField');
+    this.appConfig.searchValue = `${searchResult.lat}, ${searchResult.lon}`;
+    searchFieldElement.value = `${searchResult.name}, ${searchResult.region}, ${searchResult.country}`;
   };
 
   updatePlaceholder = () => {

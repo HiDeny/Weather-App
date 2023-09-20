@@ -1,6 +1,6 @@
 import ViewController from './View';
 import WeatherDataController from './Weather';
-import SearchFieldController from './Search';
+import SearchFieldController from './SearchField';
 
 import {
   formatChangeListener,
@@ -36,10 +36,16 @@ export default class MainController {
 
   initEventListeners = () => {
     this.initSearch();
-    this.unitsChangeListener();
-    formatChangeListener(this.userConfig);
-    defaultLocationChangeListener(this.userConfig);
-    settingsMenuControl(this.userConfig);
+    this.initSettingsListeners();
+  };
+
+  loadDefaultLocation = async () => {
+    if (this.userConfig.defaultLocation) {
+      await ViewController.displayWeather(
+        this.weather.getWeather(this.userConfig.defaultLocation),
+        this.userConfig.isMetric
+      );
+    }
   };
 
   initSearch = () => {
@@ -51,25 +57,24 @@ export default class MainController {
     this.searchField.initEventListeners();
   };
 
-  loadDefaultLocation = async () => {
-    await ViewController.displayWeather(
-      this.weather.getWeather(this.userConfig.defaultLocation),
-      this.userConfig.isMetric
-    );
+  initSettingsListeners = () => {
+    this.unitsChangeListener();
+    formatChangeListener(this.userConfig);
+    defaultLocationChangeListener(this.userConfig);
+    settingsMenuControl(this.userConfig);
   };
 
   handleGeolocationSearch = async () => {
-    await this.view.displayWeather(this.weather.getLocalWeather());
+    await ViewController.displayWeather(this.weather.getLocalWeather());
   };
 
   handleSearchSubmit = async (event) => {
     event.preventDefault();
-    const toSearch = this.appConfig.searchValue
-      ? this.appConfig.searchValue
-      : this.userConfig.defaultLocation;
 
     await ViewController.displayWeather(
-      this.weather.getWeather(toSearch),
+      this.weather.getWeather(
+        this.appConfig.searchValue || this.userConfig.defaultLocation
+      ),
       this.userConfig.isMetric
     );
   };
@@ -80,7 +85,7 @@ export default class MainController {
       unitBtn.addEventListener('click', async () => {
         this.userConfig.isMetric = !this.userConfig.isMetric;
         if (this.appConfig.lastData) {
-          await this.view.displayWeather(this.weather.altUnitsWeather());
+          await ViewController.displayWeather(this.weather.altUnitsWeather());
         }
         unitButtons.forEach((button) => button.classList.toggle('unitsActive'));
       });

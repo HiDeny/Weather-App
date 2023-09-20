@@ -23,11 +23,8 @@ const displayComponent = (newComponent) => {
 
 export default class ViewController {
   static initUI = (userConfig) => {
-    const headerElement = createHeaderElement(userConfig);
-    const welcomeCard = createWelcomeCard();
-
-    const startingPage = [headerElement, welcomeCard];
-    document.body.append(...startingPage);
+    document.body.append(createHeaderElement(userConfig));
+    displayComponent(createWelcomeCard());
   };
 
   static displayWeather = async (callback, isMetric) => {
