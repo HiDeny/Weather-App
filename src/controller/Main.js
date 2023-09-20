@@ -19,18 +19,17 @@ export default class MainController {
 
   constructor() {
     this.userConfig = setUserConfig();
+    this.searchLocation = null;
+    this.refreshInterval = null;
     this.weather = new WeatherDataController(this.userConfig, this.appConfig);
-    this.view = new ViewController(this.userConfig);
     this.searchField = new SearchFieldController(
       this.userConfig,
       this.appConfig
     );
   }
 
-  searchLocation = null;
-
   init = () => {
-    this.view.initUI();
+    ViewController.initUI(this.userConfig);
     this.initEventListeners();
     this.loadDefaultLocation();
   };
@@ -53,64 +52,38 @@ export default class MainController {
   };
 
   loadDefaultLocation = async () => {
-    try {
-      if (this.userConfig.defaultLocation) {
-        ViewController.displaySkeleton();
-        const weatherData = await this.weather.getWeather(
-          this.userConfig.defaultLocation
-        );
-        this.view.displayWeather(weatherData);
-        this.searchField.updatePlaceholder();
-      }
-    } catch (error) {
-      ViewController.displayError(error);
-    }
+    await ViewController.displayWeather(
+      this.weather.getWeather(this.userConfig.defaultLocation),
+      this.userConfig.isMetric
+    );
   };
 
   handleGeolocationSearch = async () => {
-    try {
-      ViewController.displaySkeleton();
-      const weatherData = await this.weather.getLocalWeather();
-      this.view.displayWeather(weatherData);
-      this.searchField.updatePlaceholder();
-    } catch (error) {
-      ViewController.displayError(error);
-    }
+    await this.view.displayWeather(this.weather.getLocalWeather());
   };
 
   handleSearchSubmit = async (event) => {
     event.preventDefault();
+    const toSearch = this.appConfig.searchValue
+      ? this.appConfig.searchValue
+      : this.userConfig.defaultLocation;
 
-    try {
-      // Set what location to find when there is no searchLoc
-      ViewController.displaySkeleton();
-      const weatherData = await this.weather.getWeather(
-        this.appConfig.searchValue
-      );
-      this.view.displayWeather(weatherData);
-      this.searchField.updatePlaceholder();
-    } catch (error) {
-      ViewController.displayError(error);
-      throw new Error(error);
-    }
+    await ViewController.displayWeather(
+      this.weather.getWeather(toSearch),
+      this.userConfig.isMetric
+    );
   };
 
   unitsChangeListener = () => {
     const unitButtons = document.querySelectorAll('.unitBtn');
     unitButtons.forEach((unitBtn) => {
-      unitBtn.addEventListener('click', () => {
-        this.toggleUnitsMetricSystem();
+      unitBtn.addEventListener('click', async () => {
+        this.userConfig.isMetric = !this.userConfig.isMetric;
+        if (this.appConfig.lastData) {
+          await this.view.displayWeather(this.weather.altUnitsWeather());
+        }
         unitButtons.forEach((button) => button.classList.toggle('unitsActive'));
       });
     });
-  };
-
-  toggleUnitsMetricSystem = () => {
-    this.userConfig.isMetric = !this.userConfig.isMetric;
-
-    if (this.appConfig.lastData) {
-      const newUnitsWeather = this.weather.altUnitsWeather();
-      this.view.displayWeather(newUnitsWeather);
-    }
   };
 }

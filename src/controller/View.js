@@ -22,36 +22,22 @@ const displayComponent = (newComponent) => {
 };
 
 export default class ViewController {
-  constructor(userConfig) {
-    this.userConfig = userConfig;
-  }
-
-  initUI = () => {
-    const headerElement = createHeaderElement(this.userConfig);
+  static initUI = (userConfig) => {
+    const headerElement = createHeaderElement(userConfig);
     const welcomeCard = createWelcomeCard();
 
     const startingPage = [headerElement, welcomeCard];
     document.body.append(...startingPage);
   };
 
-  displayWeather = async (cleanData) => {
-    const weatherCard = await createWeatherCard(
-      cleanData,
-      this.userConfig.isMetric
-    );
-
-    displayComponent(weatherCard);
-  };
-
-  static displayError = (error) => {
-    const errorMessage = error.message;
-    const errorCard = createErrorCard(errorMessage);
-
-    displayComponent(errorCard);
-  };
-
-  static displaySkeleton = () => {
-    const skeletonCard = createSkeletonCard();
-    displayComponent(skeletonCard);
+  static displayWeather = async (callback, isMetric) => {
+    try {
+      displayComponent(createSkeletonCard());
+      const weatherData = await callback;
+      const weatherCard = await createWeatherCard(weatherData, isMetric);
+      displayComponent(weatherCard);
+    } catch (error) {
+      displayComponent(createErrorCard(error.message));
+    }
   };
 }

@@ -85,6 +85,7 @@ export default class SearchFieldController {
   };
 
   updatePlaceholder = () => {
+    hideSuggestions();
     const searchField = document.getElementById('searchField');
     const { name } = this.appConfig.lastData.location;
 
