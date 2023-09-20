@@ -47,27 +47,4 @@ export default class MainController {
       this.weather.getWeather(this.userConfig.defaultLocation)
     );
   };
-
-  // initSearchListeners = () => {
-  //   const geoLocationBtn = document.getElementById('geoLocationBtn');
-  //   const searchElement = document.querySelector('.searchElement');
-
-  //   geoLocationBtn.addEventListener('click', this.handleGeolocationSearch);
-  //   searchElement.addEventListener('submit', this.handleSearchSubmit);
-  //   this.searchField.initEventListeners();
-  // };
-
-  // handleGeolocationSearch = async () => {
-  //   await this.view.displayWeather(this.weather.getLocalWeather());
-  // };
-
-  // handleSearchSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   await this.view.displayWeather(
-  //     this.weather.getWeather(
-  //       this.appConfig.searchValue || this.userConfig.defaultLocation
-  //     )
-  //   );
-  // };
 }

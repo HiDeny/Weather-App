@@ -5,13 +5,10 @@ export const hideSuggestions = () => {
   if (currentSuggestions) currentSuggestions.remove();
 };
 
-const createSuggestionsElement = (
-  suggestionsData,
-  handleSuggestionItemClick
-) => {
+const createSuggestionsElement = (suggestedItems, displaySelectedItem) => {
   const autocompleteDiv = createElementWithClass('div', 'suggestions-items');
 
-  suggestionsData.forEach((result, index) => {
+  suggestedItems.forEach((result, index) => {
     const suggestionElement = createElementWithClass(
       'div',
       'suggestionElement',
@@ -20,8 +17,9 @@ const createSuggestionsElement = (
 
     suggestionElement.addEventListener('click', async () => {
       // Lookup locations weather
-      console.log(suggestionsData[index]);
-      await handleSuggestionItemClick(index);
+      console.log(suggestedItems[index]);
+      const newSelectedItem = suggestedItems[index];
+      await displaySelectedItem(newSelectedItem);
     });
     autocompleteDiv.append(suggestionElement);
   });
@@ -29,10 +27,12 @@ const createSuggestionsElement = (
   return autocompleteDiv;
 };
 
-export const displaySuggestions = (suggestionsData, callback) => {
+export const displaySuggestions = (suggestedItems, displaySelectedItem) => {
   const searchElement = document.querySelector('.searchElement');
   hideSuggestions();
-  searchElement.append(createSuggestionsElement(suggestionsData, callback));
+  searchElement.append(
+    createSuggestionsElement(suggestedItems, displaySelectedItem)
+  );
 };
 
 export const setActive = (suggestions, index) => {

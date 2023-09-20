@@ -1,4 +1,6 @@
 import { autocompleteData } from '../model/service/weatherAPI';
+import getGeolocation from '../model/geoLocation';
+
 import {
   displaySuggestions,
   setActive,
@@ -17,7 +19,6 @@ export default class SearchController {
 
     this.inputValue = null;
     this.suggestedItems = null;
-    this.selectedItem = null;
 
     this.currentInterval = null;
     this.currentTimeout = null;
@@ -35,16 +36,28 @@ export default class SearchController {
     geoLocationBtn.addEventListener('click', this.handleGeolocationSearch);
   };
 
+  renderWeather = async () => {
+    try {
+      await this.view.displayWeather(this.weather.getWeather(this.inputValue));
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+  displaySelectedItem = async (newSelectedItem) => {
+    this.inputValue = `${newSelectedItem.lat}, ${newSelectedItem.lon}`;
+    await this.renderWeather();
+    this.updatePlaceholder();
+  };
+
   handleGeolocationSearch = async () => {
-    await this.view.displayWeather(this.weather.getLocalWeather());
+    this.inputValue = await getGeolocation();
+    await this.renderWeather();
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
-
-    await this.view.displayWeather(
-      this.weather.getWeather(this.inputValue || this.user.defaultLocation)
-    );
+    await this.renderWeather();
   };
 
   handleInput = (event) => {
@@ -61,11 +74,10 @@ export default class SearchController {
     this.currentTimeout = setTimeout(async () => {
       this.currentTimeout = null;
 
-      const suggestionsData = await autocompleteData(this.inputValue);
-      if (suggestionsData.length < 1) return;
+      this.suggestedItems = await autocompleteData(this.inputValue);
+      if (this.suggestedItems.length < 1) return;
 
-      this.suggestedItems = suggestionsData;
-      displaySuggestions(suggestionsData, this.handleSuggestionItemClick);
+      displaySuggestions(this.suggestedItems, this.displaySelectedItem);
     }, DEBOUNCE_DELAY);
   };
 
@@ -82,19 +94,17 @@ export default class SearchController {
 
   handleArrowDown = (event, suggestionItems) => {
     event.preventDefault();
+    const { length } = suggestionItems;
 
-    this.focusedItemIndex =
-      (this.focusedItemIndex + 1) % suggestionItems.length;
+    this.focusedItemIndex = (this.focusedItemIndex + 1) % length;
     setActive(suggestionItems, this.focusedItemIndex);
   };
 
   handleArrowUp = (event, suggestionItems) => {
     event.preventDefault();
+    const { length } = suggestionItems;
 
-    this.focusedItemIndex =
-      (this.focusedItemIndex - 1 + suggestionItems.length) %
-      suggestionItems.length;
-
+    this.focusedItemIndex = (this.focusedItemIndex - 1 + length) % length;
     setActive(suggestionItems, this.focusedItemIndex);
   };
 
@@ -102,9 +112,8 @@ export default class SearchController {
     event.preventDefault();
 
     if (this.focusedItemIndex > -1) {
-      this.selectedItem = this.suggestedItems[this.focusedItemIndex];
-
-      await this.displaySelectedItem();
+      const newSelectedItem = this.suggestedItems[this.focusedItemIndex];
+      await this.displaySelectedItem(newSelectedItem);
     }
   };
 
@@ -116,16 +125,5 @@ export default class SearchController {
     const placeholderContent = name ? `${name}` : 'City';
     searchField.placeholder = placeholderContent;
     searchField.value = '';
-  };
-
-  handleSuggestionItemClick = async (index) => {
-    this.selectedItem = this.suggestedItems[index];
-    await this.displaySelectedItem();
-  };
-
-  displaySelectedItem = async () => {
-    this.inputValue = `${this.selectedItem.lat}, ${this.selectedItem.lon}`;
-    await this.view.displayWeather(this.weather.getWeather(this.inputValue));
-    this.updatePlaceholder();
   };
 }
