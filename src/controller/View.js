@@ -41,7 +41,7 @@ export default class ViewController {
         this.userConfig.isMetric
       );
       displayComponent(weatherCard);
-      this.refreshData(getWeatherCall);
+      // this.refreshData(getWeatherCall);
     } catch (error) {
       displayComponent(createErrorCard(error.message));
     }

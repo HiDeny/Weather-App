@@ -51,6 +51,7 @@ export default class SearchController {
   };
 
   handleGeolocationSearch = async () => {
+    // ? Display Loading when waiting for geolocation
     this.inputValue = await getGeolocation();
     await this.renderWeather();
   };

@@ -189,10 +189,6 @@ header {
   transition: background-color 1s;
 }
 
-.unitsActive {
-  background-color: pink;
-}
-
 .unitsSplit {
   font-size: 0.7rem;
   margin: 0;
@@ -211,7 +207,7 @@ header {
   transition: background-color 1s;
 }
 
-.formatActive {
+.active {
   background-color: pink;
 }
 

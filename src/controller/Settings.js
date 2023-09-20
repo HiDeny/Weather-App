@@ -6,6 +6,10 @@ const toggleVisibility = () => {
   settingsMenu.classList.toggle('showSettings');
 };
 
+const toggleActive = (buttons) => {
+  buttons.forEach((button) => button.classList.toggle('active'));
+};
+
 export default class SettingsController {
   constructor(userConfig, appConfig, viewController, weatherController) {
     this.app = appConfig;
@@ -19,6 +23,7 @@ export default class SettingsController {
     this.defaultLocationListener();
     this.clockFormatListener();
     this.unitsListener();
+    startClock(this.user.format24H);
   }
 
   unitsListener = () => {
@@ -26,11 +31,12 @@ export default class SettingsController {
 
     unitButtons.forEach((unitBtn) => {
       unitBtn.addEventListener('click', async () => {
+        toggleActive(unitButtons);
         this.user.isMetric = !this.user.isMetric;
+
         if (this.app.lastData) {
           await this.view.displayWeather(this.weather.altUnitsWeather());
         }
-        unitButtons.forEach((button) => button.classList.toggle('unitsActive'));
       });
     });
   };
@@ -40,16 +46,12 @@ export default class SettingsController {
 
     formatButtons.forEach((formatBtn) => {
       formatBtn.addEventListener('click', () => {
+        toggleActive(formatButtons);
         this.user.format24H = !this.user.format24H;
-        startClock(this.user.format24H);
 
-        formatButtons.forEach((button) =>
-          button.classList.toggle('formatActive')
-        );
+        startClock(this.user.format24H);
       });
     });
-
-    startClock(this.user.format24H);
   };
 
   defaultLocationListener = () => {
