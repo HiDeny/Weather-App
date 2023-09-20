@@ -86,8 +86,10 @@ export default class SearchFieldController {
 
   updatePlaceholder = () => {
     const searchField = document.getElementById('searchField');
-    searchField.placeholder =
-      this.appConfig.searchValue || this.userConfig.defaultLocation || 'City';
+    const { name } = this.appConfig.lastData.location;
+
+    const placeholderContent = name ? `${name}` : 'City';
+    searchField.placeholder = placeholderContent;
     searchField.value = '';
   };
 }

@@ -32,14 +32,7 @@ export default class MainController {
   init = () => {
     this.view.initUI();
     this.initEventListeners();
-
-    // if (this.userConfig.defaultLocation) {
-    //   this.view.displaySkeleton();
-    //   const weatherData = await this.weather.getWeather(
-    //     this.searchLocation
-    //   );
-    //   this.view.displayWeather(weatherData);
-    // };
+    this.loadDefaultLocation();
   };
 
   initEventListeners = () => {
@@ -59,11 +52,27 @@ export default class MainController {
     this.searchField.initEventListeners();
   };
 
+  loadDefaultLocation = async () => {
+    try {
+      if (this.userConfig.defaultLocation) {
+        ViewController.displaySkeleton();
+        const weatherData = await this.weather.getWeather(
+          this.userConfig.defaultLocation
+        );
+        this.view.displayWeather(weatherData);
+        this.searchField.updatePlaceholder();
+      }
+    } catch (error) {
+      ViewController.displayError(error);
+    }
+  };
+
   handleGeolocationSearch = async () => {
     try {
       ViewController.displaySkeleton();
       const weatherData = await this.weather.getLocalWeather();
       this.view.displayWeather(weatherData);
+      this.searchField.updatePlaceholder();
     } catch (error) {
       ViewController.displayError(error);
     }
