@@ -1,8 +1,7 @@
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 const createLocationInfo = () => {
-  const locationInfo = document.createElement('div');
-  locationInfo.classList.add('locationInfo');
+  const locationInfo = createElementWithClass('div', 'locationInfo');
 
   const locationName = createElementWithClass('h2', 'locationName', 'City');
   locationName.classList.add('skeleton');
@@ -32,11 +31,11 @@ const createTempDiv = () => {
 const createMinMaxDiv = () => {
   const tempMinMaxDiv = createElementWithClass('div', 'minmax');
 
-  const tempMax = createElementWithClass('p', 'tempMin', 'Min');
+  const tempMax = pElementWithClass('tempMin', 'Min');
   tempMax.classList.add('skeleton');
   tempMinMaxDiv.append(tempMax);
 
-  const tempMin = createElementWithClass('p', 'tempMax', 'Max');
+  const tempMin = pElementWithClass('tempMax', 'Max');
   tempMin.classList.add('skeleton');
   tempMinMaxDiv.append(tempMin);
 
@@ -63,14 +62,10 @@ const createLastUpdateDiv = () => {
 const createSkeletonCard = () => {
   const skeleton = createElementWithClass('section', 'currentInfo');
   skeleton.classList.add('skeletonCard');
-
-  const locationInfo = createLocationInfo();
-  const tempInfo = createTempDiv();
-  const tempMinMax = createMinMaxDiv();
-  const lastUpdated = createLastUpdateDiv();
-
-  const skeletonCards = [locationInfo, tempInfo, tempMinMax, lastUpdated];
-  skeleton.append(...skeletonCards);
+  skeleton.append(createLocationInfo());
+  skeleton.append(createTempDiv());
+  skeleton.append(createMinMaxDiv());
+  skeleton.append(createLastUpdateDiv());
 
   return skeleton;
 };

@@ -1,5 +1,6 @@
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
+// Fix whole card, figure out better messages
 const createWelcomeCard = () => {
   const welcomeCard = createElementWithClass('section', 'welcomeCard');
 

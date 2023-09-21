@@ -1,4 +1,4 @@
-import { createElementWithClass } from '../helperFunc';
+import { createElementWithClass, pElementWithClass } from '../helperFunc';
 
 export const hideSuggestions = () => {
   const currentSuggestions = document.querySelector('.suggestions-items');
@@ -9,17 +9,11 @@ const createSuggestionsElement = (suggestedItems, displaySelectedItem) => {
   const autocompleteDiv = createElementWithClass('div', 'suggestions-items');
 
   suggestedItems.forEach((result, index) => {
-    const suggestionElement = createElementWithClass(
-      'div',
-      'suggestionElement',
-      `${result.name}, ${result.region}, ${result.country}`
-    );
+    const content = `${result.name}, ${result.region}, ${result.country}`;
+    const suggestionElement = pElementWithClass('suggestionElement', content);
 
     suggestionElement.addEventListener('click', async () => {
-      // Lookup locations weather
-      console.log(suggestedItems[index]);
-      const newSelectedItem = suggestedItems[index];
-      await displaySelectedItem(newSelectedItem);
+      await displaySelectedItem(suggestedItems[index]);
     });
     autocompleteDiv.append(suggestionElement);
   });
@@ -27,6 +21,7 @@ const createSuggestionsElement = (suggestedItems, displaySelectedItem) => {
   return autocompleteDiv;
 };
 
+// Move this to view controller
 export const displaySuggestions = (suggestedItems, displaySelectedItem) => {
   const searchElement = document.querySelector('.searchElement');
   hideSuggestions();
@@ -35,6 +30,7 @@ export const displaySuggestions = (suggestedItems, displaySelectedItem) => {
   );
 };
 
+// Move this to view controller
 export const setActive = (suggestions, index) => {
   if (!suggestions || index < 0) return;
 

@@ -12,15 +12,9 @@ const createWeatherCard = async (weatherData, isMetric) => {
     const { currentInfo, forecasts, detailsInfo } = weatherData;
 
     const weatherCard = createElementWithClass('div', 'weatherCard');
-
-    const showCurrentInfo = createCurrentInfo(currentInfo, isMetric);
-    weatherCard.append(showCurrentInfo);
-
-    const showForecasts = await createForecasts(forecasts, isMetric);
-    weatherCard.append(showForecasts);
-
-    const showDetailsInfo = createDetailsInfo(detailsInfo, isMetric);
-    weatherCard.append(showDetailsInfo);
+    weatherCard.append(createCurrentInfo(currentInfo, isMetric));
+    weatherCard.append(await createForecasts(forecasts, isMetric));
+    weatherCard.append(createDetailsInfo(detailsInfo, isMetric));
 
     return weatherCard;
   } catch (err) {

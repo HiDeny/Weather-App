@@ -36,6 +36,7 @@ export default class SearchController {
     geoLocationBtn.addEventListener('click', this.handleGeolocationSearch);
   };
 
+  // Try to put this to view controller
   renderWeather = async () => {
     try {
       await this.view.displayWeather(this.weather.getWeather(this.inputValue));
@@ -51,7 +52,7 @@ export default class SearchController {
   };
 
   handleGeolocationSearch = async () => {
-    // ? Display Loading when waiting for geolocation
+    // Display Loading when waiting for geolocation
     this.inputValue = await getGeolocation();
     await this.renderWeather();
   };
@@ -78,6 +79,8 @@ export default class SearchController {
       this.suggestedItems = await autocompleteData(this.inputValue);
       if (this.suggestedItems.length < 1) return;
 
+
+      // Can this go to view controller ?
       displaySuggestions(this.suggestedItems, this.displaySelectedItem);
     }, DEBOUNCE_DELAY);
   };
@@ -86,7 +89,7 @@ export default class SearchController {
     const suggestionsItems = document.querySelector('.suggestions-items');
 
     if (suggestionsItems) {
-      const items = suggestionsItems.getElementsByTagName('div');
+      const items = suggestionsItems.getElementsByTagName('p');
       if (event.key === 'ArrowDown') this.handleArrowDown(event, items);
       if (event.key === 'ArrowUp') this.handleArrowUp(event, items);
       if (event.key === 'Enter') this.handleEnter(event, items);

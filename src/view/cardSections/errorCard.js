@@ -16,6 +16,7 @@ const errorResponses = {
 const alternativeResponse = 'Something went wrong, please contact support.';
 
 const createErrorCard = (errorMessage) => {
+  // Find better solution, because this will make an mess 
   const errorCode = errorMessage.split(' ')[3];
   const correctResponse = errorResponses[errorCode] || alternativeResponse;
 

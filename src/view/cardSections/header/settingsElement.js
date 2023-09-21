@@ -1,13 +1,4 @@
-import { createElementWithClass } from '../helperFunc';
-
-const createSaveBtn = () => {
-  const saveBtn = document.createElement('button');
-  saveBtn.classList.add('saveSettingsBtn');
-  saveBtn.id = 'saveBtn';
-  saveBtn.textContent = 'Save!';
-
-  return saveBtn;
-};
+import { createElementWithClass, pElementWithClass } from '../helperFunc';
 
 const createBtn = (className, content) => {
   const unitBtn = document.createElement('button');
@@ -25,7 +16,7 @@ const createSelectUnits = (isMetric) => {
   const IMPERIAL = 'Imperial (°F, mi, in)';
 
   const selectUnits = createElementWithClass('div', 'selectUnits');
-  const split = createElementWithClass('p', 'unitsSplit', 'OR');
+  const split = pElementWithClass('unitsSplit', 'OR');
 
   const metricBtn = createBtn(BUTTON_CLASS_NAME, METRIC);
   metricBtn.classList.add('metricUnits');
@@ -35,8 +26,8 @@ const createSelectUnits = (isMetric) => {
   imperialBtn.classList.add('imperialUnits');
 
   if (!isMetric) {
-    imperialBtn.classList.add('active');
     metricBtn.classList.remove('active');
+    imperialBtn.classList.add('active');
   }
 
   const unitsElements = [metricBtn, split, imperialBtn];
@@ -81,43 +72,23 @@ const createSelectDefaultLocation = (currentDefaultLocation) => {
   setDefaultLocation.value = currentDefaultLocation;
   setDefaultLocation.name = 'setDefaultLocation';
   setDefaultLocation.id = 'setDefaultLocation';
+  setDefaultLocation.className = 'setDefaultLocation';
 
   label.append(setDefaultLocation);
   return label;
 };
 
-const createShowSettingsBtn = () => {
-  const showSettingsBtn = document.createElement('button');
-  showSettingsBtn.id = 'showSettingsBtn';
-  showSettingsBtn.textContent = '⚙️';
-
-  return showSettingsBtn;
-};
-
 const createSettingsElement = ({ defaultLocation, isMetric, format24H }) => {
   const settingsElement = createElementWithClass('div', 'settingsElement');
+  settingsElement.append(createBtn('showSettingsBtn', '⚙️'));
 
-  const showSettingsBtn = createShowSettingsBtn();
-  settingsElement.append(showSettingsBtn);
+  const settingsMenu = createElementWithClass('div', 'settingsMenu');
+  settingsMenu.append(createSelectDefaultLocation(defaultLocation));
+  settingsMenu.append(createSelectUnits(isMetric));
+  settingsMenu.append(createSelectTimeFormat(format24H));
+  settingsMenu.append(createBtn('saveBtn', 'SAVE'));
 
-  const settingsMenu = document.createElement('div');
-  settingsMenu.classList.add('settingsMenu');
-  settingsMenu.id = 'settingsMenu';
   settingsElement.append(settingsMenu);
-
-  const selectDefaultLocation = createSelectDefaultLocation(defaultLocation);
-  const selectUnits = createSelectUnits(isMetric);
-  const selectFormat = createSelectTimeFormat(format24H);
-  const saveBtn = createSaveBtn();
-
-  const menuElements = [
-    selectDefaultLocation,
-    selectUnits,
-    selectFormat,
-    saveBtn,
-  ];
-
-  settingsMenu.append(...menuElements);
 
   return settingsElement;
 };

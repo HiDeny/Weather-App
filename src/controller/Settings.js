@@ -55,7 +55,7 @@ export default class SettingsController {
   };
 
   defaultLocationListener = () => {
-    const setDefaultLocation = document.getElementById('setDefaultLocation');
+    const setDefaultLocation = document.querySelector('.setDefaultLocation');
 
     setDefaultLocation.addEventListener('input', (event) => {
       this.user.defaultLocation = event.target.value;
@@ -63,8 +63,8 @@ export default class SettingsController {
   };
 
   saveSettingsListener = () => {
-    const showSettingsBtn = document.getElementById('showSettingsBtn');
-    const saveBtn = document.getElementById('saveBtn');
+    const showSettingsBtn = document.querySelector('.showSettingsBtn');
+    const saveBtn = document.querySelector('.saveBtn');
 
     const handleClick = () => {
       saveUserConfig(this.user);

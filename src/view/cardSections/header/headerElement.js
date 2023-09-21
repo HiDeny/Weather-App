@@ -7,19 +7,10 @@ import createAttributionElement from './attributionElement';
 
 const createHeaderElement = (userConfig) => {
   const header = createElementWithClass('header', 'header');
-
-  const clockElement = createClockElement(userConfig.format24H);
-  const searchElement = createSearchElement();
-  const settingsElement = createSettingsElement(userConfig);
-  const attributionElement = createAttributionElement();
-
-  const headerElements = [
-    clockElement,
-    searchElement,
-    settingsElement,
-    attributionElement,
-  ];
-  header.append(...headerElements);
+  header.append(createClockElement(userConfig.format24H));
+  header.append(createSearchElement());
+  header.append(createSettingsElement(userConfig));
+  header.append(createAttributionElement());
 
   return header;
 };

@@ -1,12 +1,10 @@
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 const createCard = (className, title) => {
-  const card = document.createElement('div');
-  card.classList.add('detailCard');
+  const card = createElementWithClass('div', 'detailCard');
   card.classList.add(`${className}Info`);
 
-  const titleElement = createElementWithClass('h4', `title`, title);
-  card.append(titleElement);
+  card.append(createElementWithClass('h4', `title`, title));
 
   return card;
 };
@@ -83,21 +81,15 @@ const createDetailsInfo = (detailsInfoData, isMetric) => {
 
   const detailsSection = document.createElement('section');
   detailsSection.classList.add('detailsInfo');
-
-  const feelCard = createFeelCard(feelsLike, isMetric);
-
-  const windCard = createWindCard(wind, isMetric);
-
-  const rainCard = createRainCard(rain, isMetric);
-
-  const sunCard = createAstroCard(sun);
-
-  const moonCard = createAstroCard(moon, true);
+  detailsSection.append(createFeelCard(feelsLike, isMetric));
+  detailsSection.append(createWindCard(wind, isMetric));
+  detailsSection.append(createRainCard(rain, isMetric));
+  detailsSection.append(createAstroCard(sun));
+  detailsSection.append(createAstroCard(moon, true));
+  detailsSection.append(createVisibilityCard(visibility, isMetric));
 
   const uvCard = createCard('uv', 'UV');
   uvCard.append(pElementWithClass('uvIndex', uv));
-
-  const visibilityCard = createVisibilityCard(visibility, isMetric);
 
   const humidityCard = createCard('humidity', 'Humidity');
   humidityCard.append(pElementWithClass('uvIndex', `${humidity.current}%`));
@@ -105,17 +97,7 @@ const createDetailsInfo = (detailsInfoData, isMetric) => {
   const cloudCard = createCard('clouds', 'Clouds');
   cloudCard.append(pElementWithClass('cloudsVal', `${cloud}%`));
 
-  const detailCards = [
-    feelCard,
-    uvCard,
-    windCard,
-    rainCard,
-    sunCard,
-    moonCard,
-    visibilityCard,
-    humidityCard,
-    cloudCard,
-  ];
+  const detailCards = [uvCard, humidityCard, cloudCard];
   detailsSection.append(...detailCards);
 
   return detailsSection;

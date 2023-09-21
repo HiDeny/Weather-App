@@ -3,7 +3,6 @@ const createGeoLocationBtn = () => {
   geoLocationBtn.classList.add('searchBtn');
   geoLocationBtn.classList.add('geoLocationBtn');
   geoLocationBtn.type = 'button';
-  geoLocationBtn.id = 'geoLocationBtn';
   geoLocationBtn.textContent = '🧭';
 
   return geoLocationBtn;
@@ -14,7 +13,6 @@ const createSubmitBtn = () => {
   submitBtn.classList.add('searchBtn');
   submitBtn.classList.add('submitBtn');
   submitBtn.type = 'submit';
-  submitBtn.id = 'submitBtn';
   submitBtn.textContent = '🔍';
 
   return submitBtn;
@@ -22,11 +20,10 @@ const createSubmitBtn = () => {
 
 const createSearchField = () => {
   const searchField = document.createElement('input');
-  searchField.autocomplete = 'off';
-  searchField.type = 'text';
-  searchField.placeholder = 'City';
-  searchField.name = 'searchField';
   searchField.className = 'searchField';
+  searchField.autocomplete = 'off';
+  searchField.placeholder = 'City';
+  searchField.type = 'text';
 
   return searchField;
 };
