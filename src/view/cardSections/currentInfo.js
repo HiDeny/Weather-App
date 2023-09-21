@@ -18,9 +18,7 @@ const createTempDiv = ({ temp, condition }, isMetric) => {
 
   const div = createElementWithClass('div', 'temp');
 
-  div.append(
-    createElementWithClass('h2', 'currentTemp', `${current}${units}°C`)
-  );
+  div.append(createElementWithClass('h2', 'currentTemp', `${current}${units}`));
   div.append(pElementWithClass('currentCondition', text));
 
   return div;

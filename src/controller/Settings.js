@@ -2,7 +2,7 @@ import { startClock } from '../view/cardSections/header/clockElement';
 import { saveUserConfig } from '../model/localStorage';
 
 const toggleVisibility = () => {
-  const settingsMenu = document.getElementById('settingsMenu');
+  const settingsMenu = document.querySelector('.settingsMenu');
   settingsMenu.classList.toggle('showSettings');
 };
 

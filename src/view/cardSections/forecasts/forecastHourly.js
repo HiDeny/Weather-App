@@ -13,23 +13,35 @@ const createForecastHourly = (todayData) => {
       datasets: [
         {
           label: 'Temperature',
-          data: forecastHourly.map((data) => `${data.temp}`),
-          borderColor: '#0173DB',
+          data: forecastHourly.map((data) => data.temp),
+          borderColor: '#A63737',
+
+          pointStyle: 'circle',
+          pointRadius: 7,
+          pointHoverRadius: 15,
 
           tension: 0.3,
         },
         {
           label: 'UV',
           data: forecastHourly.map((data) => data.uv),
-          borderColor: '#C3DF92',
+          borderColor: '#F28705',
+
+          pointStyle: 'circle',
+          pointRadius: 7,
+          pointHoverRadius: 15,
 
           tension: 0.3,
           hidden: true,
         },
         {
           label: 'Chance of Rain %',
-          data: forecastHourly.map((data) => data.rain),
-          borderColor: '#8AA9F9',
+          data: forecastHourly.map((data) => data.rain * 100),
+          borderColor: '#1833A8',
+
+          pointStyle: 'circle',
+          pointRadius: 7,
+          pointHoverRadius: 15,
 
           tension: 0.3,
           hidden: true,
@@ -37,7 +49,11 @@ const createForecastHourly = (todayData) => {
         {
           label: 'Wind',
           data: forecastHourly.map((data) => data.wind.speed),
-          borderColor: '#8AA9F9',
+          borderColor: '#3E606F',
+
+          pointStyle: 'circle',
+          pointRadius: 7,
+          pointHoverRadius: 15,
 
           tension: 0.3,
           hidden: true,
@@ -45,7 +61,11 @@ const createForecastHourly = (todayData) => {
         {
           label: 'Wind - Gust',
           data: forecastHourly.map((data) => data.wind.gust),
-          borderColor: '#8AA9F9',
+          borderColor: '#193441',
+
+          pointStyle: 'circle',
+          pointRadius: 7,
+          pointHoverRadius: 15,
 
           tension: 0.3,
           hidden: true,
