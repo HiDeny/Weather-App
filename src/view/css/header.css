@@ -1,9 +1,11 @@
 header {
+  z-index: 88;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 1rem;
+  left: 2rem;
+  right: 2rem;
   height: 5rem;
+  padding-bottom: 1rem;
 
   display: grid;
   grid-template-columns: 20% 60% 20%;
@@ -11,6 +13,10 @@ header {
 
   justify-items: center;
   align-items: center;
+  border-radius: 5rem;
+
+  backdrop-filter: blur(1rem);
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 
 /* CLOCK */
@@ -62,6 +68,9 @@ header {
 
   text-align: center;
   font-size: 1.1rem;
+
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
 .searchBtn {

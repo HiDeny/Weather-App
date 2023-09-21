@@ -1,7 +1,8 @@
-section.welcomeCard,
-section.errorCard {
-  height: 95vh;
-  margin-top: 5vh;
+.welcomeCard,
+.errorCard,
+#skeletonCard {
+  height: calc(100vh - 5rem);
+  margin-top: 5rem;
 }
 
 .welcomeCard {
@@ -20,11 +21,6 @@ section.errorCard {
 
 .errorCard {
   justify-self: center;
-}
-
-#skeletonCard {
-  height: 95vh;
-  margin-top: 5vh;
 }
 
 .skeleton {

@@ -1,9 +1,3 @@
-section.detailsInfo {
-  height: 40vh;
-  width: 80%;
-  margin: 5vh auto;
-}
-
 .detailsInfo {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
@@ -11,12 +5,21 @@ section.detailsInfo {
 
   justify-items: center;
   align-items: center;
-  justify-content: space-evenly;
+
+  box-sizing: border-box;
+  height: calc(50vh - 6rem);
+  width: 80%;
+  margin: 1rem auto 5rem;
+  border: solid #b3b3b3 2px;
+  border-radius: 2rem;
+
+  backdrop-filter: blur(1rem);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .detailCard {
   box-sizing: border-box;
-  width: 12rem;
+  width: 11rem;
   aspect-ratio: 1 / 1;
   padding: 1rem;
 
@@ -30,8 +33,8 @@ section.detailsInfo {
 }
 
 .detailCard.windInfo {
-  width: 30rem;
-  height: 12rem;
+  width: 90%;
+  height: 11rem;
   grid-column: 3 / 5;
 }
 

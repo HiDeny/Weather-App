@@ -1,6 +1,6 @@
 section.currentInfo {
-  height: 95vh;
-  margin-top: 5vh;
+  height: calc(100vh - 5rem);
+  margin-top: 5rem;
 }
 
 .currentInfo {
