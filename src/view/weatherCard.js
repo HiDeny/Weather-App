@@ -1,3 +1,4 @@
+import './css/cards.css';
 import { createElementWithClass } from './cardSections/helperFunc';
 
 import createCurrentInfo from './cardSections/currentInfo';

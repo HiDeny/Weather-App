@@ -3,12 +3,12 @@ import createWelcomeCard from '../view/cardSections/welcomeCard';
 
 import createWeatherCard from '../view/weatherCard';
 import createErrorCard from '../view/cardSections/errorCard';
-import createSkeletonCard from '../view/cardSections/loadingCard';
+import createSkeletonCard from '../view/cardSections/skeletonCard';
 
 const displayComponent = (newComponent) => {
   const currentWelcome = document.querySelector('.welcomeCard');
   const currentWeather = document.querySelector('.weatherCard');
-  const currentSkeleton = document.querySelector('.skeletonCard');
+  const currentSkeleton = document.getElementById('skeletonCard');
   const currentError = document.querySelector('.errorCard');
 
   if (!currentWeather && !currentError && !currentSkeleton && !currentWelcome) {

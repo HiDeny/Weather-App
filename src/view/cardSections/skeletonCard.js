@@ -1,4 +1,3 @@
-import '../css/cards.css';
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 const createLocationInfo = () => {
@@ -62,7 +61,7 @@ const createLastUpdateDiv = () => {
 
 const createSkeletonCard = () => {
   const skeleton = createElementWithClass('section', 'currentInfo');
-  skeleton.classList.add('skeletonCard');
+  skeleton.id = 'skeletonCard';
   skeleton.append(createLocationInfo());
   skeleton.append(createTempDiv());
   skeleton.append(createMinMaxDiv());
