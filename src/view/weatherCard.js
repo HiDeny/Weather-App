@@ -1,6 +1,3 @@
-import './style.css';
-import 'normalize.css';
-
 import { createElementWithClass } from './cardSections/helperFunc';
 
 import createCurrentInfo from './cardSections/currentInfo';

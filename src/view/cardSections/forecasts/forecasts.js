@@ -1,4 +1,4 @@
-// import createForecast from '../elements/forecast';
+import '../../css/forecast.css';
 import { createElementWithClass } from '../helperFunc';
 
 import createForecastHourly from './forecastHourly';

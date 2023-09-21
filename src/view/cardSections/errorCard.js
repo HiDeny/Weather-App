@@ -1,3 +1,4 @@
+import '../css/cards.css';
 import { createElementWithClass } from './helperFunc';
 
 const errorResponses = {
@@ -16,7 +17,7 @@ const errorResponses = {
 const alternativeResponse = 'Something went wrong, please contact support.';
 
 const createErrorCard = (errorMessage) => {
-  // Find better solution, because this will make an mess 
+  // Find better solution, because this will make an mess
   const errorCode = errorMessage.split(' ')[3];
   const correctResponse = errorResponses[errorCode] || alternativeResponse;
 

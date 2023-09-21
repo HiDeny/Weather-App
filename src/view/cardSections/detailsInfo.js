@@ -1,3 +1,4 @@
+import '../css/detailsInfo.css';
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 const createCard = (className, title) => {

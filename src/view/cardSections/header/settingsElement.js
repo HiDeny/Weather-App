@@ -1,3 +1,4 @@
+import '../../css/settings.css';
 import { createElementWithClass, pElementWithClass } from '../helperFunc';
 
 const createBtn = (className, content) => {

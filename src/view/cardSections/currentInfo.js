@@ -1,3 +1,4 @@
+import '../css/currentInfo.css';
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 const createLocationInfo = ({ location }) => {

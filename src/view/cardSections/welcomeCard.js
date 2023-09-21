@@ -1,3 +1,4 @@
+import '../css/cards.css';
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 // Fix whole card, figure out better messages

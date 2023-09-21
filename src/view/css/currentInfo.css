@@ -1,0 +1,63 @@
+.currentInfo {
+  grid-row: 1;
+
+  display: grid;
+  grid-template-rows: 20% 60% 15% 5%;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.locationName {
+  margin: 0;
+  padding: 1rem;
+
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.locationCountry {
+  margin: 0;
+
+  font-size: 0.8rem;
+  font-family: var(--font-light);
+  font-style: normal;
+  letter-spacing: 1px;
+}
+
+.currentTemp {
+  margin: 0;
+  padding: 1rem;
+
+  font-size: 5.9rem;
+}
+
+.currentCondition {
+  margin: 0;
+
+  font-size: 1.5rem;
+}
+
+.minmax {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.1rem;
+}
+
+.minmax > p {
+  margin: 0;
+}
+
+.lastUpdatedDiv > p {
+  margin: 0;
+}
+
+.lastUpdatedLabel {
+  font-size: 0.5rem;
+}
+
+.lastUpdated {
+  align-self: end;
+  font-size: 0.8rem;
+}

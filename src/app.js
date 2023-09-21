@@ -1,4 +1,4 @@
-import './view/style.css';
+import './view/css/layout.css';
 import 'normalize.css';
 
 import MainController from './controller/Main';

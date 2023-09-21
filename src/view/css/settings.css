@@ -1,0 +1,140 @@
+.settingsElement {
+  position: relative;
+
+  grid-column: 3;
+  grid-row: 1 / 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settingsMenu {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 250%);
+
+  display: grid;
+  grid-template-rows: 5rem 8rem 4rem;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(222, 222, 222, 0.513);
+  border: #b3b3b3 solid 1px;
+  border-radius: 0.5rem;
+  padding: 2rem 4rem;
+
+  transition: transform ease 1s;
+}
+
+.showSettingsBtn {
+  align-self: center;
+  justify-self: center;
+
+  padding: 0.55rem;
+  border-radius: 100%;
+  border: #b3b3b3 solid 1px;
+}
+
+.showSettingsBtn:active {
+  background-color: #8d8d8d;
+}
+
+.showSettingsBtn:hover {
+  background-color: #c5c5c5;
+}
+
+.showSettings {
+  transform: translate(-50%, -50%);
+}
+
+.defaultLocationLabel {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.setDefaultLocation {
+  align-self: center;
+
+  width: 11rem;
+  border-radius: 0.5rem;
+  border: #b3b3b3 solid 1px;
+  padding: 0.5rem 0.3rem;
+  margin-top: 0.3rem;
+
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.selectUnits {
+  align-self: center;
+  align-items: center;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.unitBtn {
+  width: 100%;
+  padding: 0.5rem 0.3rem;
+
+  background-color: #b3b3b3;
+  border-radius: 0.5rem;
+  border: #b3b3b3 solid 1px;
+
+  font-size: 0.9rem;
+
+  transition: background-color 1s;
+}
+
+.unitsSplit {
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+.formatBtn {
+  width: 100%;
+  padding: 0.5rem 0.3rem;
+
+  background-color: #b3b3b3;
+  border-radius: 0.5rem;
+  border: #b3b3b3 solid 1px;
+
+  font-size: 0.9rem;
+
+  transition: background-color 1s;
+}
+
+.active {
+  background-color: pink;
+}
+
+.saveBtn {
+  justify-self: center;
+  width: 8rem;
+  padding: 0.5rem 0.25rem;
+
+  background-color: rgb(123, 145, 255);
+  border: #ffffff solid 1px;
+  border-radius: 1rem;
+
+  color: white;
+}
+
+/* ATTRIBUTION */
+.attWeatherApi {
+  align-self: end;
+
+  color: lightgrey;
+  font-size: 0.7rem;
+}
+
+.attWeatherApi > .content,
+.attWeatherApi > a {
+  margin: 0;
+}

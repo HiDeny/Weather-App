@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'SF-Pro-Rounded-Regular';
+  src: url('../assets/fonts/SF-Pro-Rounded-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'SF-Pro-Rounded-Bold';
+  src: url('../assets/fonts/SF-Pro-Rounded-Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'SF-Pro-Rounded-Light';
+  src: url('../assets/fonts/SF-Pro-Rounded-Light.otf') format('opentype');
+}
+
+:root {
+  --font-normal: 'SF-Pro-Rounded-Regular';
+  --font-bold: 'SF-Pro-Rounded-Bold';
+  --font-light: 'SF-Pro-Rounded-Light';
+}
+
+html {
+  font-family: 'SF-Pro-Rounded-Regular', Helvetica;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 10vh 90vh;
+
+  box-sizing: border-box;
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+section {
+  width: 90%;
+  height: 100%;
+  box-sizing: border-box;
+
+  background: #f0f0f042;
+}

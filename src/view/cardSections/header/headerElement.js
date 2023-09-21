@@ -1,3 +1,4 @@
+import '../../css/header.css';
 import { createElementWithClass } from '../helperFunc';
 
 import createClockElement from './clockElement';
