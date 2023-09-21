@@ -11,9 +11,8 @@
 
 .settingsMenu {
   position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, 250%);
+  right: -25rem;
+  top: 5rem;
 
   display: grid;
   grid-template-rows: 5rem 8rem 4rem;
@@ -25,16 +24,25 @@
   border-radius: 0.5rem;
   padding: 2rem 4rem;
 
-  transition: transform ease 1s;
+  transition: right ease-in-out 1s;
+}
+
+.showSettings {
+  right: 1rem;
 }
 
 .showSettingsBtn {
   align-self: center;
   justify-self: center;
 
+  height: 3rem;
+  aspect-ratio: 1 / 1;
   padding: 0.55rem;
+  background: none;
   border-radius: 100%;
-  border: #b3b3b3 solid 1px;
+  border: 0;
+
+  font-size: 2rem;
 }
 
 .showSettingsBtn:active {
@@ -43,10 +51,6 @@
 
 .showSettingsBtn:hover {
   background-color: #c5c5c5;
-}
-
-.showSettings {
-  transform: translate(-50%, -50%);
 }
 
 .defaultLocationLabel {

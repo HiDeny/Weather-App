@@ -3,7 +3,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  height: 6rem;
+  height: 5rem;
 
   display: grid;
   grid-template-columns: 20% 60% 20%;
@@ -49,7 +49,6 @@ header {
   align-items: center;
 
   gap: 1.5rem;
-  width: 90%;
 }
 
 .searchField {
@@ -57,19 +56,23 @@ header {
 
   border-radius: 1rem;
   border: #b3b3b3 solid 1px;
-  padding: 0.5rem 0.3rem;
-  width: 45%;
-  min-width: 10rem;
+  padding: 0.3rem;
+  width: 40%;
+  min-width: 25rem;
 
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .searchBtn {
-  padding: 0.55rem;
+  height: 2rem;
+  aspect-ratio: 1 / 1;
 
-  border: #b3b3b3 solid 1px;
+  background: none;
+  border: 0;
   border-radius: 100%;
+
+  font-size: 0.9rem;
 }
 
 .searchBtn:active {
