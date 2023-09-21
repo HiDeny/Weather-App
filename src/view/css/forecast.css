@@ -1,3 +1,10 @@
+section.forecasts {
+  height: 40vh;
+  margin: 5vh auto;
+  width: 80%;
+
+}
+
 .forecasts {
   display: grid;
   grid-template-rows: 1fr;

@@ -23,20 +23,6 @@ html {
   font-family: 'SF-Pro-Rounded-Regular', Helvetica;
 }
 
-body {
-  display: grid;
-  grid-template-rows: 10vh 90vh;
-
-  box-sizing: border-box;
-  height: 100vh;
-
-  overflow: hidden;
-}
-
 section {
-  width: 90%;
-  height: 100%;
-  box-sizing: border-box;
-
   background: #f0f0f042;
 }

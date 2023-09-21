@@ -1,8 +1,13 @@
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6rem;
+
   display: grid;
   grid-template-columns: 20% 60% 20%;
   grid-template-rows: 25% 75%;
-  grid-row: 1;
 
   justify-items: center;
   align-items: center;

@@ -1,3 +1,8 @@
+section.currentInfo {
+  height: 95vh;
+  margin-top: 5vh;
+}
+
 .currentInfo {
   grid-row: 1;
 

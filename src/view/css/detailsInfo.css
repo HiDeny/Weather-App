@@ -1,3 +1,9 @@
+section.detailsInfo {
+  height: 40vh;
+  width: 80%;
+  margin: 5vh auto;
+}
+
 .detailsInfo {
   display: grid;
   grid-template-rows: repeat(2, 1fr);
