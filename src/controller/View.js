@@ -41,6 +41,7 @@ export default class ViewController {
         this.userConfig.isMetric
       );
       displayComponent(weatherCard);
+      this.updateBackground();
       // this.refreshData(getWeatherCall);
     } catch (error) {
       displayComponent(createErrorCard(error.message));
@@ -57,5 +58,10 @@ export default class ViewController {
       );
       displayComponent(weatherCard);
     }, 1800000);
+  };
+
+  updateBackground = () => {
+    const body = document.querySelector('body');
+    body.style.backgroundImage = `url('/src/view/assets/background/Sunny.jpg')`;
   };
 }

@@ -10,7 +10,10 @@ export default class WeatherDataController {
   getWeather = async (search) => {
     try {
       const rawData = await getWeatherData(search);
+      console.log(rawData);
       this.app.lastData = rawData;
+      this.app.conditionsText = rawData.current.condition.text;
+      console.log(this.app.conditionsText);
       const cleanData = filterWeatherData(rawData, this.user.isMetric);
 
       return cleanData;

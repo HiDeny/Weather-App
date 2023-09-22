@@ -5,7 +5,7 @@ header {
   left: 2rem;
   right: 2rem;
   height: 5rem;
-  padding-bottom: 1rem;
+  padding: 0.5rem;
 
   display: grid;
   grid-template-columns: 20% 60% 20%;
@@ -15,7 +15,9 @@ header {
   align-items: center;
   border-radius: 5rem;
 
-  backdrop-filter: blur(1rem);
+  background-color: rgba(234, 234, 234, 0.7);
+
+  backdrop-filter: saturate(180%) blur(0.7rem);
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
 
