@@ -10,10 +10,11 @@
   height: calc(50vh - 6rem);
   width: 80%;
   margin: 1rem auto 5rem;
-  border: solid #b3b3b3 2px;
+  border: 1px solid #dbdbdb80;
   border-radius: 2rem;
 
-  backdrop-filter: blur(1rem);
+  background-color: rgba(234, 234, 234, 0.7);
+  backdrop-filter: saturate(180%) blur(0.7rem);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -25,6 +26,10 @@
 
   border: 1px solid;
   border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.22);
+  border: solid #b3b3b31c 1px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
 .detailCard > p,
@@ -42,3 +47,4 @@
   grid-column: 2;
   grid-row: 1;
 }
+

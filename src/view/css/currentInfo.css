@@ -1,16 +1,15 @@
-section.currentInfo {
-  height: calc(100vh - 5rem);
-  margin-top: 5rem;
-}
-
 .currentInfo {
-  grid-row: 1;
+  /* grid-row: 1; */
 
   display: grid;
   grid-template-rows: 20% 60% 15% 5%;
 
+  height: calc(100vh - 5rem);
+  margin-top: 5rem;
+
   align-items: center;
 
+  color: white;
   text-align: center;
 }
 

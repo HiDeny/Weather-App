@@ -1,74 +1,76 @@
-const introImg = src(
-  '/src/view/assets/background/Intro-frames-for-your-heart-4dj8Rz_eId0.jpg'
-);
-const sunnyImg = src('/src/view/assets/background/Sunny.jpg');
-const cloudyImg = src(
-  '/src/view/assets/background/Cloudy-artem-anokhin-V4qjYCac7y8.jpg'
-);
-const overcastImg = src(
-  '/src/view/assets/background/Overcast-barry-simon-4C6Rp23RjnE.jpg'
-);
-const stormImg = src('/src/view/assets/background/Storm-johannes-plenio.jpg');
-const mistyImg = src(
-  '/src/view/assets/background/Fog-mark-eder-T_gAmymcQFs-unsplash.jpg'
-);
-const rainImg = src(
-  '/src/view/assets/background/Rain-stormseeker-vRCZ3DztaoA-unsplash.jpg'
-);
-const snowImg = src(
-  '/src/view/assets/background/Snow-alessio-soggetti-Pao8_rE4a44-unsplash.jpg'
-);
-const sleetImg = src('/src/view/assets/background/Sleet-hero-image.webp');
+const sunnyImg = '/src/view/assets/background/Sunny.jpg';
+const cloudyImg =
+  '/src/view/assets/background/Cloudy-artem-anokhin-V4qjYCac7y8.jpg';
+
+const overcastImg =
+  '/src/view/assets/background/Overcast-barry-simon-4C6Rp23RjnE.jpg';
+
+const stormImg = '/src/view/assets/background/Storm-johannes-plenio.jpg';
+const mistyImg =
+  '/src/view/assets/background/Fog-mark-eder-T_gAmymcQFs-unsplash.jpg';
+
+const rainImg =
+  '/src/view/assets/background/Rain-stormseeker-vRCZ3DztaoA-unsplash.jpg';
+
+const snowImg =
+  '/src/view/assets/background/Snow-alessio-soggetti-Pao8_rE4a44-unsplash.jpg';
+
+const sleetImg = '/src/view/assets/background/Sleet-hero-image.webp';
 
 const backgroundImages = {
-  Sunny: 'Sunny',
-  Cloudy: 'Cloudy',
-  'Partly cloudy': 'Cloudy',
-  Overcast: 'Overcast',
-  Misty: 'Misty',
-  'Patchy rain possible': 'Rain',
-  'Patchy snow possible': 'Snow',
-  'Patchy sleet possible': 'Sleet',
-  'Patchy freezing drizzle possible': 'Snow',
-  'Thundery outbreaks possible': 'Storm',
-  'Blowing snow': 'Snow',
-  Blizzard: 'Snow',
+  Sunny: sunnyImg,
+  Cloudy: cloudyImg,
+  'Partly cloudy': cloudyImg,
+  Overcast: overcastImg,
+  Misty: mistyImg,
+  'Patchy rain possible': rainImg,
+  'Patchy snow possible': snowImg,
+  'Patchy sleet possible': sleetImg,
+  'Patchy freezing drizzle possible': snowImg,
+  'Thundery outbreaks possible': stormImg,
+  'Blowing snow': snowImg,
+  Blizzard: snowImg,
   Fog: 'Mist',
-  'Freezing fog': 'Snow',
-  'Patchy light drizzle': 'Rain',
-  'Light drizzle': 'Rain',
-  'Freezing drizzle': 'Snow',
-  'Heavy freezing drizzle': 'Snow',
-  'Patchy light rain': 'Rain',
-  'Light rain': 'Rain',
-  'Moderate rain at times': 'Rain',
-  'Moderate rain': 'Rain',
-  'Heavy rain at times': 'Rain',
-  'Heavy rain': 'Rain',
-  'Light freezing rain': 'Snow',
-  'Moderate or heavy freezing rain': 'Snow',
-  'Light sleet': 'Sleet',
-  'Moderate or heavy sleet': 'Sleet',
-  'Patchy light snow': 'Snow',
-  'Light snow': 'Snow',
-  'Patchy moderate snow': 'Snow',
-  'Moderate snow': 'Snow',
-  'Patchy heavy snow': 'Snow',
-  'Heavy snow': 'Snow',
-  'Ice pellets': 'Snow',
-  'Light rain shower': 'Rain',
-  'Moderate or heavy rain shower': 'Rain',
-  'Torrential rain shower': 'Rain',
-  'Light sleet showers': 'Sleet',
-  'Moderate or heavy sleet showers': 'Rain',
-  'Light snow showers': 'Snow',
-  'Moderate or heavy snow showers': 'Snow',
-  'Light showers of ice pellets': 'Snow',
-  'Moderate or heavy showers of ice pellets': 'Snow',
-  'Patchy light rain with thunder': 'Rain',
-  'Moderate or heavy rain with thunder': 'Rain',
-  'Patchy light snow with thunder': 'Snow',
-  'Moderate or heavy snow with thunder': 'Snow',
+  'Freezing fog': snowImg,
+  'Patchy light drizzle': rainImg,
+  'Light drizzle': rainImg,
+  'Freezing drizzle': snowImg,
+  'Heavy freezing drizzle': snowImg,
+  'Patchy light rain': rainImg,
+  'Light rain': rainImg,
+  'Moderate rain at times': rainImg,
+  'Moderate rain': rainImg,
+  'Heavy rain at times': rainImg,
+  'Heavy rain': rainImg,
+  'Light freezing rain': snowImg,
+  'Moderate or heavy freezing rain': snowImg,
+  'Light sleet': sleetImg,
+  'Moderate or heavy sleet': sleetImg,
+  'Patchy light snow': snowImg,
+  'Light snow': snowImg,
+  'Patchy moderate snow': snowImg,
+  'Moderate snow': snowImg,
+  'Patchy heavy snow': snowImg,
+  'Heavy snow': snowImg,
+  'Ice pellets': snowImg,
+  'Light rain shower': rainImg,
+  'Moderate or heavy rain shower': rainImg,
+  'Torrential rain shower': rainImg,
+  'Light sleet showers': sleetImg,
+  'Moderate or heavy sleet showers': rainImg,
+  'Light snow showers': snowImg,
+  'Moderate or heavy snow showers': snowImg,
+  'Light showers of ice pellets': snowImg,
+  'Moderate or heavy showers of ice pellets': snowImg,
+  'Patchy light rain with thunder': rainImg,
+  'Moderate or heavy rain with thunder': rainImg,
+  'Patchy light snow with thunder': snowImg,
+  'Moderate or heavy snow with thunder': snowImg,
 };
 
-const selectBackgroud = (conditionsText) => {};
+const selectBackground = (conditionsText) => {
+  const body = document.querySelector('body');
+  body.style.backgroundImage = `url('${backgroundImages[conditionsText]}')`;
+};
+
+export default selectBackground;

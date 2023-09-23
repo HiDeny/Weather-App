@@ -76,7 +76,7 @@ header {
 }
 
 .searchBtn {
-  height: 2rem;
+  height: 2.5rem;
   aspect-ratio: 1 / 1;
 
   background: none;
@@ -84,6 +84,7 @@ header {
   border-radius: 100%;
 
   font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0);
 }
 
 .searchBtn:active {
@@ -92,6 +93,18 @@ header {
 
 .searchBtn:hover {
   background-color: #c5c5c5;
+}
+
+.geoLocationBtn {
+  background-image: url('/src/view/assets/icons/geolocation/icons8-near-me-96.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.submitBtn {
+  background-image: url('/src/view/assets/icons/search/icons8-search-96.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* SUGGESTIONS */

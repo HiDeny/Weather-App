@@ -75,6 +75,12 @@ const createForecastHourly = (todayData) => {
 
     options: {
       maintainAspectRatio: false,
+      scales: {
+        y: {
+          suggestedMin: 0,
+          suggestedMax: 35,
+        },
+      },
     },
   });
 

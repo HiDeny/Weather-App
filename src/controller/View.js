@@ -5,7 +5,11 @@ import createWeatherCard from '../view/weatherCard';
 import createErrorCard from '../view/cardSections/errorCard';
 import createSkeletonCard from '../view/cardSections/skeletonCard';
 
+import selectBackground from '../model/selectBackground';
+
 const displayComponent = (newComponent) => {
+  const body = document.querySelector('body');
+
   const currentWelcome = document.querySelector('.welcomeCard');
   const currentWeather = document.querySelector('.weatherCard');
   const currentSkeleton = document.getElementById('skeletonCard');
@@ -36,12 +40,13 @@ export default class ViewController {
     try {
       displayComponent(createSkeletonCard());
       const weatherData = await getWeatherCall;
+      selectBackground(weatherData.currentInfo.condition.text);
       const weatherCard = await createWeatherCard(
         weatherData,
         this.userConfig.isMetric
       );
       displayComponent(weatherCard);
-      this.updateBackground();
+
       // this.refreshData(getWeatherCall);
     } catch (error) {
       displayComponent(createErrorCard(error.message));
@@ -60,8 +65,8 @@ export default class ViewController {
     }, 1800000);
   };
 
-  updateBackground = () => {
-    const body = document.querySelector('body');
-    body.style.backgroundImage = `url('/src/view/assets/background/Sunny.jpg')`;
-  };
+  // updateBackground = () => {
+  //   const body = document.querySelector('body');
+  //   body.style.backgroundImage = `url('/src/view/assets/background/Sunny.jpg')`;
+  // };
 }

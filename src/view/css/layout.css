@@ -23,6 +23,13 @@ html {
   font-family: 'SF-Pro-Rounded-Regular', Helvetica;
 }
 
-section {
-  background: #f0f0f042;
+body {
+  /* cursor: url('/src/view/assets/icons/cursor/icons8-cursor-48.png'); */
+
+  background-image: url('../assets/background/Intro2-codioful-formerly-gradienta-mx88C7Isefo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  transition: height, background-image ease-in 2s;
 }

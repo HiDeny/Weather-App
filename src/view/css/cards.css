@@ -13,10 +13,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-
-  background-image: url('../assets/background/Intro2-codioful-formerly-gradienta-mx88C7Isefo.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
 }
 
 .weatherCard {
