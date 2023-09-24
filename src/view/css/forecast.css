@@ -11,7 +11,7 @@
   box-sizing: border-box;
   padding: 1rem;
 
-  border: solid #b3b3b3 2px;
+  border: solid #b3b3b31c 1px;
   border-radius: 2rem;
 
   background-color: rgba(234, 234, 234, 0.7);
@@ -35,7 +35,9 @@
   height: 100%;
   width: 100%;
 
+  border: solid #b3b3b31c 1px;
   border-radius: 1rem;
+  padding: 1rem;
 
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
@@ -171,8 +173,4 @@
 
 .upcomingCard > .windContainer > .wind {
   grid-row: 2 / 4;
-}
-
-.todayForecast {
-  padding: 1rem;
 }

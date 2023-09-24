@@ -22,7 +22,7 @@ const backgroundImages = {
   Cloudy: cloudyImg,
   'Partly cloudy': cloudyImg,
   Overcast: overcastImg,
-  Misty: mistyImg,
+  Mist: mistyImg,
   'Patchy rain possible': rainImg,
   'Patchy snow possible': snowImg,
   'Patchy sleet possible': sleetImg,

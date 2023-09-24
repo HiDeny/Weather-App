@@ -17,8 +17,7 @@ const createForecastHourly = (todayData) => {
           borderColor: '#A63737',
 
           pointStyle: 'circle',
-          pointRadius: 7,
-          pointHoverRadius: 15,
+          pointHoverRadius: 3,
 
           tension: 0.3,
         },
@@ -28,11 +27,9 @@ const createForecastHourly = (todayData) => {
           borderColor: '#F28705',
 
           pointStyle: 'circle',
-          pointRadius: 7,
-          pointHoverRadius: 15,
+          pointHoverRadius: 3,
 
           tension: 0.3,
-          hidden: true,
         },
         {
           label: 'Chance of Rain %',
@@ -40,8 +37,7 @@ const createForecastHourly = (todayData) => {
           borderColor: '#1833A8',
 
           pointStyle: 'circle',
-          pointRadius: 7,
-          pointHoverRadius: 15,
+          pointHoverRadius: 3,
 
           tension: 0.3,
           hidden: true,
@@ -52,8 +48,7 @@ const createForecastHourly = (todayData) => {
           borderColor: '#3E606F',
 
           pointStyle: 'circle',
-          pointRadius: 7,
-          pointHoverRadius: 15,
+          pointHoverRadius: 3,
 
           tension: 0.3,
           hidden: true,
@@ -64,8 +59,7 @@ const createForecastHourly = (todayData) => {
           borderColor: '#193441',
 
           pointStyle: 'circle',
-          pointRadius: 7,
-          pointHoverRadius: 15,
+          pointHoverRadius: 3,
 
           tension: 0.3,
           hidden: true,
@@ -80,6 +74,10 @@ const createForecastHourly = (todayData) => {
           suggestedMin: 0,
           suggestedMax: 35,
         },
+      },
+      interaction: {
+        intersect: false,
+        mode: 'index',
       },
     },
   });
