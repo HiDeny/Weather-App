@@ -5,7 +5,10 @@ const createCard = (className, title) => {
   const card = createElementWithClass('div', 'detailCard');
   card.classList.add(`${className}Info`);
 
-  card.append(createElementWithClass('h4', `title`, title));
+  const titleDiv = createElementWithClass('div', `titleDiv`);
+  titleDiv.append(createElementWithClass('i', `icon`));
+  titleDiv.append(createElementWithClass('h4', `title`, title));
+  card.append(titleDiv);
 
   return card;
 };
@@ -15,7 +18,7 @@ const createFeelCard = (feelsLikeTemp, isMetric) => {
 
   const card = createCard('feelsLike', 'Feels Like');
   card.append(
-    pElementWithClass('feelsLikeTemp', `${feelsLikeTemp}${correctVal}`)
+    pElementWithClass('feelsLikeVal', `${feelsLikeTemp}${correctVal}`)
   );
 
   return card;
@@ -70,7 +73,7 @@ const createVisibilityCard = (visibility, isMetric) => {
 
   const card = createCard('visibility', 'Visibility');
   card.append(
-    pElementWithClass('visibilityValue', `${visibility} ${correctVal}`)
+    pElementWithClass('visibilityVal', `${visibility} ${correctVal}`)
   );
 
   return card;
@@ -90,10 +93,10 @@ const createDetailsInfo = (detailsInfoData, isMetric) => {
   detailsSection.append(createVisibilityCard(visibility, isMetric));
 
   const uvCard = createCard('uv', 'UV');
-  uvCard.append(pElementWithClass('uvIndex', uv));
+  uvCard.append(pElementWithClass('uvVal', uv));
 
   const humidityCard = createCard('humidity', 'Humidity');
-  humidityCard.append(pElementWithClass('uvIndex', `${humidity.current}%`));
+  humidityCard.append(pElementWithClass('humidityVal', `${humidity.current}%`));
 
   const cloudCard = createCard('clouds', 'Clouds');
   cloudCard.append(pElementWithClass('cloudsVal', `${cloud}%`));

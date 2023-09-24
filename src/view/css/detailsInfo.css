@@ -1,14 +1,17 @@
 .detailsInfo {
   display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 11rem);
+  grid-template-columns: repeat(5, 11rem);
+  gap: 2rem;
+  justify-content: space-between;
 
   justify-items: center;
   align-items: center;
 
   box-sizing: border-box;
-  height: calc(50vh - 6rem);
-  width: 80%;
+  width: 60%;
+  min-width: 52%;
+  padding: 1rem;
   margin: 1rem auto 5rem;
   border: solid #b3b3b31c 1px;
   border-radius: 2rem;
@@ -19,8 +22,11 @@
 }
 
 .detailCard {
+  display: grid;
+  grid-template-rows: 25% auto;
+
   box-sizing: border-box;
-  width: 11rem;
+  height: 100%;
   aspect-ratio: 1 / 1;
   padding: 1rem;
 
@@ -37,13 +43,84 @@
   margin: 0;
 }
 
+.detailCard > .title {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
 .detailCard.windInfo {
-  width: 90%;
-  height: 11rem;
+  height: 100%;
+  width: 100%;
   grid-column: 3 / 5;
 }
 
 .detailCard.cloudsInfo {
   grid-column: 2;
   grid-row: 1;
+}
+
+.titleDiv {
+  display: flex;
+  gap: 0.3rem;
+  width: 100%;
+  height: 100%;
+  align-self: center;
+  align-content: center;
+}
+
+.titleDiv > .title {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.titleDiv > i {
+  content: '';
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 1.3rem;
+  width: 1.3rem;
+}
+
+.feelsLikeInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/thermometer/icons8-thermometer-48.png');
+}
+
+.feelsLikeVal,
+.cloudsVal,
+.uvVal,
+.humidityVal,
+.visibilityVal {
+  font-size: 3rem;
+  justify-self: center;
+  align-self: center;
+}
+
+.rainInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/rain/icons8-water-48.png');
+}
+
+.moonInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/moon/icons8-full-moon-48.png');
+}
+
+.sunInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/sun/icons8-sun-48.png');
+}
+
+.windInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/wind/icons8-wind-48.png');
+}
+
+.visibilityInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/vision/icons8-eye-48.png');
+}
+
+.uvInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/error/icons8-error-48.png');
+}
+.humidityInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/humidity/icons8-humidity-48.png');
+}
+.cloudsInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/cloud/icons8-cloud-48.png');
 }
