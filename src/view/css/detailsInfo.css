@@ -59,7 +59,7 @@
   grid-row: 1;
 }
 
-.titleDiv {
+.detailCard > .titleDiv {
   display: flex;
   gap: 0.3rem;
   width: 100%;
@@ -68,12 +68,12 @@
   align-content: center;
 }
 
-.titleDiv > .title {
+.detailCard > .titleDiv > .title {
   margin: 0;
   font-size: 1.3rem;
 }
 
-.titleDiv > i {
+.detailCard > .titleDiv > i {
   content: '';
   background-repeat: no-repeat;
   background-size: cover;

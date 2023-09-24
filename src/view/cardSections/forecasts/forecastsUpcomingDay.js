@@ -21,7 +21,12 @@ const createCardTemp = (temp, isMetric) => {
   const correctVal = isMetric ? '°C' : '°F';
 
   const container = createElementWithClass('div', 'tempContainer');
-  container.append(pElementWithClass('title', 'Temperature'));
+
+  const titleDiv = createElementWithClass('div', 'titleDiv');
+  titleDiv.append(createElementWithClass('i', 'icon'));
+  titleDiv.append(pElementWithClass('title', 'Temperature'));
+
+  container.append(titleDiv);
   container.append(pElementWithClass('avgTemp', `${avg}${correctVal}`));
   container.append(pElementWithClass('maxTemp', `H: ${max}${correctVal}`));
   container.append(pElementWithClass('minTemp', `L: ${min}${correctVal}`));
@@ -34,7 +39,12 @@ const createCardWind = (wind, isMetric) => {
   const correctVal = isMetric ? 'km/h' : 'm/h';
 
   const container = createElementWithClass('div', 'windContainer');
-  container.append(pElementWithClass('title', 'Wind'));
+
+  const titleDiv = createElementWithClass('div', 'titleDiv');
+  titleDiv.append(createElementWithClass('i', 'icon'));
+  titleDiv.append(pElementWithClass('title', 'Wind'));
+
+  container.append(titleDiv);
   container.append(pElementWithClass('wind', `${max} ${correctVal}`));
 
   return container;
@@ -45,7 +55,12 @@ const createCardRain = (rain, isMetric) => {
   const correctVal = isMetric ? 'mm' : 'in';
 
   const container = createElementWithClass('div', 'rainContainer');
-  container.append(pElementWithClass('title', 'Rain'));
+
+  const titleDiv = createElementWithClass('div', 'titleDiv');
+  titleDiv.append(createElementWithClass('i', 'icon'));
+  titleDiv.append(pElementWithClass('title', 'Rain'));
+
+  container.append(titleDiv);
   container.append(pElementWithClass('chance', `Chance: ${chance}%`));
   container.append(
     pElementWithClass('total', `Total Pcpn: ${total} ${correctVal}`)
@@ -56,7 +71,12 @@ const createCardRain = (rain, isMetric) => {
 
 const createCardHumidity = (humidity) => {
   const container = createElementWithClass('div', 'humidityContainer');
-  container.append(pElementWithClass('title', 'Humidity'));
+
+  const titleDiv = createElementWithClass('div', 'titleDiv');
+  titleDiv.append(createElementWithClass('i', 'icon'));
+  titleDiv.append(pElementWithClass('title', 'Humidity'));
+
+  container.append(titleDiv);
   container.append(pElementWithClass('avg', ` ${humidity}%`));
 
   return container;
