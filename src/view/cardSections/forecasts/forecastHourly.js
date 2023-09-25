@@ -33,7 +33,7 @@ const createForecastHourly = (todayData) => {
         },
         {
           label: 'Chance of Rain %',
-          data: forecastHourly.map((data) => data.rain * 100),
+          data: forecastHourly.map((data) => data.rain),
           borderColor: '#1833A8',
 
           pointStyle: 'circle',

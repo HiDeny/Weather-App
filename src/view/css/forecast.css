@@ -91,7 +91,11 @@
 }
 
 .subCardTitle {
+  justify-self: flex-start;
+
   display: flex;
+  gap: 0.3rem;
+  padding-left: 0.5rem;
 }
 
 .subCardTitle > i {
