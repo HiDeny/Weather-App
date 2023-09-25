@@ -14,12 +14,8 @@ const createCard = (className, title) => {
 };
 
 const createFeelCard = (feelsLikeTemp, isMetric) => {
-  const correctVal = isMetric ? '°C' : '°F';
-
   const card = createCard('feelsLike', 'Feels Like');
-  card.append(
-    pElementWithClass('feelsLikeVal', `${feelsLikeTemp}${correctVal}`)
-  );
+  card.append(pElementWithClass('feelsLikeVal', `${feelsLikeTemp}°`));
 
   return card;
 };

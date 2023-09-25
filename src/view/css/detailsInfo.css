@@ -10,7 +10,7 @@
 
   box-sizing: border-box;
   width: 60%;
-  min-width: 52%;
+  min-width: 65rem;
   padding: 1rem;
   margin: 1rem auto 5rem;
   border: solid #b3b3b31c 1px;
@@ -96,7 +96,7 @@
 }
 
 .rainInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/rain/icons8-water-48.png');
+  background-image: url('/src/view/assets/icons/rain/icons8-wet-48.png');
 }
 
 .moonInfo > .titleDiv > i {

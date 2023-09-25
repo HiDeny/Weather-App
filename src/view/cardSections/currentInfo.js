@@ -12,27 +12,25 @@ const createLocationInfo = ({ location }) => {
   return div;
 };
 
-const createTempDiv = ({ temp, condition }, isMetric) => {
+const createTempDiv = ({ temp, condition }) => {
   const { current } = temp;
   const { text } = condition;
-  const units = isMetric ? '°C' : '°F';
 
   const div = createElementWithClass('div', 'temp');
 
-  div.append(createElementWithClass('h2', 'currentTemp', `${current}${units}`));
+  div.append(createElementWithClass('h2', 'currentTemp', `${current}°`));
   div.append(pElementWithClass('currentCondition', text));
 
   return div;
 };
 
-const createMinMaxDiv = ({ temp }, isMetric) => {
+const createMinMaxDiv = ({ temp }) => {
   const { min, max } = temp;
-  const units = isMetric ? '°C' : '°F';
 
   const div = createElementWithClass('div', 'minmax');
 
-  div.append(pElementWithClass('tempMax', `H: ${max}${units}`));
-  div.append(pElementWithClass('tempMin', `L: ${min}${units}`));
+  div.append(pElementWithClass('tempMax', `H: ${max}°`));
+  div.append(pElementWithClass('tempMin', `L: ${min}°`));
 
   return div;
 };
