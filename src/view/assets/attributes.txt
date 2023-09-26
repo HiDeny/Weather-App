@@ -100,3 +100,7 @@ Photo by <a href="https://unsplash.com/@paniscusbcn?utm_source=unsplash&utm_medi
   
 Photo by <a href="https://unsplash.com/@jplenio?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Johannes Plenio</a> on <a href="https://unsplash.com/photos/ESL1rIs9j48?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
+<a target="_blank" href="https://icons8.com/icon/EceqZccCTQza/barometer">Barometer</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
+<a target="_blank" href="https://icons8.com/icon/0rKjlQJCjqPL/fahrenheit-symbol">Fahrenheit Symbol</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+

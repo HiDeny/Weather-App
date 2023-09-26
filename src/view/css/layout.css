@@ -31,5 +31,5 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 
-  transition: height, background-image ease-in 2s;
+  transition: background-image ease-in 2s;
 }

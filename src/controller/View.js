@@ -1,3 +1,4 @@
+import createAttributionElement from '../view/cardSections/attributionElement';
 import createHeaderElement from '../view/cardSections/header/headerElement';
 import createWelcomeCard from '../view/cardSections/welcomeCard';
 
@@ -8,8 +9,6 @@ import createSkeletonCard from '../view/cardSections/skeletonCard';
 import selectBackground from '../model/selectBackground';
 
 const displayComponent = (newComponent) => {
-  const body = document.querySelector('body');
-
   const currentWelcome = document.querySelector('.welcomeCard');
   const currentWeather = document.querySelector('.weatherCard');
   const currentSkeleton = document.getElementById('skeletonCard');
@@ -32,6 +31,7 @@ export default class ViewController {
   }
 
   initUI = () => {
+    document.body.append(createAttributionElement());
     document.body.append(createHeaderElement(this.userConfig));
     displayComponent(createWelcomeCard());
   };
