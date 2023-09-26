@@ -12,7 +12,7 @@
   width: 60%;
   min-width: 65rem;
   padding: 1rem;
-  margin: 2rem auto;
+  margin: 2rem auto 2rem;
   border: solid #b3b3b31c 1px;
   border-radius: 2rem;
 
@@ -43,22 +43,6 @@
   margin: 0;
 }
 
-.detailCard > .title {
-  font-size: 1.2rem;
-  text-transform: uppercase;
-}
-
-.detailCard.windInfo {
-  height: 100%;
-  width: 100%;
-  grid-column: 3 / 5;
-}
-
-.detailCard.cloudsInfo {
-  grid-column: 2;
-  grid-row: 1;
-}
-
 .detailCard > .titleDiv {
   display: flex;
   gap: 0.3rem;
@@ -71,6 +55,7 @@
 .detailCard > .titleDiv > .title {
   margin: 0;
   font-size: 1.3rem;
+  font-family: var(--font-normal);
 }
 
 .detailCard > .titleDiv > i {
@@ -79,6 +64,67 @@
   background-size: cover;
   height: 1.3rem;
   width: 1.3rem;
+}
+
+.detailCard.moonInfo,
+.detailCard.sunInfo,
+.detailCard.windInfo,
+.detailCard.rainInfo {
+  grid-row: 1;
+  font-size: 1.1rem;
+  grid-template-rows: 25% repeat(2, 30%) 15%;
+  align-items: center;
+}
+.rainInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/rain/icons8-wet-48.png');
+}
+
+.cloudsInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/cloud/icons8-cloud-48.png');
+}
+
+.detailCard.windInfo {
+  height: 100%;
+  width: 100%;
+  grid-column: 2 / 4;
+  grid-row: 1;
+  grid-template-columns: 1fr 1fr;
+}
+
+.detailCard.windInfo > .titleDiv {
+  grid-column: 1/3;
+}
+
+.windInfo > .gust,
+.windInfo > .dir {
+  padding-left: 1.5rem;
+}
+
+.windInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/wind/icons8-wind-48.png');
+}
+
+.moonInfo > .astroIll,
+.rainInfo > .total {
+  font-size: 0.8rem;
+  align-self: end;
+}
+.moonInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/moon/icons8-full-moon-48.png');
+}
+
+.sunInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/sun/icons8-sun-48.png');
+}
+
+.detailCard.cloudsInfo {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.detailCard.feelsLikeInfo {
+  grid-column: 4;
+  grid-row: 2;
 }
 
 .feelsLikeInfo > .titleDiv > i {
@@ -90,37 +136,34 @@
 .uvVal,
 .humidityVal,
 .visibilityVal {
-  font-size: 3rem;
+  font-size: 2.7rem;
   justify-self: center;
   align-self: center;
 }
 
-.rainInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/rain/icons8-wet-48.png');
+.detailCard.humidityInfo {
+  grid-column: 1;
+  grid-row: 2;
 }
 
-.moonInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/moon/icons8-full-moon-48.png');
+.humidityInfo > .titleDiv > i {
+  background-image: url('/src/view/assets/icons/humidity/icons8-humidity-48.png');
 }
 
-.sunInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/sun/icons8-sun-48.png');
-}
-
-.windInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/wind/icons8-wind-48.png');
+.detailCard.visibilityInfo {
+  grid-column: 3;
+  grid-row: 2;
 }
 
 .visibilityInfo > .titleDiv > i {
   background-image: url('/src/view/assets/icons/vision/icons8-eye-48.png');
 }
 
+.detailCard.uvInfo {
+  grid-column: 5;
+  grid-row: 2;
+}
+
 .uvInfo > .titleDiv > i {
   background-image: url('/src/view/assets/icons/error/icons8-error-48.png');
-}
-.humidityInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/humidity/icons8-humidity-48.png');
-}
-.cloudsInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/cloud/icons8-cloud-48.png');
 }

@@ -26,7 +26,7 @@ const createRainCard = (rain, isMetric) => {
 
   const card = createCard('rain', 'Rain');
   card.append(pElementWithClass('precip', `Precip: ${precip} ${correctVal}`));
-  card.append(pElementWithClass('chance', `Chance of rain: ${chance}%`));
+  card.append(pElementWithClass('chance', `Chance: ${chance}%`));
   card.append(pElementWithClass('total', `Total: ${total} ${correctVal}`));
 
   return card;
@@ -59,7 +59,6 @@ const createWindCard = (wind, isMetric) => {
   card.append(pElementWithClass('gust', `Gust: ${gust} ${correctVal}`));
   card.append(pElementWithClass('max', `Max Speed: ${max} ${correctVal}`));
   card.append(pElementWithClass('dir', `Direction: ${dir}`));
-  card.append(pElementWithClass('dir', `Degree: ${degree}`));
 
   return card;
 };

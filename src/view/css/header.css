@@ -1,13 +1,15 @@
 header {
   z-index: 88;
-  position: fixed;
+  position: sticky;
   top: 1.5rem;
   left: 10rem;
   right: 10rem;
 
   height: 4rem;
-  min-width: 65rem;
+  min-width: 55rem;
+  max-width: 65rem;
   padding: 0.5rem;
+  margin: auto;
 
   display: grid;
   grid-template-columns: 15% 70% 15%;
@@ -16,7 +18,7 @@ header {
   justify-items: center;
   align-items: center;
   border: solid #b3b3b31c 1px;
-  border-radius: 5rem;
+  border-radius: 1.5rem;
 
   background-color: rgba(234, 234, 234, 0.7);
 
@@ -43,6 +45,7 @@ header {
 
 .clockElement > .date {
   font-size: 1rem;
+  font-family: var(--font-light);
 }
 
 .clockElement > .time {
@@ -111,14 +114,14 @@ header {
   background-image: url('/src/view/assets/icons/geolocation/icons8-near-me-96.png');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 75%;
+  background-size: 80%;
 }
 
 .submitBtn {
   background-image: url('/src/view/assets/icons/search/icons8-search-96.png');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 75%;
+  background-size: 80%;
 }
 
 /* SUGGESTIONS */
@@ -164,12 +167,17 @@ header {
   left: 50%;
   transform: translateX(-50%);
 
-  color: #acacac;
+  color: #ccc;
   font-size: 0.7rem;
+  font-family: var(--font-light);
+}
+
+a {
+  text-decoration: none;
 }
 
 a:visited {
-  color: #a593ff;
+  color: #ffa8a8;
 }
 
 .attWeatherApi > .content,

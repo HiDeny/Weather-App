@@ -19,7 +19,6 @@ const getTodayData = (rawData, isMetric) => {
     gust_kph,
     gust_mph,
     wind_dir,
-    wind_degree,
     cloud,
     humidity,
     precip_mm,
@@ -73,7 +72,6 @@ const getTodayData = (rawData, isMetric) => {
       gust: isMetric ? gust_kph : gust_mph,
       max: isMetric ? maxwind_kph : maxwind_mph,
       dir: wind_dir,
-      degree: wind_degree,
     },
     humidity: {
       current: humidity,

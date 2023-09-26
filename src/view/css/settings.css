@@ -54,11 +54,9 @@
   background-image: url('/src/view/assets/icons/settings/icons8-settings-96.png');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 75%;
+  background-size: 80%;
 
-  font-size: 2rem;
   color: rgb(0, 0, 0, 0);
-
   cursor: pointer;
 
   transition: box-shadow 200ms ease-in, background-color 200ms ease;
@@ -84,6 +82,7 @@
 
   font-size: 0.8rem;
   text-align: center;
+  font-family: var(--font-light);
 }
 
 .defaultLocationLabel::before {
@@ -115,7 +114,9 @@
 .settingsMenu > div > .title {
   position: relative;
   margin: 0;
+
   font-size: 0.8rem;
+  font-family: var(--font-light);
 }
 
 .selectUnits {
@@ -151,6 +152,8 @@
 
   transition: background-color 1s;
   cursor: pointer;
+
+  font-family: var(--font-normal);
 }
 
 .unitsSplit {
@@ -237,7 +240,7 @@
 
 .saveBtn {
   justify-self: center;
-  width: 8rem;
+  width: 7rem;
   padding: 0.5rem 0.25rem;
 
   background-color: #597bffed;
@@ -245,8 +248,10 @@
   border-radius: 1rem;
 
   color: white;
-  transition: background-color 1s, padding 300ms;
+  transition: background-color 1s, padding 300ms, width 300ms;
   cursor: pointer;
+
+  font-family: var(--font-bold);
 }
 
 .saveBtn:hover {

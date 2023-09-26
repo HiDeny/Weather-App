@@ -7,8 +7,8 @@
   height: calc(50vh - 6rem);
   width: 65%;
   min-width: 65rem;
-  height: auto;
-  max-height: 25rem;
+  height: 25rem;
+
   margin: 10rem auto 1rem;
 
   box-sizing: border-box;
@@ -80,17 +80,6 @@
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
-.upcomingCard > div {
-  justify-self: center;
-  align-self: center;
-  box-sizing: border-box;
-  height: 95%;
-  aspect-ratio: 1/1;
-  background-color: rgba(255, 255, 255, 0.21);
-  border: 1px solid #cccccca8;
-  border-radius: 0.5rem;
-}
-
 .subCardTitle {
   justify-self: flex-start;
 
@@ -128,10 +117,12 @@
 
 .upcomingCard > .title > p {
   margin: 0;
+  font-family: var(--font-light);
 }
 
 .upcomingCard > .title > .day {
   font-size: 1.7rem;
+  font-family: var(--font-normal);
 }
 
 .upcomingCard > .title > .date {
@@ -145,15 +136,37 @@
 }
 
 /* SubCards */
+
+.upcomingCard > div {
+  justify-self: center;
+  align-self: center;
+
+  display: grid;
+  grid-template-rows: 25% 30% 30% 15%;
+  justify-items: center;
+  align-items: center;
+
+  box-sizing: border-box;
+  height: 95%;
+  aspect-ratio: 1/1;
+  padding: 0.2rem;
+
+  background-color: rgba(255, 255, 255, 0.21);
+  border: 1px solid #cccccca8;
+  border-radius: 0.5rem;
+}
+
 .upcomingCard > div > p {
-  font-size: 0.9rem;
+  font-size: 1.7rem;
   margin: 0;
 }
 
 .upcomingCard > div > .subCardTitle > .text {
-  font-size: 1rem;
+  font-size: 1.1rem;
   justify-self: normal;
   margin: 0;
+
+  font-family: var(--font-normal);
 }
 
 /* Temp */
@@ -161,12 +174,7 @@
   grid-row: 2 / 4;
   grid-column: 1/3;
 
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
   grid-template-columns: 1fr 1fr;
-
-  justify-items: center;
-  align-items: center;
 }
 
 .upcomingCard > .tempContainer > .subCardTitle {
@@ -179,10 +187,9 @@
 }
 
 .upcomingCard > .tempContainer > .avgTemp {
-  grid-row: 2;
+  grid-row: 2 / 4;
   grid-column: 1 / 3;
-
-  font-size: 2rem;
+  font-family: var(--font-normal);
 }
 
 .upcomingCard > .tempContainer > .minTemp,
@@ -194,12 +201,6 @@
 .windContainer {
   grid-row: 2/4;
   grid-column: 3/5;
-
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-
-  align-items: center;
-  justify-items: center;
 }
 
 .upcomingCard > .windContainer > .subCardTitle > i {
@@ -207,19 +208,13 @@
 }
 
 .upcomingCard > .windContainer > .wind {
-  grid-row: 2 / 3;
-  font-size: 1.5rem;
+  grid-row: 2 / 4;
 }
 
 /* Rain */
 .rainContainer {
   grid-row: 4/6;
   grid-column: 1/3;
-
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  justify-items: center;
-  align-items: center;
 }
 
 .upcomingCard > .rainContainer > .subCardTitle > i {
@@ -227,6 +222,7 @@
 }
 
 .upcomingCard > .rainContainer > .chance {
+  grid-row: 2 / 4;
   font-size: 1.2rem;
 }
 
@@ -238,19 +234,12 @@
 .humidityContainer {
   grid-row: 4/6;
   grid-column: 3/5;
-
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  align-items: center;
-  justify-items: center;
-}
-
-.upcomingCard > .humidityContainer > .subCardTitle > i {
-  background-image: url('/src/view/assets/icons/humidity/icons8-humidity-48.png');
 }
 
 .upcomingCard > .humidityContainer > .avg {
   grid-row: 2 / 4;
+}
 
-  font-size: 2.5rem;
+.upcomingCard > .humidityContainer > .subCardTitle > i {
+  background-image: url('/src/view/assets/icons/humidity/icons8-humidity-48.png');
 }

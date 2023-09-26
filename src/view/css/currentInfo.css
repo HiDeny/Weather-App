@@ -1,17 +1,22 @@
 .currentInfo {
-  /* grid-row: 1; */
-
   display: grid;
   grid-template-rows: 20% 60% 15% 5%;
 
   height: calc(100vh - 7rem);
   margin-top: 7rem;
-  min-height: 40rem;
 
   align-items: center;
 
   color: white;
   text-align: center;
+}
+
+.currentInfo > div {
+  height: 100%;
+}
+
+.locationInfo {
+  padding-top: 2rem;
 }
 
 .locationName {
@@ -20,6 +25,7 @@
 
   font-size: 2.8rem;
   letter-spacing: 1px;
+  font-family: var(--font-normal);
 }
 
 .locationCountry {
@@ -31,23 +37,30 @@
   letter-spacing: 1px;
 }
 
+.temp {
+  padding-top: 8rem;
+}
+
 .currentTemp {
   margin: 0;
   padding: 1rem;
 
   font-size: 8rem;
+  font-family: var(--font-normal);
 }
 
 .currentCondition {
   margin: 0;
 
   font-size: 2rem;
+  font-family: var(--font-light);
 }
 
 .minmax {
   display: flex;
   justify-content: space-evenly;
   font-size: 2rem;
+  font-family: var(--font-light);
 }
 
 .minmax > p {
@@ -65,4 +78,5 @@
 .lastUpdated {
   align-self: end;
   font-size: 1rem;
+  font-family: var(--font-light);
 }

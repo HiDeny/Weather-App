@@ -19,6 +19,7 @@ const sleetImg = '/src/view/assets/background/Sleet-hero-image.webp';
 
 const backgroundImages = {
   Sunny: sunnyImg,
+  Clear: sunnyImg,
   Cloudy: cloudyImg,
   'Partly cloudy': cloudyImg,
   Overcast: overcastImg,
@@ -70,6 +71,9 @@ const backgroundImages = {
 
 const selectBackground = (conditionsText) => {
   const body = document.querySelector('body');
+  if (!backgroundImages[conditionsText]) {
+    throw new Error('Background img missing!');
+  }
   body.style.backgroundImage = `url('${backgroundImages[conditionsText]}')`;
 };
 

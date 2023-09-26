@@ -51,9 +51,7 @@ const createCardRain = (rain, isMetric) => {
   const container = createElementWithClass('div', 'rainContainer');
   container.append(createSubCardTitle('Rain'));
   container.append(pElementWithClass('chance', `Chance: ${chance}%`));
-  container.append(
-    pElementWithClass('total', `Total Pcpn: ${total} ${correctVal}`)
-  );
+  container.append(pElementWithClass('total', `Total: ${total} ${correctVal}`));
 
   return container;
 };
