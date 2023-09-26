@@ -7,8 +7,9 @@
   height: calc(50vh - 6rem);
   width: 65%;
   min-width: 65rem;
-  min-height: 25rem;
-  margin: 5rem auto 1rem;
+  height: auto;
+  max-height: 25rem;
+  margin: 10rem auto 1rem;
 
   box-sizing: border-box;
   padding: 1rem;
@@ -253,4 +254,3 @@
 
   font-size: 2.5rem;
 }
-
