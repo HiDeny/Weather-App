@@ -141,3 +141,16 @@ header {
 .suggestion-active {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+/* ATTRIBUTION */
+.attWeatherApi {
+  align-self: end;
+
+  color: lightgrey;
+  font-size: 0.7rem;
+}
+
+.attWeatherApi > .content,
+.attWeatherApi > a {
+  margin: 0;
+}

@@ -17,8 +17,10 @@ const createSelectUnits = (isMetric) => {
   const IMPERIAL = 'Imperial (°F, mi, in)';
 
   const selectUnits = createElementWithClass('div', 'selectUnits');
-  const title = pElementWithClass('title', 'Units');
   const split = pElementWithClass('unitsSplit', '');
+  const titleDiv = createElementWithClass('div', `titleDiv`);
+  titleDiv.append(createElementWithClass('i', `icon`));
+  titleDiv.append(pElementWithClass('title', 'Units'));
 
   const metricBtn = createBtn(BUTTON_CLASS_NAME, METRIC);
   metricBtn.classList.add('metricUnits');
@@ -32,7 +34,7 @@ const createSelectUnits = (isMetric) => {
     imperialBtn.classList.add('active');
   }
 
-  const unitsElements = [title, metricBtn, split, imperialBtn];
+  const unitsElements = [titleDiv, metricBtn, split, imperialBtn];
   selectUnits.append(...unitsElements);
 
   return selectUnits;
@@ -43,8 +45,10 @@ const createSelectTimeFormat = (format24H) => {
   const FORMAT24 = '24H';
 
   const selectFormat = createElementWithClass('div', 'selectFormat');
-  const title = pElementWithClass('title', 'Time Format');
   const split = pElementWithClass('formatSplit', '');
+  const titleDiv = createElementWithClass('div', `titleDiv`);
+  titleDiv.append(createElementWithClass('i', `icon`));
+  titleDiv.append(pElementWithClass('title', 'Time Format'));
 
   const format24Btn = createBtn(BUTTON_CLASS_NAME, FORMAT24);
   format24Btn.classList.add('format24');
@@ -58,7 +62,7 @@ const createSelectTimeFormat = (format24H) => {
     format24Btn.classList.remove('active');
   }
 
-  const formatElements = [title, format24Btn, split, format12Btn];
+  const formatElements = [titleDiv, format24Btn, split, format12Btn];
   selectFormat.append(...formatElements);
 
   return selectFormat;
