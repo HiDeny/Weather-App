@@ -30,7 +30,7 @@ const backgroundImages = {
   'Thundery outbreaks possible': stormImg,
   'Blowing snow': snowImg,
   Blizzard: snowImg,
-  Fog: 'Mist',
+  Fog: mistyImg,
   'Freezing fog': snowImg,
   'Patchy light drizzle': rainImg,
   'Light drizzle': rainImg,
