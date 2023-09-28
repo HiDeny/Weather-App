@@ -93,10 +93,10 @@ const getDetails = (todayData) => {
   };
 };
 
-const filterWeatherData = (rawData, isMetric = true) => {
+const filterWeatherData = (rawData, isMetric, format24H) => {
   const backgroundData = getBackgroundData(rawData);
   const locationData = getLocationData(rawData);
-  const todayData = getTodayData(rawData, isMetric);
+  const todayData = getTodayData(rawData, isMetric, format24H);
   const upcomingData = getUpcomingData(rawData, isMetric);
 
   const currentInfo = getCurrentInfo(locationData, todayData);

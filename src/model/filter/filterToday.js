@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
 import format from 'date-fns/format';
 import parseForecastHour from './parseForecastHour';
+import { parse } from 'date-fns';
 
-const getTodayData = (rawData, isMetric) => {
+const getTodayData = (rawData, isMetric, format24H) => {
   const { current, forecast } = rawData;
   const forecastToday = forecast.forecastday[0];
 
@@ -27,10 +28,14 @@ const getTodayData = (rawData, isMetric) => {
     vis_miles,
   } = current;
 
-  const lastUpdatedTime = last_updated.split(' ')[1];
-  const lastUpdatedDate = format(
-    new Date(last_updated.split(' ')[0]),
-    'd LLLL yyyy'
+  const lastUpdateFormatted12 = format(
+    new Date(last_updated),
+    'h:mm aa d LLLL yyyy'
+  );
+
+  const lastUpdateFormatted24 = format(
+    new Date(last_updated),
+    'HH:mm d LLLL yyyy'
   );
 
   const {
@@ -51,10 +56,22 @@ const getTodayData = (rawData, isMetric) => {
   const { sunrise, sunset, moonrise, moonset, moon_illumination, moon_phase } =
     forecastToday.astro;
 
+  const parseSunrise = parse(sunrise, 'hh:mm a', new Date());
+  const sunrise24 = format(parseSunrise, 'HH:mm');
+
+  const parseSunset = parse(sunset, 'hh:mm a', new Date());
+  const sunset24 = format(parseSunset, 'HH:mm');
+
+  const parseMoonrise = parse(moonrise, 'hh:mm a', new Date());
+  const moonrise24 = format(parseMoonrise, 'HH:mm');
+
+  const parseMoonset = parse(moonset, 'hh:mm a', new Date());
+  const moonset24 = format(parseMoonset, 'HH:mm');
+
   const forecastHourly = parseForecastHour(forecastToday.hour, isMetric);
 
   return {
-    lastUpdate: `${lastUpdatedTime} ${lastUpdatedDate}`,
+    lastUpdate: format24H ? lastUpdateFormatted24 : lastUpdateFormatted12,
     temp: {
       current: isMetric ? temp_c : temp_f,
       avg: isMetric ? avgtemp_c : avgtemp_f,
@@ -84,12 +101,12 @@ const getTodayData = (rawData, isMetric) => {
     },
     cloud,
     sun: {
-      rise: sunrise,
-      set: sunset,
+      rise: format24H ? sunrise24 : sunrise,
+      set: format24H ? sunset24 : sunset,
     },
     moon: {
-      rise: moonrise,
-      set: moonset,
+      rise: format24H ? moonrise24 : moonrise,
+      set: format24H ? moonset24 : moonset,
       phase: moon_phase,
       illumination: moon_illumination,
     },

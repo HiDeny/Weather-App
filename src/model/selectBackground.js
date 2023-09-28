@@ -75,13 +75,14 @@ const backgroundImages = {
 };
 
 const selectBackground = ({ weather, isDay }) => {
-  const testWeather = 'Freezing drizzle';
+  // Do more testing with font colors
+  // const testWeather = 'Freezing drizzle';
+
   const body = document.querySelector('body');
   if (!backgroundImages[weather]) {
     throw new Error('Background img missing!');
   }
-  if (isDay)
-    body.style.backgroundImage = `url('${backgroundImages[testWeather]}')`;
+  if (isDay) body.style.backgroundImage = `url('${backgroundImages[weather]}')`;
   if (!isDay) body.style.backgroundImage = `url('${nightImg}')`;
 };
 

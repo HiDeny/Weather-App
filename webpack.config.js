@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -10,6 +11,9 @@ module.exports = {
       title: 'ClimaCheck',
       filename: 'index.html',
     }),
+    new FaviconsWebpackPlugin(
+      './src/view/assets/icons/favicon/icons8-summertime-pulsar-color-32.png'
+    ),
   ],
   output: {
     filename: 'bundle.js',

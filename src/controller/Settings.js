@@ -45,10 +45,13 @@ export default class SettingsController {
     const formatButtons = document.querySelectorAll('.formatBtn');
 
     formatButtons.forEach((formatBtn) => {
-      formatBtn.addEventListener('click', () => {
+      formatBtn.addEventListener('click', async () => {
         toggleActive(formatButtons);
         this.user.format24H = !this.user.format24H;
 
+        if (this.app.lastData) {
+          await this.view.displayWeather(this.weather.altUnitsWeather());
+        }
         startClock(this.user.format24H);
       });
     });

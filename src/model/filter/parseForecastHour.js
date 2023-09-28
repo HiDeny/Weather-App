@@ -1,8 +1,13 @@
 /* eslint-disable camelcase */
-const parseForecastHour = (hourlyForecastRaw, isMetric) =>
+
+import { format } from 'date-fns';
+
+const parseForecastHour = (hourlyForecastRaw, isMetric, format24H) =>
   hourlyForecastRaw.map((hourData) => {
     const { time } = hourData;
-    const hour = time.split(' ')[1];
+    const hour12 = format(new Date(time), 'h:mm');
+    const hour24 = format(new Date(time), 'HH:mm');
+
     const {
       is_day,
       temp_c,
@@ -19,7 +24,7 @@ const parseForecastHour = (hourlyForecastRaw, isMetric) =>
     } = hourData;
 
     const hourWeather = {
-      hour,
+      hour: format24H ? hour24 : hour12,
       isDay: is_day,
       temp: isMetric ? temp_c : temp_f,
       condition: {

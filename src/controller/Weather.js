@@ -12,7 +12,11 @@ export default class WeatherDataController {
       const rawData = await getWeatherData(search);
       this.app.lastData = rawData;
       this.app.conditionsText = rawData.current.condition.text;
-      const cleanData = filterWeatherData(rawData, this.user.isMetric);
+      const cleanData = filterWeatherData(
+        rawData,
+        this.user.isMetric,
+        this.user.format24H
+      );
 
       return cleanData;
     } catch (err) {
@@ -21,5 +25,9 @@ export default class WeatherDataController {
   };
 
   altUnitsWeather = () =>
-    filterWeatherData(this.app.lastData, this.user.isMetric);
+    filterWeatherData(
+      this.app.lastData,
+      this.user.isMetric,
+      this.user.format24H
+    );
 }
