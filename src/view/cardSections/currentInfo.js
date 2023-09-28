@@ -46,6 +46,7 @@ const createLastUpdateDiv = ({ lastUpdate }) => {
 
 const createCurrentInfo = (currentInfoData, isMetric) => {
   const currentInfo = createElementWithClass('section', 'currentInfo');
+  currentInfo.id = 'mainCurrentInfo' 
   currentInfo.append(createLocationInfo(currentInfoData));
   currentInfo.append(createTempDiv(currentInfoData, isMetric));
   currentInfo.append(createMinMaxDiv(currentInfoData, isMetric));

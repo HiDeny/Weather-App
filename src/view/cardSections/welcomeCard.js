@@ -8,17 +8,17 @@ const createWelcomeCard = () => {
   const welcomeMessage = createElementWithClass(
     'h1',
     'welcomeMessage',
-    'Welcome to this app!'
+    'Welcome to ClimaCheck!'
   );
 
   const featuresHighlight = createElementWithClass('div', 'keyFeatures');
   featuresHighlight.append(createElementWithClass('h2', 'title', 'Features:'));
   featuresHighlight.append(
-    pElementWithClass('forecast', 'Weather in any Location!')
+    pElementWithClass('feature', 'Clima in any Location!')
   );
-  featuresHighlight.append(pElementWithClass('forecast', 'Hourly forecast'));
+  featuresHighlight.append(pElementWithClass('feature', 'Hourly forecast'));
   featuresHighlight.append(
-    pElementWithClass('weatherInfo', 'Location-based weather information')
+    pElementWithClass('feature', 'Check Clima in your location!')
   );
 
   const intro = createElementWithClass('div', 'intro');
@@ -38,7 +38,13 @@ const createWelcomeCard = () => {
   intro.append(
     pElementWithClass(
       'searchIntro',
-      'Here you can type your desired location and press search!'
+      'Here you can search your desired location and press search!'
+    )
+  );
+  intro.append(
+    pElementWithClass(
+      'settingsIntro',
+      'Set your preferences (Default location, Units, TimeFormat)'
     )
   );
 

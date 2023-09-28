@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const sunnyImg = '/src/view/assets/background/Sunny.jpg';
 const cloudyImg =
   '/src/view/assets/background/Cloudy-artem-anokhin-V4qjYCac7y8.jpg';
@@ -15,7 +16,11 @@ const rainImg =
 const snowImg =
   '/src/view/assets/background/Snow-alessio-soggetti-Pao8_rE4a44-unsplash.jpg';
 
-const sleetImg = '/src/view/assets/background/Sleet-hero-image.webp';
+const sleetImg =
+  '/src/view/assets/background/Sleet-chuttersnap-an7gMeifdhs-unsplash.jpg';
+
+const nightImg =
+  '/src/view/assets/background/NightStars-paul-volkmer-qVotvbsuM_c-unsplash.jpg';
 
 const backgroundImages = {
   Sunny: sunnyImg,
@@ -69,12 +74,15 @@ const backgroundImages = {
   'Moderate or heavy snow with thunder': snowImg,
 };
 
-const selectBackground = (conditionsText) => {
+const selectBackground = ({ weather, isDay }) => {
+  const testWeather = 'Freezing drizzle';
   const body = document.querySelector('body');
-  if (!backgroundImages[conditionsText]) {
+  if (!backgroundImages[weather]) {
     throw new Error('Background img missing!');
   }
-  body.style.backgroundImage = `url('${backgroundImages[conditionsText]}')`;
+  if (isDay)
+    body.style.backgroundImage = `url('${backgroundImages[testWeather]}')`;
+  if (!isDay) body.style.backgroundImage = `url('${nightImg}')`;
 };
 
 export default selectBackground;

@@ -1,11 +1,9 @@
 .currentInfo {
   display: grid;
   grid-template-rows: 20% 60% 15% 5%;
-
-  height: calc(100vh - 7rem);
-  margin-top: 7rem;
-
   align-items: center;
+
+  height: calc(100vh - 5rem);
 
   color: white;
   text-align: center;
@@ -16,7 +14,10 @@
 }
 
 .locationInfo {
-  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 }
 
 .locationName {
@@ -38,7 +39,11 @@
 }
 
 .temp {
-  padding-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-bottom: 5rem;
 }
 
 .currentTemp {

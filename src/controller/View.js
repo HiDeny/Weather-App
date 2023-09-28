@@ -40,7 +40,7 @@ export default class ViewController {
     try {
       displayComponent(createSkeletonCard());
       const weatherData = await getWeatherCall;
-      selectBackground(weatherData.currentInfo.condition.text);
+      selectBackground(weatherData.backgroundData);
       const weatherCard = await createWeatherCard(
         weatherData,
         this.userConfig.isMetric
@@ -50,6 +50,7 @@ export default class ViewController {
       // this.refreshData(getWeatherCall);
     } catch (error) {
       displayComponent(createErrorCard(error.message));
+      throw new Error(error);
     }
   };
 
@@ -64,9 +65,4 @@ export default class ViewController {
       displayComponent(weatherCard);
     }, 1800000);
   };
-
-  // updateBackground = () => {
-  //   const body = document.querySelector('body');
-  //   body.style.backgroundImage = `url('/src/view/assets/background/Sunny.jpg')`;
-  // };
 }

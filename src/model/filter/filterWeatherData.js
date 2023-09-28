@@ -2,6 +2,13 @@
 import getTodayData from './filterToday';
 import getUpcomingData from './filterUpcoming';
 
+const getBackgroundData = (rawData) => {
+  const { condition, is_day } = rawData.current;
+  const { text } = condition;
+
+  return { weather: text, isDay: is_day };
+};
+
 const getLocationData = (rawData) => {
   const { name, country } = rawData.location;
   return { name, country };
@@ -38,6 +45,7 @@ const getDetails = (todayData) => {
 };
 
 const filterWeatherData = (rawData, isMetric = true) => {
+  const backgroundData = getBackgroundData(rawData);
   const locationData = getLocationData(rawData);
   const todayData = getTodayData(rawData, isMetric);
   const upcomingData = getUpcomingData(rawData, isMetric);
@@ -47,7 +55,7 @@ const filterWeatherData = (rawData, isMetric = true) => {
   const detailsInfo = getDetails(todayData);
 
   try {
-    return { currentInfo, forecasts, detailsInfo };
+    return { backgroundData, currentInfo, forecasts, detailsInfo };
   } catch (err) {
     throw new Error(err);
   }
