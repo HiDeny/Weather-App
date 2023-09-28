@@ -51,7 +51,7 @@ const createAstroCard = (astroData, isMoon) => {
 };
 
 const createWindCard = (wind, isMetric) => {
-  const { speed, gust, max, dir, degree } = wind;
+  const { speed, gust, max, dir } = wind;
   const correctVal = isMetric ? 'km/h' : 'm/h';
 
   const card = createCard('wind', 'Wind');
@@ -74,6 +74,15 @@ const createVisibilityCard = (visibility, isMetric) => {
   return card;
 };
 
+const createUVCard = (uv) => {
+  const card = createCard('uv', 'UV');
+  card.append(pElementWithClass('uvVal', uv.value));
+  card.append(pElementWithClass('uvDescription', uv.description));
+  card.style['box-shadow'] = uv.backLight;
+
+  return card;
+};
+
 const createDetailsInfo = (detailsInfoData, isMetric) => {
   const { feelsLike, uv, wind, sun, moon, rain, humidity, cloud, visibility } =
     detailsInfoData;
@@ -86,9 +95,7 @@ const createDetailsInfo = (detailsInfoData, isMetric) => {
   detailsSection.append(createAstroCard(sun));
   detailsSection.append(createAstroCard(moon, true));
   detailsSection.append(createVisibilityCard(visibility, isMetric));
-
-  const uvCard = createCard('uv', 'UV');
-  uvCard.append(pElementWithClass('uvVal', uv));
+  detailsSection.append(createUVCard(uv));
 
   const humidityCard = createCard('humidity', 'Humidity');
   humidityCard.append(pElementWithClass('humidityVal', `${humidity.current}%`));
@@ -96,7 +103,7 @@ const createDetailsInfo = (detailsInfoData, isMetric) => {
   const cloudCard = createCard('clouds', 'Clouds');
   cloudCard.append(pElementWithClass('cloudsVal', `${cloud}%`));
 
-  const detailCards = [uvCard, humidityCard, cloudCard];
+  const detailCards = [humidityCard, cloudCard];
   detailsSection.append(...detailCards);
 
   return detailsSection;

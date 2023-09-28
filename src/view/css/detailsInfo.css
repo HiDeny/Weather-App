@@ -162,8 +162,20 @@
 .detailCard.uvInfo {
   grid-column: 5;
   grid-row: 2;
+  grid-template-rows: 25% repeat(2, 30%) 15%;
 }
 
 .uvInfo > .titleDiv > i {
   background-image: url('/src/view/assets/icons/error/icons8-error-48.png');
+}
+
+.uvVal {
+  grid-row: 2/4;
+}
+
+.uvDescription {
+  grid-row: 4;
+  justify-self: center;
+  font-size: 0.8rem;
+  align-self: end;
 }
