@@ -36,10 +36,8 @@ export default class ViewController {
     displayComponent(createWelcomeCard());
   };
 
-  displayWeather = async (getWeatherCall) => {
+  displayWeather = async (weatherData) => {
     try {
-      displayComponent(createSkeletonCard());
-      const weatherData = await getWeatherCall;
       selectBackground(weatherData.backgroundData);
       const weatherCard = await createWeatherCard(
         weatherData,
@@ -52,6 +50,10 @@ export default class ViewController {
       displayComponent(createErrorCard(error.message));
       throw new Error(error);
     }
+  };
+
+  static loadingScreen = () => {
+    displayComponent(createSkeletonCard());
   };
 
   refreshData = async (getWeatherCall) => {

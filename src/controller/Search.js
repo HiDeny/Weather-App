@@ -1,11 +1,12 @@
-import { autocompleteData } from '../model/service/weatherAPI';
 import getGeolocation from '../model/geoLocation';
+import { autocompleteData } from '../model/service/weatherAPI';
 
 import {
   displaySuggestions,
   setActive,
   hideSuggestions,
 } from '../view/cardSections/header/suggestionResults';
+import ViewController from './View';
 
 const MIN_ADDRESS_LENGTH = 3;
 const DEBOUNCE_DELAY = 300;
@@ -36,7 +37,6 @@ export default class SearchController {
     geoLocationBtn.addEventListener('click', this.handleGeolocationSearch);
   };
 
-  // Try to put this to view controller
   renderWeather = async () => {
     try {
       await this.view.displayWeather(this.weather.getWeather(this.inputValue));
@@ -46,20 +46,29 @@ export default class SearchController {
   };
 
   displaySelectedItem = async (newSelectedItem) => {
-    this.inputValue = `${newSelectedItem.lat}, ${newSelectedItem.lon}`;
-    await this.renderWeather();
+    ViewController.loadingScreen();
+    const location = `${newSelectedItem.lat}, ${newSelectedItem.lon}`;
+    const weatherData = await this.weather.getWeather(location);
+    await this.view.displayWeather(weatherData);
     this.updatePlaceholder();
   };
 
   handleGeolocationSearch = async () => {
     // Display Loading when waiting for geolocation
-    this.inputValue = await getGeolocation();
-    await this.renderWeather();
+    ViewController.loadingScreen();
+    const location = await getGeolocation();
+    const weatherData = await this.weather.getWeather(location);
+    await this.view.displayWeather(weatherData);
+    this.updatePlaceholder();
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    await this.renderWeather();
+    ViewController.loadingScreen();
+    const location = this.inputValue;
+    const weatherData = await this.weather.getWeather(location);
+    await this.view.displayWeather(weatherData);
+    this.updatePlaceholder();
   };
 
   handleInput = (event) => {
@@ -78,7 +87,6 @@ export default class SearchController {
 
       this.suggestedItems = await autocompleteData(this.inputValue);
       if (this.suggestedItems.length < 1) return;
-
 
       // Can this go to view controller ?
       displaySuggestions(this.suggestedItems, this.displaySelectedItem);

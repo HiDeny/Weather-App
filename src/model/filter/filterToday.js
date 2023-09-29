@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
-import format from 'date-fns/format';
+import { parse, format } from 'date-fns';
 import parseForecastHour from './parseForecastHour';
-import { parse } from 'date-fns';
 
 const getTodayData = (rawData, isMetric, format24H) => {
   const { current, forecast } = rawData;
@@ -56,6 +55,8 @@ const getTodayData = (rawData, isMetric, format24H) => {
   const { sunrise, sunset, moonrise, moonset, moon_illumination, moon_phase } =
     forecastToday.astro;
 
+
+  // Make it dry
   const parseSunrise = parse(sunrise, 'hh:mm a', new Date());
   const sunrise24 = format(parseSunrise, 'HH:mm');
 
