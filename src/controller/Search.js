@@ -65,7 +65,7 @@ export default class SearchController {
 
   handleInput = (event) => {
     const container = document.querySelector('.searchElement');
-    
+
     this.inputValue = event.target.value;
 
     if (!this.inputValue || this.inputValue.length < MIN_ADDRESS_LENGTH) {
@@ -122,7 +122,7 @@ export default class SearchController {
 
     if (this.focusedItemIndex > -1) {
       const newSelectedItem = this.suggestedItems[this.focusedItemIndex];
-      await this.displaySelectedItem(newSelectedItem);
+      this.displaySelectedItem(newSelectedItem);
     }
   };
 

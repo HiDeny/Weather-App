@@ -38,12 +38,12 @@ export default class ViewController {
 
   displayWeather = async (weatherData) => {
     try {
-      selectBackground(weatherData.backgroundData);
       const weatherCard = await createWeatherCard(
         weatherData,
         this.userConfig.isMetric
       );
       displayComponent(weatherCard);
+      selectBackground(weatherData.backgroundData);
 
       // this.refreshData(getWeatherCall);
     } catch (error) {

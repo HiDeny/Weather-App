@@ -1,89 +1,123 @@
 /* eslint-disable camelcase */
-const sunnyImg = '/src/view/assets/background/Sunny.jpg';
-const cloudyImg =
-  '/src/view/assets/background/Cloudy-artem-anokhin-V4qjYCac7y8.jpg';
+const sunny = {
+  background: '/src/view/assets/background/Sunny.jpg',
+  fontColor: '#fff',
+};
+const cloudy = {
+  background:
+    '/src/view/assets/background/Cloudy-artem-anokhin-V4qjYCac7y8.jpg',
+  fontColor: '#fff',
+};
 
-const overcastImg =
-  '/src/view/assets/background/Overcast-barry-simon-4C6Rp23RjnE.jpg';
+const overcast = {
+  background:
+    '/src/view/assets/background/Overcast-felipe-palacio-mK-LBRSG1rA.jpg',
+  fontColor: '#fff',
+};
 
-const stormImg = '/src/view/assets/background/Storm-johannes-plenio.jpg';
-const mistyImg =
-  '/src/view/assets/background/Fog-mark-eder-T_gAmymcQFs-unsplash.jpg';
+const storm = {
+  background: '/src/view/assets/background/Storm-johannes-plenio.jpg',
+  fontColor: '#fff',
+};
 
-const rainImg =
-  '/src/view/assets/background/Rain-stormseeker-vRCZ3DztaoA-unsplash.jpg';
+const misty = {
+  background:
+    '/src/view/assets/background/Fog-mark-eder-T_gAmymcQFs-unsplash.jpg',
+  fontColor: '#808080',
+};
 
-const snowImg =
-  '/src/view/assets/background/Snow-alessio-soggetti-Pao8_rE4a44-unsplash.jpg';
+const rain = {
+  background:
+    '/src/view/assets/background/Rain-stormseeker-vRCZ3DztaoA-unsplash.jpg',
+  fontColor: '#fff',
+};
 
-const sleetImg =
-  '/src/view/assets/background/Sleet-chuttersnap-an7gMeifdhs-unsplash.jpg';
+const snow = {
+  background:
+    '/src/view/assets/background/Snow-alessio-soggetti-Pao8_rE4a44-unsplash.jpg',
+  fontColor: '#000',
+};
 
-const nightImg =
-  '/src/view/assets/background/NightStars-paul-volkmer-qVotvbsuM_c-unsplash.jpg';
+const sleet = {
+  background:
+    '/src/view/assets/background/Sleet-kelly-sikkema-hSPVuakrJqs-unsplash.jpg',
+  fontColor: '#fff',
+};
 
-const backgroundImages = {
-  Sunny: sunnyImg,
-  Clear: sunnyImg,
-  Cloudy: cloudyImg,
-  'Partly cloudy': cloudyImg,
-  Overcast: overcastImg,
-  Mist: mistyImg,
-  'Patchy rain possible': rainImg,
-  'Patchy snow possible': snowImg,
-  'Patchy sleet possible': sleetImg,
-  'Patchy freezing drizzle possible': snowImg,
-  'Thundery outbreaks possible': stormImg,
-  'Blowing snow': snowImg,
-  Blizzard: snowImg,
-  Fog: mistyImg,
-  'Freezing fog': snowImg,
-  'Patchy light drizzle': rainImg,
-  'Light drizzle': rainImg,
-  'Freezing drizzle': snowImg,
-  'Heavy freezing drizzle': snowImg,
-  'Patchy light rain': rainImg,
-  'Light rain': rainImg,
-  'Moderate rain at times': rainImg,
-  'Moderate rain': rainImg,
-  'Heavy rain at times': rainImg,
-  'Heavy rain': rainImg,
-  'Light freezing rain': snowImg,
-  'Moderate or heavy freezing rain': snowImg,
-  'Light sleet': sleetImg,
-  'Moderate or heavy sleet': sleetImg,
-  'Patchy light snow': snowImg,
-  'Light snow': snowImg,
-  'Patchy moderate snow': snowImg,
-  'Moderate snow': snowImg,
-  'Patchy heavy snow': snowImg,
-  'Heavy snow': snowImg,
-  'Ice pellets': snowImg,
-  'Light rain shower': rainImg,
-  'Moderate or heavy rain shower': rainImg,
-  'Torrential rain shower': rainImg,
-  'Light sleet showers': sleetImg,
-  'Moderate or heavy sleet showers': rainImg,
-  'Light snow showers': snowImg,
-  'Moderate or heavy snow showers': snowImg,
-  'Light showers of ice pellets': snowImg,
-  'Moderate or heavy showers of ice pellets': snowImg,
-  'Patchy light rain with thunder': rainImg,
-  'Moderate or heavy rain with thunder': rainImg,
-  'Patchy light snow with thunder': snowImg,
-  'Moderate or heavy snow with thunder': snowImg,
+const night = {
+  background:
+    '/src/view/assets/background/NightStars-paul-volkmer-qVotvbsuM_c-unsplash.jpg',
+  fontColor: '#fff',
+};
+
+const backgrounds = {
+  Sunny: sunny,
+  Clear: sunny,
+  Cloudy: cloudy,
+  'Partly cloudy': cloudy,
+  Overcast: overcast,
+  Mist: misty,
+  'Patchy rain possible': rain,
+  'Patchy snow possible': snow,
+  'Patchy sleet possible': sleet,
+  'Patchy freezing drizzle possible': snow,
+  'Thundery outbreaks possible': storm,
+  'Blowing snow': snow,
+  Blizzard: snow,
+  Fog: misty,
+  'Freezing fog': snow,
+  'Patchy light drizzle': rain,
+  'Light drizzle': rain,
+  'Freezing drizzle': snow,
+  'Heavy freezing drizzle': snow,
+  'Patchy light rain': rain,
+  'Light rain': rain,
+  'Moderate rain at times': rain,
+  'Moderate rain': rain,
+  'Heavy rain at times': rain,
+  'Heavy rain': rain,
+  'Light freezing rain': snow,
+  'Moderate or heavy freezing rain': snow,
+  'Light sleet': sleet,
+  'Moderate or heavy sleet': sleet,
+  'Patchy light snow': snow,
+  'Light snow': snow,
+  'Patchy moderate snow': snow,
+  'Moderate snow': snow,
+  'Patchy heavy snow': snow,
+  'Heavy snow': snow,
+  'Ice pellets': snow,
+  'Light rain shower': rain,
+  'Moderate or heavy rain shower': rain,
+  'Torrential rain shower': rain,
+  'Light sleet showers': sleet,
+  'Moderate or heavy sleet showers': rain,
+  'Light snow showers': snow,
+  'Moderate or heavy snow showers': snow,
+  'Light showers of ice pellets': snow,
+  'Moderate or heavy showers of ice pellets': snow,
+  'Patchy light rain with thunder': rain,
+  'Moderate or heavy rain with thunder': rain,
+  'Patchy light snow with thunder': snow,
+  'Moderate or heavy snow with thunder': snow,
 };
 
 const selectBackground = ({ weather, isDay }) => {
   // Do more testing with font colors
   // const testWeather = 'Freezing drizzle';
-
   const body = document.querySelector('body');
-  if (!backgroundImages[weather]) {
+  const currentInfo = document.querySelector('#mainCurrentInfo');
+
+  if (!backgrounds[weather]) {
     throw new Error('Background img missing!');
   }
-  if (isDay) body.style.backgroundImage = `url('${backgroundImages[weather]}')`;
-  if (!isDay) body.style.backgroundImage = `url('${nightImg}')`;
+  if (isDay) {
+    body.style.backgroundImage = `url('${backgrounds[weather].background}')`;
+    currentInfo.style.color = backgrounds[weather].fontColor;
+  }
+  if (!isDay) {
+    body.style.backgroundImage = `url('${night.background}')`;
+  }
 };
 
 export default selectBackground;

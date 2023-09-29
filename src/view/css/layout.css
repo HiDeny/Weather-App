@@ -24,14 +24,10 @@ html {
 }
 
 body {
-  /* cursor: url('/src/view/assets/icons/cursor/icons8-cursor-48.png'); */
-
-  background-image: url('../assets/background/Intro-davies-designs-studio-G-6kwVnClsE-unsplash.jpg');
+  background-image: url('../assets/background/Intro-engin-akyurt-zlGobrmAuyE.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 
   transition: background-image ease-in 2s;
 }
-
-
