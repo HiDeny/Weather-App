@@ -87,16 +87,12 @@ export default class SettingsController {
     saveBtn.addEventListener('click', handleClick);
   };
 
+  // Same as Search, make it DRY
   handleInput = (event) => {
     const container = document.querySelector('.defaultLocationLabel');
-
     this.inputValue = event.target.value;
 
-    if (this.inputValue === '') {
-      this.user.defaultLocation = this.inputValue;
-      saveUserConfig(this.user);
-    }
-
+    if (this.inputValue === '') this.user.defaultLocation = this.inputValue;
     if (!this.inputValue || this.inputValue.length < 3) {
       this.focusedItemIndex = -1;
       hideSuggestions();
@@ -123,6 +119,5 @@ export default class SettingsController {
     const defaultLocation = document.querySelector('.setDefaultLocation');
     defaultLocation.value = `${newSelectedItem.name}, ${newSelectedItem.country}`;
     this.user.defaultLocation = `${newSelectedItem.name}, ${newSelectedItem.country}`;
-    saveUserConfig(this.user);
   };
 }
