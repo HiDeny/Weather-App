@@ -47,7 +47,7 @@ export default class SearchController {
     }
   };
 
-  displaySelectedItem = async (newSelectedItem) => {
+  displaySelectedItem = (newSelectedItem) => {
     ViewController.loadingScreen();
     this.renderWeather(`${newSelectedItem.lat}, ${newSelectedItem.lon}`);
   };
@@ -57,13 +57,15 @@ export default class SearchController {
     this.renderWeather(await getGeolocation());
   };
 
-  handleSubmit = async (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
     ViewController.loadingScreen();
     this.renderWeather(this.inputValue);
   };
 
   handleInput = (event) => {
+    const container = document.querySelector('.searchElement');
+    
     this.inputValue = event.target.value;
 
     if (!this.inputValue || this.inputValue.length < MIN_ADDRESS_LENGTH) {
@@ -80,8 +82,11 @@ export default class SearchController {
       this.suggestedItems = await autocompleteData(this.inputValue);
       if (this.suggestedItems.length < 1) return;
 
-      // Can this go to view controller ?
-      displaySuggestions(this.suggestedItems, this.displaySelectedItem);
+      displaySuggestions(
+        container,
+        this.suggestedItems,
+        this.displaySelectedItem
+      );
     }, DEBOUNCE_DELAY);
   };
 

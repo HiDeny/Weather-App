@@ -1,5 +1,10 @@
 import { startClock } from '../view/cardSections/header/clockElement';
 import { saveUserConfig } from '../model/localStorage';
+import {
+  displaySuggestions,
+  hideSuggestions,
+} from '../view/cardSections/header/suggestionResults';
+import { autocompleteData } from '../model/service/weatherAPI';
 
 const toggleVisibility = () => {
   const settingsMenu = document.querySelector('.settingsMenu');
@@ -16,6 +21,13 @@ export default class SettingsController {
     this.user = userConfig;
     this.view = viewController;
     this.weather = weatherController;
+
+    this.inputValue = null;
+    this.suggestedItems = null;
+
+    this.currentInterval = null;
+    this.currentTimeout = null;
+    this.focusedItemIndex = -1;
   }
 
   initListeners() {
@@ -60,9 +72,7 @@ export default class SettingsController {
   defaultLocationListener = () => {
     const setDefaultLocation = document.querySelector('.setDefaultLocation');
 
-    setDefaultLocation.addEventListener('input', (event) => {
-      this.user.defaultLocation = event.target.value;
-    });
+    setDefaultLocation.addEventListener('input', this.handleInput);
   };
 
   saveSettingsListener = () => {
@@ -76,5 +86,39 @@ export default class SettingsController {
 
     showSettingsBtn.addEventListener('click', handleClick);
     saveBtn.addEventListener('click', handleClick);
+  };
+
+  handleInput = (event) => {
+    const container = document.querySelector('.defaultLocationLabel');
+
+    this.inputValue = event.target.value;
+
+    if (!this.inputValue || this.inputValue.length < 3) {
+      this.focusedItemIndex = -1;
+      hideSuggestions();
+      return;
+    }
+
+    if (this.currentTimeout) clearTimeout(this.currentTimeout);
+
+    this.currentTimeout = setTimeout(async () => {
+      this.currentTimeout = null;
+
+      this.suggestedItems = await autocompleteData(this.inputValue);
+      if (this.suggestedItems.length < 1) return;
+
+      displaySuggestions(
+        container,
+        this.suggestedItems,
+        this.displaySelectedItem
+      );
+    }, 300);
+  };
+
+  displaySelectedItem = (newSelectedItem) => {
+    const setDefaultLocation = document.querySelector('.setDefaultLocation');
+    setDefaultLocation.value = `${newSelectedItem.name}, ${newSelectedItem.country}`;
+    this.user.defaultLocation = `${newSelectedItem.name}, ${newSelectedItem.country}`;
+    saveUserConfig(this.user);
   };
 }

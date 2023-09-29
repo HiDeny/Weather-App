@@ -43,8 +43,9 @@ export default class MainController {
   };
 
   loadDefaultLocation = async () => {
-    await this.view.displayWeather(
-      this.weather.getWeather(this.userConfig.defaultLocation)
-    );
+    ViewController.loadingScreen();
+    const location = this.userConfig.defaultLocation;
+    const weatherData = await this.weather.getWeather(location);
+    await this.view.displayWeather(weatherData);
   };
 }

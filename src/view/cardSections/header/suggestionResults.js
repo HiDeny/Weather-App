@@ -13,7 +13,8 @@ const createSuggestionsElement = (suggestedItems, displaySelectedItem) => {
     const suggestionElement = pElementWithClass('suggestionElement', content);
 
     suggestionElement.addEventListener('click', async () => {
-      await displaySelectedItem(suggestedItems[index]);
+      hideSuggestions();
+      displaySelectedItem(suggestedItems[index]);
     });
     autocompleteDiv.append(suggestionElement);
   });
@@ -22,10 +23,13 @@ const createSuggestionsElement = (suggestedItems, displaySelectedItem) => {
 };
 
 // Move this to view controller
-export const displaySuggestions = (suggestedItems, displaySelectedItem) => {
-  const searchElement = document.querySelector('.searchElement');
+export const displaySuggestions = (
+  container,
+  suggestedItems,
+  displaySelectedItem
+) => {
   hideSuggestions();
-  searchElement.append(
+  container.append(
     createSuggestionsElement(suggestedItems, displaySelectedItem)
   );
 };
