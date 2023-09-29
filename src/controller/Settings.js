@@ -70,9 +70,8 @@ export default class SettingsController {
   };
 
   defaultLocationListener = () => {
-    const setDefaultLocation = document.querySelector('.setDefaultLocation');
-
-    setDefaultLocation.addEventListener('input', this.handleInput);
+    const defaultLocation = document.querySelector('.setDefaultLocation');
+    defaultLocation.addEventListener('input', this.handleInput);
   };
 
   saveSettingsListener = () => {
@@ -93,6 +92,11 @@ export default class SettingsController {
 
     this.inputValue = event.target.value;
 
+    if (this.inputValue === '') {
+      this.user.defaultLocation = this.inputValue;
+      saveUserConfig(this.user);
+    }
+
     if (!this.inputValue || this.inputValue.length < 3) {
       this.focusedItemIndex = -1;
       hideSuggestions();
@@ -110,14 +114,14 @@ export default class SettingsController {
       displaySuggestions(
         container,
         this.suggestedItems,
-        this.displaySelectedItem
+        this.setDefaultLocation
       );
     }, 300);
   };
 
-  displaySelectedItem = (newSelectedItem) => {
-    const setDefaultLocation = document.querySelector('.setDefaultLocation');
-    setDefaultLocation.value = `${newSelectedItem.name}, ${newSelectedItem.country}`;
+  setDefaultLocation = (newSelectedItem) => {
+    const defaultLocation = document.querySelector('.setDefaultLocation');
+    defaultLocation.value = `${newSelectedItem.name}, ${newSelectedItem.country}`;
     this.user.defaultLocation = `${newSelectedItem.name}, ${newSelectedItem.country}`;
     saveUserConfig(this.user);
   };
