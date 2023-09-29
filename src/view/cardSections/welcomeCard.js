@@ -1,25 +1,24 @@
-import '../css/cards.css';
+import '../css/welcomeCard.css';
 import { createElementWithClass, pElementWithClass } from './helperFunc';
+
+const features = [
+  'Check the clima anywhere, anytime',
+  "Find out what's happening in your current location",
+  'Set your favorite location as the default',
+  'Plan your day with hourly forecasts',
+];
 
 // Fix whole card, figure out better messages
 const createWelcomeCard = () => {
   const welcomeCard = createElementWithClass('section', 'welcomeCard');
 
-  const welcomeMessage = createElementWithClass(
-    'h1',
-    'welcomeMessage',
-    'Welcome to ClimaCheck!'
-  );
+  const welcomeMessage = createElementWithClass('h1', 'appName', 'ClimaCheck');
 
   const featuresHighlight = createElementWithClass('div', 'keyFeatures');
-  featuresHighlight.append(createElementWithClass('h2', 'title', 'Features:'));
-  featuresHighlight.append(
-    pElementWithClass('feature', 'Clima in any Location!')
-  );
-  featuresHighlight.append(pElementWithClass('feature', 'Hourly forecast'));
-  featuresHighlight.append(
-    pElementWithClass('feature', 'Check Clima in your location!')
-  );
+
+  features.forEach((feature) => {
+    featuresHighlight.append(pElementWithClass('feature', feature));
+  });
 
   const intro = createElementWithClass('div', 'intro');
   intro.append(createElementWithClass('h2', 'title', 'Intro:'));

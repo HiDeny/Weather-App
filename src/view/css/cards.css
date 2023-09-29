@@ -1,22 +1,11 @@
-.welcomeCard,
 .errorCard,
 #skeletonCard .weatherCard {
   height: calc(100vh - 5rem);
 }
 
-.welcomeCard {
-  justify-self: center;
-  align-self: center;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-
-  color: white;
-}
-
 .weatherCard {
+  overflow: scroll;
+  height: calc(100vh - 5rem);
 }
 
 .errorCard {

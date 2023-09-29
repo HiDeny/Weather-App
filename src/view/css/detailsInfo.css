@@ -30,11 +30,9 @@
   aspect-ratio: 1 / 1;
   padding: 1rem;
 
-  border: 1px solid;
-  border-radius: 20px;
-
   background: rgba(255, 255, 255, 0.22);
   border: solid #b3b3b31c 1px;
+  border-radius: 2rem;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
