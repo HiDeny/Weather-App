@@ -8,9 +8,9 @@ export default class WeatherDataController {
     this.app = appConfig;
   }
 
-  getWeather = async (search) => {
+  getWeather = async (location) => {
     try {
-      const rawData = await getWeatherData(search);
+      const rawData = await getWeatherData(location);
       this.app.lastData = rawData;
       this.app.conditionsText = rawData.current.condition.text;
       const cleanData = filterWeatherData(

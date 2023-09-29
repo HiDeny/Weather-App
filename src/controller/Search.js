@@ -37,9 +37,11 @@ export default class SearchController {
     geoLocationBtn.addEventListener('click', this.handleGeolocationSearch);
   };
 
-  renderWeather = async () => {
+  renderWeather = async (location) => {
     try {
-      await this.view.displayWeather(this.weather.getWeather(this.inputValue));
+      const weatherData = await this.weather.getWeather(location);
+      await this.view.displayWeather(weatherData);
+      this.updatePlaceholder();
     } catch (error) {
       throw new Error(error);
     }
@@ -47,28 +49,18 @@ export default class SearchController {
 
   displaySelectedItem = async (newSelectedItem) => {
     ViewController.loadingScreen();
-    const location = `${newSelectedItem.lat}, ${newSelectedItem.lon}`;
-    const weatherData = await this.weather.getWeather(location);
-    await this.view.displayWeather(weatherData);
-    this.updatePlaceholder();
+    this.renderWeather(`${newSelectedItem.lat}, ${newSelectedItem.lon}`);
   };
 
   handleGeolocationSearch = async () => {
-    // Display Loading when waiting for geolocation
     ViewController.loadingScreen();
-    const location = await getGeolocation();
-    const weatherData = await this.weather.getWeather(location);
-    await this.view.displayWeather(weatherData);
-    this.updatePlaceholder();
+    this.renderWeather(await getGeolocation());
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
     ViewController.loadingScreen();
-    const location = this.inputValue;
-    const weatherData = await this.weather.getWeather(location);
-    await this.view.displayWeather(weatherData);
-    this.updatePlaceholder();
+    this.renderWeather(this.inputValue);
   };
 
   handleInput = (event) => {
