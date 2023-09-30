@@ -2,13 +2,11 @@ import '../css/welcomeCard.css';
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 const features = [
-  'Clima anywhere, anytime',
-  'Clima in your current location',
-  'Set your favorite location as the default',
-  // 'Plan your day with hourly forecasts',
+  ['introSearch', 'Clima anywhere, anytime'],
+  ['introGeo', 'Clima in your current location'],
+  ['introDefault', 'Set your favorite location as the default'],
 ];
 
-// Fix whole card, figure out better messages
 const createWelcomeCard = () => {
   const welcomeCard = createElementWithClass('section', 'welcomeCard');
 
@@ -17,8 +15,12 @@ const createWelcomeCard = () => {
   const featuresHighlight = createElementWithClass('div', 'keyFeatures');
 
   features.forEach((feature) => {
-    // Make these buttons tha will trigger the event
-    featuresHighlight.append(pElementWithClass('feature', feature));
+    // Make these buttons that will trigger the event
+    const button = document.createElement('button');
+    button.classList.add('feature');
+    button.classList.add(feature[0]);
+    button.textContent = feature[1];
+    featuresHighlight.append(button);
   });
 
   const intro = createElementWithClass('div', 'intro');

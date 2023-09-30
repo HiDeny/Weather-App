@@ -23,9 +23,11 @@ const createSelectUnits = (isMetric) => {
   const metricBtn = createBtn(BUTTON_CLASS_NAME, METRIC);
   metricBtn.classList.add('metricUnits');
   metricBtn.classList.add('active');
+  metricBtn.title = 'Metric Units';
 
   const imperialBtn = createBtn(BUTTON_CLASS_NAME, IMPERIAL);
   imperialBtn.classList.add('imperialUnits');
+  imperialBtn.title = 'Imperial Units';
 
   if (!isMetric) {
     metricBtn.classList.remove('active');
@@ -49,9 +51,11 @@ const createSelectTimeFormat = (format24H) => {
   const format24Btn = createBtn(BUTTON_CLASS_NAME, FORMAT24);
   format24Btn.classList.add('format24');
   format24Btn.classList.add('active');
+  format24Btn.title = '24 Hour format';
 
   const format12Btn = createBtn(BUTTON_CLASS_NAME, FORMAT12);
   format12Btn.classList.add('format12');
+  format12Btn.title = '12 Hour format';
 
   if (!format24H) {
     format12Btn.classList.add('active');

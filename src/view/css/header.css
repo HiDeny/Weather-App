@@ -23,7 +23,10 @@ header {
   background-color: rgba(234, 234, 234, 0.7);
 
   backdrop-filter: saturate(180%) blur(0.7rem);
+  -webkit-backdrop-filter: saturate(180%) blur(0.7rem);
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+
+  transform: translateZ(0);
 }
 
 /* CLOCK */
@@ -63,6 +66,7 @@ header {
   align-items: center;
 
   gap: 1.5rem;
+  transform: translateZ(0);
 }
 
 .searchField {
@@ -133,7 +137,7 @@ header {
   position: absolute;
 
   z-index: 99;
-  top: 3.8rem;
+  top: 2.5rem;
   width: 25rem;
   margin: auto;
 
@@ -141,8 +145,9 @@ header {
   border-top: none;
   border-radius: 0.5rem;
 
-  background-color: rgba(234, 234, 234, 0.7);
+  background-color: rgba(234, 234, 234, 0.98);
   backdrop-filter: saturate(180%) blur(0.7rem);
+  -webkit-backdrop-filter: saturate(180%) blur(0.7rem);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
   transition: right ease-in-out 1s;

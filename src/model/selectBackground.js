@@ -52,9 +52,7 @@ const night = {
 
 const error = {
   background:
-    // '/src/view/assets/background/error1-17Desember2020-003_-Converted-_generated.jpg',
     '/src/view/assets/background/error2-vecteezy_404-landing-page_6549647.jpg',
-  // '/src/view/assets/background/error3-8030430_3828537.jpg',
   fontColor: '#fff',
 };
 

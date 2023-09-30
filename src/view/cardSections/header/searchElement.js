@@ -4,6 +4,7 @@ const createGeoLocationBtn = () => {
   geoLocationBtn.classList.add('geoLocationBtn');
   geoLocationBtn.type = 'button';
   geoLocationBtn.textContent = '🧭';
+  geoLocationBtn.title = 'Geolocation Search';
 
   return geoLocationBtn;
 };
@@ -14,6 +15,7 @@ const createSubmitBtn = () => {
   submitBtn.classList.add('submitBtn');
   submitBtn.type = 'submit';
   submitBtn.textContent = '🔍';
+  submitBtn.title = 'Location Search';
 
   return submitBtn;
 };
