@@ -1,5 +1,5 @@
 .errorCard,
-#skeletonCard .weatherCard {
+.weatherCard {
   height: calc(100vh - 5rem);
 }
 
@@ -14,18 +14,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.skeleton {
-  opacity: 0.7;
-  animation: skeleton-loading 1s ease-in-out infinite alternate;
-}
-
-@keyframes skeleton-loading {
-  0% {
-    color: #9d9d9db2;
-  }
-  100% {
-    color: #e4e4e49c;
-  }
 }

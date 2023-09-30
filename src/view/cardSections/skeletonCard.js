@@ -1,3 +1,4 @@
+import '../css/skeleton.css';
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 const createLocationInfo = () => {
