@@ -1,4 +1,4 @@
-import './css/cards.css';
+import './css/weatherCard.css';
 import { createElementWithClass } from './cardSections/helperFunc';
 
 import createCurrentInfo from './cardSections/currentInfo';

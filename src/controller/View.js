@@ -47,13 +47,18 @@ export default class ViewController {
 
       // this.refreshData(getWeatherCall);
     } catch (error) {
-      displayComponent(createErrorCard(error.message));
+      ViewController.errorScreen(error);
       throw new Error(error);
     }
   };
 
   static loadingScreen = () => {
     displayComponent(createSkeletonCard());
+  };
+
+  static errorScreen = (error) => {
+    displayComponent(createErrorCard(error.message));
+    selectBackground({}, true);
   };
 
   refreshData = async (getWeatherCall) => {

@@ -1,0 +1,39 @@
+.errorCard {
+  height: calc(100vh - 5rem);
+
+  display: grid;
+  grid-template-rows: 10rem 5rem auto;
+  align-items: end;
+  justify-items: center;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.errorMsg {
+  color: #034656;
+  height: 4rem;
+  margin: 0;
+  font-size: 3rem;
+}
+
+.support {
+  position: relative;
+  margin: 0;
+  color: #034656;
+  font-size: 2rem;
+}
+
+.support::before {
+  position: absolute;
+  left: -2.5rem;
+  width: 4rem;
+  height: 2rem;
+  top: 0.25rem;
+
+  content: ' ';
+  background-image: url('/src/view/assets/icons/mail/icons8-mail-96.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}

@@ -43,6 +43,7 @@ export default class SearchController {
       await this.view.displayWeather(weatherData);
       this.updatePlaceholder();
     } catch (error) {
+      ViewController.errorScreen(error);
       throw new Error(error);
     }
   };

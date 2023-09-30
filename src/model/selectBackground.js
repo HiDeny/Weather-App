@@ -50,6 +50,14 @@ const night = {
   fontColor: '#fff',
 };
 
+const error = {
+  background:
+    // '/src/view/assets/background/error1-17Desember2020-003_-Converted-_generated.jpg',
+    '/src/view/assets/background/error2-vecteezy_404-landing-page_6549647.jpg',
+  // '/src/view/assets/background/error3-8030430_3828537.jpg',
+  fontColor: '#fff',
+};
+
 const backgrounds = {
   Sunny: sunny,
   Clear: sunny,
@@ -102,13 +110,20 @@ const backgrounds = {
   'Moderate or heavy snow with thunder': snow,
 };
 
-const selectBackground = ({ weather, isDay }) => {
-  // Do more testing with font colors
-  // const testWeather = 'Freezing drizzle';
+const selectBackground = ({ weather, isDay }, isError = false) => {
   const body = document.querySelector('body');
   const currentInfo = document.querySelector('#mainCurrentInfo');
 
+  if (isError) {
+    body.style.backgroundImage = 'none';
+    document.querySelector(
+      '.errorCard'
+    ).style.backgroundImage = `url('${error.background}')`;
+    document.querySelector('.errorCard').style.color = error.fontColor;
+    return;
+  }
   if (!backgrounds[weather]) {
+    body.style.backgroundImage = `url('${backgrounds.Sunny.background}')`;
     throw new Error('Background img missing!');
   }
   if (isDay) {

@@ -82,6 +82,10 @@ header {
     rgba(255, 255, 255, 0.14) -3px -3px 6px 1px inset;
 }
 
+.searchField::placeholder {
+  color: #00000036;
+}
+
 .searchBtn {
   height: 2.5rem;
   aspect-ratio: 1 / 1;

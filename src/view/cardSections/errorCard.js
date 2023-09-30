@@ -1,5 +1,5 @@
-import '../css/cards.css';
-import { createElementWithClass } from './helperFunc';
+import '../css/errorCard.css';
+import { createElementWithClass, pElementWithClass } from './helperFunc';
 
 const errorResponses = {
   1002: 'API key not provided.',
@@ -18,7 +18,9 @@ const alternativeResponse = 'Something went wrong, please contact support.';
 
 const createErrorCard = (errorMessage) => {
   // Find better solution, because this will make an mess
-  const errorCode = errorMessage.split(' ')[3];
+  console.log(errorMessage.split(' '));
+  console.log(errorMessage.split(' ')[3]);
+  const errorCode = errorMessage.split(' ')[3] || '0';
   const correctResponse = errorResponses[errorCode] || alternativeResponse;
 
   const errorCard = createElementWithClass('div', 'errorCard');
@@ -29,6 +31,10 @@ const createErrorCard = (errorMessage) => {
     correctResponse
   );
   errorCard.append(errorResponse);
+  
+  errorCard.append(
+    pElementWithClass('support', 'Climasupport@diginey.com')
+  );
 
   return errorCard;
 };

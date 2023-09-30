@@ -35,6 +35,8 @@ export default class MainController {
     this.view.initUI(this.userConfig);
     this.initEventListeners();
     if (this.userConfig.defaultLocation) this.loadDefaultLocation();
+    // const error = { message: 'Something Went terrible wrong!' };
+    // ViewController.errorScreen(error);
   };
 
   initEventListeners = () => {
