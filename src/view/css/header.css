@@ -12,7 +12,7 @@ header {
   margin: auto;
 
   display: grid;
-  grid-template-columns: 15% 70% 15%;
+  grid-template-columns: 15% 70% 7.5% 7.5%;
   grid-template-rows: 100%;
 
   justify-items: center;
@@ -101,6 +101,10 @@ header {
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0);
 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+
   cursor: pointer;
   transition: box-shadow 200ms ease-in, background-color 200ms ease;
 }
@@ -120,16 +124,45 @@ header {
 
 .geoLocationBtn {
   background-image: url('/src/view/assets/icons/geolocation/icons8-near-me-96.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 80%;
 }
 
 .submitBtn {
   background-image: url('/src/view/assets/icons/search/icons8-search-96.png');
+}
+
+/* HOME BUTTON */
+.homeButton {
+  grid-column: 3;
+  height: 2.5rem;
+  aspect-ratio: 1 / 1;
+
+  background: none;
+  border: 0;
+  border-radius: 100%;
+
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0);
+
+  background-image: url('/src/view/assets/icons/home/icons8-home-96.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 80%;
+
+  cursor: pointer;
+  transition: box-shadow 200ms ease-in, background-color 200ms ease;
+}
+
+.homeButton:hover {
+  box-shadow: rgba(255, 255, 255, 0.24) 0px -23px 25px 0px inset,
+    rgba(255, 255, 255, 0.09) 0px -36px 30px 0px inset,
+    rgba(255, 255, 255, 0.1) 0px -79px 40px 0px inset,
+    rgba(255, 255, 255, 0.55) 0px 2px 1px, rgba(255, 255, 255, 0.09) 0px 4px 2px,
+    rgba(155, 155, 155, 0.62) 0px 8px 4px, rgba(0, 0, 0, 0.13) 0px 16px 8px,
+    rgba(0, 0, 0, 0.11) 0px 32px 16px;
+}
+
+.homeButton:active {
+  background-color: #0000002e;
 }
 
 /* SUGGESTIONS */

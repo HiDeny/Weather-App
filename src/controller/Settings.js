@@ -128,6 +128,4 @@ export default class SettingsController {
     defaultLocation.value = `${newSelectedItem.name}, ${newSelectedItem.country}`;
     this.user.defaultLocation = `${newSelectedItem.name}, ${newSelectedItem.country}`;
   };
-
-  introDefaultListener = () => {};
 }
