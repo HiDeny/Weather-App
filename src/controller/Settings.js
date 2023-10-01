@@ -10,6 +10,16 @@ const toggleActive = (buttons) => {
   buttons.forEach((button) => button.classList.toggle('active'));
 };
 
+const handleClickOutside = (event) => {
+  const settingsMenu = document.querySelector('.settingsMenu');
+
+  if (!settingsMenu.classList.contains('showSettings')) return;
+  if (!settingsMenu.contains(event.target)) {
+    settingsMenu.classList.remove('showSettings');
+    document.removeEventListener('click', handleClickOutside);
+  }
+};
+
 export default class SettingsController {
   constructor(userConfig, appConfig, viewController, weatherController) {
     this.app = appConfig;
@@ -35,7 +45,17 @@ export default class SettingsController {
 
   static toggleVisibility = () => {
     const settingsMenu = document.querySelector('.settingsMenu');
-    settingsMenu.classList.toggle('showSettings');
+
+    if (settingsMenu.classList.contains('showSettings')) {
+      settingsMenu.classList.remove('showSettings');
+      document.removeEventListener('click', handleClickOutside);
+      return;
+    }
+
+    settingsMenu.classList.add('showSettings');
+    setTimeout(() => {
+      document.addEventListener('click', handleClickOutside);
+    }, 10);
   };
 
   unitsListener = () => {
