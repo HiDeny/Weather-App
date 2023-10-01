@@ -22,7 +22,7 @@ const createWelcomeCard = () => {
   const introDefault = createFeatureBtn('Default', 'Set your default location');
   const introGeo = createFeatureBtn('Geo', 'Clima in your current location');
 
-  const featureButtons = [introSearch, introDefault, introGeo];
+  const featureButtons = [introGeo, introSearch, introDefault];
   featuresHighlight.append(...featureButtons);
 
   const welcomeContent = [welcomeMessage, featuresHighlight];

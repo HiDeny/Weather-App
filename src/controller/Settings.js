@@ -15,6 +15,11 @@ const toggleActive = (buttons) => {
   buttons.forEach((button) => button.classList.toggle('active'));
 };
 
+const handleIntroDefaultClick = () => {
+  toggleVisibility();
+  document.querySelector('.setDefaultLocation').focus();
+};
+
 export default class SettingsController {
   constructor(userConfig, appConfig, viewController, weatherController) {
     this.app = appConfig;
@@ -70,7 +75,10 @@ export default class SettingsController {
   };
 
   defaultLocationListener = () => {
+    const introDefaultLocation = document.querySelector('.introDefault');
     const defaultLocation = document.querySelector('.setDefaultLocation');
+
+    introDefaultLocation.addEventListener('click', handleIntroDefaultClick);
     defaultLocation.addEventListener('input', this.handleInput);
   };
 
@@ -120,4 +128,6 @@ export default class SettingsController {
     defaultLocation.value = `${newSelectedItem.name}, ${newSelectedItem.country}`;
     this.user.defaultLocation = `${newSelectedItem.name}, ${newSelectedItem.country}`;
   };
+
+  introDefaultListener = () => {};
 }

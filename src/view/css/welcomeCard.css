@@ -38,13 +38,12 @@
 
   display: flex;
 
-  width: 24rem;
-  padding: 1rem 1.5rem;
+  padding: 1.1rem 2.6rem;
   border: solid #b3b3b31c 1px;
   border-radius: 1rem;
   color: white;
 
-  background-color: rgb(163 163 163 / 69%);
+  background-color: rgba(193, 193, 193, 0.69);
   backdrop-filter: saturate(180%) blur(0.7rem);
   -webkit-backdrop-filter: saturate(180%) blur(0.7rem);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -70,11 +69,10 @@
 }
 
 .feature:hover {
-  padding: 1.2rem 1.6rem;
-  width: 26rem;
+  padding: 1.5rem 3.2rem;
 
-  background-color: rgba(197, 197, 197, 0.69);
-  font-size: 1.4rem;
+  background-color: rgba(213, 213, 213, 0.69);
+  font-size: 1.5rem;
 }
 
 .feature:active {
