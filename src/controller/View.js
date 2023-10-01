@@ -33,7 +33,7 @@ export default class ViewController {
   initUI = () => {
     document.body.append(createAttributionElement());
     document.body.append(createHeaderElement(this.userConfig));
-    displayComponent(createWelcomeCard());
+    ViewController.welcomeScreen();
   };
 
   displayWeather = async (weatherData) => {
@@ -59,6 +59,10 @@ export default class ViewController {
   static errorScreen = (error) => {
     displayComponent(createErrorCard(error.message));
     selectBackground({}, true);
+  };
+
+  static welcomeScreen = () => {
+    displayComponent(createWelcomeCard());
   };
 
   refreshData = async (getWeatherCall) => {

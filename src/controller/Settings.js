@@ -6,18 +6,8 @@ import {
 } from '../view/cardSections/header/suggestionResults';
 import { autocompleteData } from '../model/service/weatherAPI';
 
-const toggleVisibility = () => {
-  const settingsMenu = document.querySelector('.settingsMenu');
-  settingsMenu.classList.toggle('showSettings');
-};
-
 const toggleActive = (buttons) => {
   buttons.forEach((button) => button.classList.toggle('active'));
-};
-
-const handleIntroDefaultClick = () => {
-  toggleVisibility();
-  document.querySelector('.setDefaultLocation').focus();
 };
 
 export default class SettingsController {
@@ -42,6 +32,11 @@ export default class SettingsController {
     this.unitsListener();
     startClock(this.user.format24H);
   }
+
+  static toggleVisibility = () => {
+    const settingsMenu = document.querySelector('.settingsMenu');
+    settingsMenu.classList.toggle('showSettings');
+  };
 
   unitsListener = () => {
     const unitButtons = document.querySelectorAll('.unitBtn');
@@ -75,10 +70,7 @@ export default class SettingsController {
   };
 
   defaultLocationListener = () => {
-    const introDefaultLocation = document.querySelector('.introDefault');
     const defaultLocation = document.querySelector('.setDefaultLocation');
-
-    introDefaultLocation.addEventListener('click', handleIntroDefaultClick);
     defaultLocation.addEventListener('input', this.handleInput);
   };
 
@@ -88,7 +80,7 @@ export default class SettingsController {
 
     const handleClick = () => {
       saveUserConfig(this.user);
-      toggleVisibility();
+      SettingsController.toggleVisibility();
     };
 
     showSettingsBtn.addEventListener('click', handleClick);
