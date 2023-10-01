@@ -5,11 +5,6 @@ import SettingsController from './Settings';
 
 import { initUserConfig } from '../model/localStorage';
 
-const handleIntroDefaultClick = () => {
-  SettingsController.toggleVisibility();
-  document.querySelector('.setDefaultLocation').focus();
-};
-
 export default class MainController {
   appConfig = {
     geolocation: null,
@@ -50,15 +45,20 @@ export default class MainController {
   };
 
   introListeners = () => {
+    const introDefault = document.querySelector('.introDefault');
+
     this.search.introListeners();
-    document
-      .querySelector('.introDefault')
-      .addEventListener('click', handleIntroDefaultClick);
+    introDefault.addEventListener('click', this.handleIntroDefaultClick);
   };
 
   handleHomeButtonClick = () => {
     ViewController.welcomeScreen();
     this.introListeners();
+  };
+
+  handleIntroDefaultClick = () => {
+    this.settings.toggleVisibility();
+    document.querySelector('.setDefaultLocation').focus();
   };
 
   initHomeButton = () => {

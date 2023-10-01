@@ -10,20 +10,6 @@ const toggleActive = (buttons) => {
   buttons.forEach((button) => button.classList.toggle('active'));
 };
 
-const handleClickOutside = (event) => {
-  const settingsMenu = document.querySelector('.settingsMenu');
-
-  if (!settingsMenu.classList.contains('showSettings')) return;
-
-  if (!settingsMenu.contains(event.target)) {
-    const suggestionsItems =
-      document.querySelector('.suggestions-items') || null;
-    if (suggestionsItems) return;
-    settingsMenu.classList.remove('showSettings');
-    document.removeEventListener('click', handleClickOutside);
-  }
-};
-
 export default class SettingsController {
   constructor(userConfig, appConfig, viewController, weatherController) {
     this.app = appConfig;
@@ -47,19 +33,33 @@ export default class SettingsController {
     startClock(this.user.format24H);
   }
 
-  static toggleVisibility = () => {
+  toggleVisibility = () => {
     const settingsMenu = document.querySelector('.settingsMenu');
 
     if (settingsMenu.classList.contains('showSettings')) {
       settingsMenu.classList.remove('showSettings');
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('click', this.handleClickOutside);
+      saveUserConfig(this.user);
       return;
     }
 
     settingsMenu.classList.add('showSettings');
     setTimeout(() => {
-      document.addEventListener('click', handleClickOutside);
+      document.addEventListener('click', this.handleClickOutside);
     }, 10);
+  };
+
+  handleClickOutside = (event) => {
+    const settingsMenu = document.querySelector('.settingsMenu');
+
+    if (!settingsMenu.classList.contains('showSettings')) return;
+
+    if (!settingsMenu.contains(event.target)) {
+      if (document.querySelector('.suggestions-items')) return;
+      settingsMenu.classList.remove('showSettings');
+      document.removeEventListener('click', this.handleClickOutside);
+      saveUserConfig(this.user);
+    }
   };
 
   unitsListener = () => {
@@ -102,13 +102,8 @@ export default class SettingsController {
     const showSettingsBtn = document.querySelector('.showSettingsBtn');
     const saveBtn = document.querySelector('.saveBtn');
 
-    const handleClick = () => {
-      saveUserConfig(this.user);
-      SettingsController.toggleVisibility();
-    };
-
-    showSettingsBtn.addEventListener('click', handleClick);
-    saveBtn.addEventListener('click', handleClick);
+    showSettingsBtn.addEventListener('click', this.toggleVisibility);
+    saveBtn.addEventListener('click', this.toggleVisibility);
   };
 
   // Same as Search, make it DRY
