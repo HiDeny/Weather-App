@@ -73,8 +73,7 @@ export default class SearchController {
   handleSubmit = (event) => {
     event.preventDefault();
     ViewController.loadingScreen();
-    if (!this.inputValue === null) this.renderWeather(this.inputValue);
-    if (this.inputValue === null) this.renderWeather('');
+    this.renderWeather(this.inputValue);
   };
 
   handleInput = (event) => {

@@ -45,26 +45,27 @@ export default class MainController {
   };
 
   introListeners = () => {
-    const introDefault = document.querySelector('.introDefault');
-
     this.search.introListeners();
-    introDefault.addEventListener('click', this.handleIntroDefaultClick);
+    this.initIntroDefaultLocation();
   };
 
-  handleHomeButtonClick = () => {
-    ViewController.welcomeScreen();
-    this.introListeners();
-  };
-
-  handleIntroDefaultClick = () => {
-    this.settings.toggleVisibility();
-    document.querySelector('.setDefaultLocation').focus();
+  initIntroDefaultLocation = () => {
+    document.querySelector('.introDefault').addEventListener('click', () => {
+      this.settings.toggleVisibility();
+      document.querySelector('.setDefaultLocation').focus();
+    });
   };
 
   initHomeButton = () => {
-    document
-      .querySelector('.homeButton')
-      .addEventListener('click', this.handleHomeButtonClick);
+    document.querySelector('.homeButton').addEventListener('click', () => {
+      ViewController.welcomeScreen();
+      const searchField = document.querySelector('.searchField');
+
+      searchField.placeholder = 'City';
+      searchField.value = null;
+
+      this.introListeners();
+    });
   };
 
   loadDefaultLocation = async () => {

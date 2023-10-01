@@ -22,6 +22,7 @@ const createSubmitBtn = () => {
 
 const createSearchField = () => {
   const searchField = document.createElement('input');
+  searchField.required = true;
   searchField.className = 'searchField';
   searchField.autocomplete = 'off';
   searchField.placeholder = 'City';
