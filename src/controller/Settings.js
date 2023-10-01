@@ -14,7 +14,11 @@ const handleClickOutside = (event) => {
   const settingsMenu = document.querySelector('.settingsMenu');
 
   if (!settingsMenu.classList.contains('showSettings')) return;
+
   if (!settingsMenu.contains(event.target)) {
+    const suggestionsItems =
+      document.querySelector('.suggestions-items') || null;
+    if (suggestionsItems) return;
     settingsMenu.classList.remove('showSettings');
     document.removeEventListener('click', handleClickOutside);
   }

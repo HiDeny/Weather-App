@@ -2,7 +2,9 @@ import { createElementWithClass, pElementWithClass } from '../helperFunc';
 
 export const hideSuggestions = () => {
   const currentSuggestions = document.querySelector('.suggestions-items');
-  if (currentSuggestions) currentSuggestions.remove();
+  setTimeout(() => {
+    if (currentSuggestions) currentSuggestions.remove();
+  }, 10);
 };
 
 const createSuggestionsElement = (suggestedItems, displaySelectedItem) => {
@@ -13,8 +15,8 @@ const createSuggestionsElement = (suggestedItems, displaySelectedItem) => {
     const suggestionElement = pElementWithClass('suggestionElement', content);
 
     suggestionElement.addEventListener('click', async () => {
-      hideSuggestions();
       displaySelectedItem(suggestedItems[index]);
+      hideSuggestions();
     });
     autocompleteDiv.append(suggestionElement);
   });
