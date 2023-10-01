@@ -1,11 +1,15 @@
 import '../css/welcomeCard.css';
 import { createElementWithClass, pElementWithClass } from './helperFunc';
 
-const features = [
-  ['introSearch', 'Clima anywhere, anytime'],
-  ['introGeo', 'Clima in your current location'],
-  ['introDefault', 'Set your favorite location as the default'],
-];
+export const createFeatureBtn = (className, content) => {
+  const button = createElementWithClass('button', 'feature');
+
+  button.classList.add(`intro${className}`);
+  button.append(createElementWithClass('i', `icon`));
+  button.append(pElementWithClass('content', content));
+
+  return button;
+};
 
 const createWelcomeCard = () => {
   const welcomeCard = createElementWithClass('section', 'welcomeCard');
@@ -14,43 +18,14 @@ const createWelcomeCard = () => {
 
   const featuresHighlight = createElementWithClass('div', 'keyFeatures');
 
-  features.forEach((feature) => {
-    // Make these buttons that will trigger the event
-    const button = document.createElement('button');
-    button.classList.add('feature');
-    button.classList.add(feature[0]);
-    button.textContent = feature[1];
-    featuresHighlight.append(button);
-  });
+  const introSearch = createFeatureBtn('Search', 'Clima anywhere, anytime');
+  const introDefault = createFeatureBtn('Default', 'Set your default location');
+  const introGeo = createFeatureBtn('Geo', 'Clima in your current location');
 
-  const intro = createElementWithClass('div', 'intro');
-  intro.append(createElementWithClass('h2', 'title', 'Intro:'));
-  intro.append(
-    pElementWithClass(
-      'settingsIntro',
-      'Here you can setup default units and location'
-    )
-  );
-  intro.append(
-    pElementWithClass(
-      'geoIntro',
-      'This button will show you weather in your current position!'
-    )
-  );
-  intro.append(
-    pElementWithClass(
-      'searchIntro',
-      'Here you can search your desired location and press search!'
-    )
-  );
-  intro.append(
-    pElementWithClass(
-      'settingsIntro',
-      'Set your preferences (Default location, Units, TimeFormat)'
-    )
-  );
+  const featureButtons = [introSearch, introDefault, introGeo];
+  featuresHighlight.append(...featureButtons);
 
-  const welcomeContent = [welcomeMessage, featuresHighlight, intro];
+  const welcomeContent = [welcomeMessage, featuresHighlight];
   welcomeCard.append(...welcomeContent);
 
   return welcomeCard;

@@ -28,13 +28,21 @@ export default class SearchController {
 
   initListeners = () => {
     const searchElement = document.querySelector('.searchElement');
-    const geoLocationBtn = searchElement.querySelector('.geoLocationBtn');
     const searchFieldElement = searchElement.querySelector('.searchField');
+    const introSearch = document.querySelector('.introSearch');
 
-    searchElement.addEventListener('submit', this.handleSubmit);
-    searchFieldElement.addEventListener('input', this.handleInput);
+    const geoLocationBtn = searchElement.querySelector('.geoLocationBtn');
+    const introGeo = document.querySelector('.introGeo');
+
     searchFieldElement.addEventListener('keydown', this.handleKeyDown);
+    searchFieldElement.addEventListener('input', this.handleInput);
+    searchElement.addEventListener('submit', this.handleSubmit);
+    introSearch.addEventListener('click', () => {
+      document.querySelector('.searchField').focus();
+    });
+
     geoLocationBtn.addEventListener('click', this.handleGeolocationSearch);
+    introGeo.addEventListener('click', this.handleGeolocationSearch);
   };
 
   renderWeather = async (location) => {
@@ -61,7 +69,8 @@ export default class SearchController {
   handleSubmit = (event) => {
     event.preventDefault();
     ViewController.loadingScreen();
-    this.renderWeather(this.inputValue);
+    if (!this.inputValue === null) this.renderWeather(this.inputValue);
+    if (this.inputValue === null) this.renderWeather('');
   };
 
   handleInput = (event) => {
