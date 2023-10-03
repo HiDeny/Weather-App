@@ -1,4 +1,5 @@
 import getGeolocation from '../model/geoLocation';
+import { saveUserConfig } from '../model/localStorage';
 import { autocompleteData } from '../model/service/weatherAPI';
 
 import {
@@ -50,6 +51,8 @@ export default class SearchController {
   };
 
   renderWeather = async (location) => {
+    this.user.locationSearched += 1;
+    saveUserConfig(this.user);
     try {
       const weatherData = await this.weather.getWeather(location);
       await this.view.displayWeather(weatherData);

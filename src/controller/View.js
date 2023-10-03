@@ -24,19 +24,35 @@ const displayComponent = (newComponent) => {
   if (currentSkeleton) currentSkeleton.replaceWith(newComponent);
 };
 
-const scrollBtnHandleClick = () => {
+const handleWeatherCardBehavior = ({ locationSearched }) => {
   const scrollBtn = document.querySelector('.scrollBtn');
   const currentWeather = document.querySelector('.weatherCard');
 
-  scrollBtn.addEventListener('click', () => {
-    const scrollUp = scrollBtn.classList.contains('rotateUp');
-    const scrollDir = scrollUp ? 0 : currentWeather.scrollHeight;
+  if (locationSearched <= 3) {
+    setTimeout(() => {
+      scrollBtn.classList.add('hint');
+    }, 1000);
+  }
 
-    scrollBtn.classList.toggle('rotateUp');
-    currentWeather.scrollTo({
-      top: scrollDir,
-      behavior: 'smooth',
-    });
+  currentWeather.addEventListener('scroll', () => {
+    if (currentWeather.scrollTop >= 100) scrollBtn.classList.add('rotateUp');
+    if (currentWeather.scrollTop < 100) scrollBtn.classList.remove('rotateUp');
+  });
+
+  scrollBtn.addEventListener('click', () => {
+    if (currentWeather.scrollTop >= 100) {
+      currentWeather.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    }
+
+    if (currentWeather.scrollTop < 100) {
+      currentWeather.scrollTo({
+        top: currentWeather.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
   });
 };
 
@@ -60,7 +76,7 @@ export default class ViewController {
       );
       displayComponent(weatherCard);
       selectBackground(weatherData.backgroundData);
-      scrollBtnHandleClick();
+      handleWeatherCardBehavior(this.userConfig);
 
       // this.refreshData(getWeatherCall);
     } catch (error) {

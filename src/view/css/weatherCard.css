@@ -1,7 +1,7 @@
 .weatherCard {
   overflow: scroll;
   height: calc(100vh - 5rem);
-  animation: slowShow 3s;
+  animation: fadeIn 1s ease-in;
 }
 
 .scrollBtn {
@@ -17,23 +17,51 @@
   background: transparent;
   color: whitesmoke;
 
-  background-image: url('../assets/icons/moveDown/icons8-arrow-down-96.png');
+  background-image: url('../assets/icons/moveDown/icons8-down-96.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
 
-  transition: transform 5ms ease-in-out;
+  transition: transform 500ms ease-in-out, width 500ms ease;
+
+  cursor: pointer;
+}
+
+.scrollBtn:hover {
+  width: 3.5rem;
 }
 
 .rotateUp {
   transform: rotate(0.5turn);
 }
 
-@keyframes slowShow {
+.hint {
+  animation: scrollHint 1s;
+}
+
+@keyframes fadeIn {
   0% {
     opacity: 0;
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes scrollHint {
+  0% {
+    transform: translate(0rem, 0rem);
+  }
+
+  20% {
+    transform: translate(0rem, -1.5rem);
+  }
+
+  70% {
+    transform: translate(0rem, 0.5rem);
+  }
+
+  100% {
+    transform: translate(0rem, 0rem);
   }
 }

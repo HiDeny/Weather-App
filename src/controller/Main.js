@@ -76,5 +76,3 @@ export default class MainController {
     await this.view.displayWeather(weatherData);
   };
 }
-
-
