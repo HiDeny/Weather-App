@@ -32,17 +32,6 @@ const createForecastHourly = (todayData) => {
           tension: 0.3,
         },
         {
-          label: 'Chance of Rain %',
-          data: forecastHourly.map((data) => data.rain),
-          borderColor: '#1833A8',
-
-          pointStyle: 'circle',
-          pointHoverRadius: 3,
-
-          tension: 0.3,
-          hidden: true,
-        },
-        {
           label: 'Wind',
           data: forecastHourly.map((data) => data.wind.speed),
           borderColor: '#3E606F',
@@ -57,6 +46,17 @@ const createForecastHourly = (todayData) => {
           label: 'Wind - Gust',
           data: forecastHourly.map((data) => data.wind.gust),
           borderColor: '#193441',
+
+          pointStyle: 'circle',
+          pointHoverRadius: 3,
+
+          tension: 0.3,
+          hidden: true,
+        },
+        {
+          label: 'Chance of Rain %',
+          data: forecastHourly.map((data) => data.rain),
+          borderColor: '#1833A8',
 
           pointStyle: 'circle',
           pointHoverRadius: 3,

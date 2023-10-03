@@ -1,4 +1,39 @@
 .weatherCard {
   overflow: scroll;
   height: calc(100vh - 5rem);
+  animation: slowShow 3s;
+}
+
+.scrollBtn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+
+  width: 3rem;
+
+  aspect-ratio: 1/1;
+  border: 0;
+  border-radius: 100%;
+  background: transparent;
+  color: whitesmoke;
+
+  background-image: url('../assets/icons/moveDown/icons8-arrow-down-96.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  transition: transform 5ms ease-in-out;
+}
+
+.rotateUp {
+  transform: rotate(0.5turn);
+}
+
+@keyframes slowShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

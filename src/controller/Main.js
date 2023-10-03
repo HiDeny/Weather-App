@@ -63,6 +63,7 @@ export default class MainController {
 
       searchField.placeholder = 'City';
       searchField.value = null;
+      this.appConfig.lastData = null;
 
       this.introListeners();
     });
@@ -75,3 +76,5 @@ export default class MainController {
     await this.view.displayWeather(weatherData);
   };
 }
+
+

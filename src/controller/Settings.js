@@ -3,6 +3,7 @@ import { saveUserConfig } from '../model/localStorage';
 import {
   displaySuggestions,
   hideSuggestions,
+  // setActive,
 } from '../view/cardSections/header/suggestionResults';
 import { autocompleteData } from '../model/service/weatherAPI';
 
@@ -96,6 +97,8 @@ export default class SettingsController {
   defaultLocationListener = () => {
     const defaultLocation = document.querySelector('.setDefaultLocation');
     defaultLocation.addEventListener('input', this.handleInput);
+    // defaultLocation.addEventListener('input', this.handleArrowDown);
+    // defaultLocation.addEventListener('input', this.handleInput);
   };
 
   saveSettingsListener = () => {
@@ -133,6 +136,33 @@ export default class SettingsController {
       );
     }, 300);
   };
+
+  // handleKeyDown = (event) => {
+  //   const suggestionsItems = document.querySelector('.suggestions-items');
+
+  //   if (suggestionsItems) {
+  //     const items = suggestionsItems.getElementsByTagName('p');
+  //     if (event.key === 'ArrowDown') this.handleArrowDown(event, items);
+  //     if (event.key === 'ArrowUp') this.handleArrowUp(event, items);
+  //     if (event.key === 'Enter') this.handleEnter(event, items);
+  //   }
+  // };
+
+  // handleArrowDown = (event, suggestionItems) => {
+  //   event.preventDefault();
+  //   const { length } = document.querySelector('.suggestions-items');
+
+  //   this.focusedItemIndex = (this.focusedItemIndex + 1) % length;
+  //   setActive(suggestionItems, this.focusedItemIndex);
+  // };
+
+  // handleArrowUp = (event, suggestionItems) => {
+  //   event.preventDefault();
+  //   const { length } = suggestionItems;
+
+  //   this.focusedItemIndex = (this.focusedItemIndex - 1 + length) % length;
+  //   setActive(suggestionItems, this.focusedItemIndex);
+  // };
 
   setDefaultLocation = (newSelectedItem) => {
     const defaultLocation = document.querySelector('.setDefaultLocation');

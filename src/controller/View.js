@@ -24,6 +24,22 @@ const displayComponent = (newComponent) => {
   if (currentSkeleton) currentSkeleton.replaceWith(newComponent);
 };
 
+const scrollBtnHandleClick = () => {
+  const scrollBtn = document.querySelector('.scrollBtn');
+  const currentWeather = document.querySelector('.weatherCard');
+
+  scrollBtn.addEventListener('click', () => {
+    const scrollUp = scrollBtn.classList.contains('rotateUp');
+    const scrollDir = scrollUp ? 0 : currentWeather.scrollHeight;
+
+    scrollBtn.classList.toggle('rotateUp');
+    currentWeather.scrollTo({
+      top: scrollDir,
+      behavior: 'smooth',
+    });
+  });
+};
+
 export default class ViewController {
   constructor(userConfig) {
     this.userConfig = userConfig;
@@ -44,6 +60,7 @@ export default class ViewController {
       );
       displayComponent(weatherCard);
       selectBackground(weatherData.backgroundData);
+      scrollBtnHandleClick();
 
       // this.refreshData(getWeatherCall);
     } catch (error) {

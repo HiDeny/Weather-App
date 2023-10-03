@@ -13,6 +13,7 @@ const createWeatherCard = async (weatherData, isMetric) => {
     weatherCard.append(createCurrentInfo(currentInfo, isMetric));
     weatherCard.append(await createForecasts(forecasts, isMetric));
     weatherCard.append(createDetailsInfo(detailsInfo, isMetric));
+    weatherCard.append(createElementWithClass('button', 'scrollBtn'));
 
     return weatherCard;
   } catch (err) {
