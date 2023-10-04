@@ -50,8 +50,8 @@ body {
   z-index: 0;
   opacity: 0;
 
-  -webkit-transition: opacity ease-in-out 3s;
   transition: opacity ease-in-out 3s;
+  -webkit-transition: opacity ease-in-out 3s;
 }
 
 .errorBackground {

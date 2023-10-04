@@ -1,7 +1,7 @@
 .weatherCard {
   z-index: 10;
   position: relative;
-  
+
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -29,6 +29,7 @@
   background-size: contain;
 
   transition: transform 500ms ease-in-out, width 500ms ease;
+  -webkit-transition: transform 500ms ease-in-out, width 500ms ease;
 
   cursor: pointer;
 }

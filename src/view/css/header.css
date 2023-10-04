@@ -107,6 +107,7 @@ header {
 
   cursor: pointer;
   transition: box-shadow 200ms ease-in, background-color 200ms ease;
+  -webkit-transition: box-shadow 200ms ease-in, background-color 200ms ease;
 }
 
 .searchBtn:hover {
@@ -150,6 +151,7 @@ header {
 
   cursor: pointer;
   transition: box-shadow 200ms ease-in, background-color 200ms ease;
+  -webkit-transition: box-shadow 200ms ease-in, background-color 200ms ease;
 }
 
 .homeButton:hover {
@@ -184,6 +186,7 @@ header {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
   transition: right ease-in-out 1s;
+  -webkit-transition: right ease-in-out 1s;
 }
 
 .suggestionElement {
