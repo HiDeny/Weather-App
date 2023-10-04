@@ -34,7 +34,6 @@ export default class MainController {
   init = () => {
     this.view.initUI(this.userConfig);
     this.initEventListeners();
-    if (this.userConfig.defaultLocation) this.loadDefaultLocation();
   };
 
   initEventListeners = () => {
@@ -50,7 +49,20 @@ export default class MainController {
   };
 
   initIntroDefaultLocation = () => {
-    document.querySelector('.introDefault').addEventListener('click', () => {
+    const introDefaultBtn = document.querySelector('.introDefault');
+
+    if (this.userConfig.defaultLocation) {
+      const currentContent = document.querySelector('.introDefault > .content');
+      const cityName = this.userConfig.defaultLocation
+        .split(' ')[0]
+        .replace(/,$/, '');
+
+      currentContent.textContent = `Clima in ${cityName}`;
+      introDefaultBtn.addEventListener('click', this.loadDefaultLocation);
+      return;
+    }
+
+    introDefaultBtn.addEventListener('click', () => {
       this.settings.toggleVisibility();
       document.querySelector('.setDefaultLocation').focus();
     });

@@ -19,7 +19,7 @@ const createWelcomeCard = () => {
   const featuresHighlight = createElementWithClass('div', 'keyFeatures');
 
   const introSearch = createFeatureBtn('Search', 'Clima anywhere, anytime');
-  const introDefault = createFeatureBtn('Default', 'Set your default location');
+  const introDefault = createFeatureBtn('Default', 'Set your favorite location');
   const introGeo = createFeatureBtn('Geo', 'Clima in your current location');
 
   const featureButtons = [introGeo, introSearch, introDefault];

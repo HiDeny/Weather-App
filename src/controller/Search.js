@@ -20,6 +20,7 @@ export default class SearchController {
   constructor(userConfig, appConfig, viewController, weatherController) {
     this.app = appConfig;
     this.user = userConfig;
+
     this.view = viewController;
     this.weather = weatherController;
 

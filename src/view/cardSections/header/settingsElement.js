@@ -71,7 +71,8 @@ const createSelectTimeFormat = (format24H) => {
 const createSelectDefaultLocation = (currentDefaultLocation) => {
   const label = document.createElement('label');
   label.for = 'setDefaultLocation';
-  label.textContent = 'Default Location';
+  // Last min decision, to change name to Favorite location 
+  label.textContent = 'Favorite Location';
   label.className = 'defaultLocationLabel';
 
   const setDefaultLocation = document.createElement('input');
