@@ -55,19 +55,21 @@ const getTodayData = (rawData, isMetric, format24H) => {
   const { sunrise, sunset, moonrise, moonset, moon_illumination, moon_phase } =
     forecastToday.astro;
 
-
   // Make it dry
   const parseSunrise = parse(sunrise, 'hh:mm a', new Date());
-  const sunrise24 = format(parseSunrise, 'HH:mm');
+  const sunrise24 = parseSunrise ? format(parseSunrise, 'HH:mm') : sunrise;
 
   const parseSunset = parse(sunset, 'hh:mm a', new Date());
-  const sunset24 = format(parseSunset, 'HH:mm');
+  const sunset24 = parseSunset ? format(parseSunset, 'HH:mm') : sunset;
 
-  const parseMoonrise = parse(moonrise, 'hh:mm a', new Date());
-  const moonrise24 = format(parseMoonrise, 'HH:mm');
+  const noMoonrise = moonrise === 'No moonrise';
+  const parseMoonrise = noMoonrise
+    ? moonrise
+    : parse(moonrise, 'hh:mm a', new Date());
+  const moonrise24 = noMoonrise ? moonrise : format(parseMoonrise, 'HH:mm');
 
   const parseMoonset = parse(moonset, 'hh:mm a', new Date());
-  const moonset24 = format(parseMoonset, 'HH:mm');
+  const moonset24 = parseMoonset ? format(parseMoonset, 'HH:mm') : moonset;
 
   const forecastHourly = parseForecastHour(forecastToday.hour, isMetric);
 

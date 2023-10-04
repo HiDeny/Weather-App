@@ -24,10 +24,29 @@ html {
 }
 
 body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  background-color: rgb(171, 183, 193);
   background-image: url('../assets/background/Intro-engin-akyurt-zlGobrmAuyE.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 
-  transition: background-image ease-in 2s;
+  -webkit-transition: background-image 5s ease-in-out;
+  transition: background-image 5s ease-in-out;
+}
+
+.dynamicUpdate {
+  animation: updateBackground 2s ease-in;
+}
+
+@keyframes updateBackground {
+  0% {
+    background-image: var(--old-background);
+  }
+  100% {
+    background-image: var(--new-background);
+  }
 }

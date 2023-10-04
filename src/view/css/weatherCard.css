@@ -1,5 +1,8 @@
 .weatherCard {
   overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
   height: calc(100vh - 5rem);
   animation: fadeIn 1s ease-in;
 }
@@ -25,6 +28,10 @@
   transition: transform 500ms ease-in-out, width 500ms ease;
 
   cursor: pointer;
+}
+
+.weatherCard::-webkit-scrollbar {
+  display: none;
 }
 
 .scrollBtn:hover {

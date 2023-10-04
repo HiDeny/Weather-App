@@ -113,6 +113,7 @@ const selectBackground = ({ weather, isDay }, isError = false) => {
   const currentInfo = document.querySelector('#mainCurrentInfo');
 
   if (isError) {
+    body.style.backgroundColor = 'white';
     body.style.backgroundImage = 'none';
     document.querySelector(
       '.errorCard'
@@ -125,12 +126,30 @@ const selectBackground = ({ weather, isDay }, isError = false) => {
     throw new Error('Background img missing!');
   }
   if (isDay) {
-    body.style.backgroundImage = `url('${backgrounds[weather].background}')`;
+    dynamicUpdate(backgrounds[weather].background);
+    // body.style.backgroundImage = `url('${backgrounds[weather].background}')`;
     currentInfo.style.color = backgrounds[weather].fontColor;
   }
   if (!isDay) {
     body.style.backgroundImage = `url('${night.background}')`;
   }
+};
+
+const dynamicUpdate = (newBackground) => {
+  const body = document.querySelector('body');
+  console.log(window.getComputedStyle(body).backgroundImage);
+
+  body.style.setProperty(
+    '--old-background',
+    window.getComputedStyle(body).backgroundImage
+  );
+  body.style.setProperty('--new-background', `url('${newBackground}'`);
+
+  body.classList.add('dynamicUpdate');
+
+  setTimeout(() => {
+    body.style.backgroundImage = `url('${newBackground}')`;
+  }, 1500);
 };
 
 export default selectBackground;

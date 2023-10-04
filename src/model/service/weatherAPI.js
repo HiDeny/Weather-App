@@ -15,7 +15,7 @@ const fetchData = async (url) => {
 export const getWeatherData = async (location) => {
   // Getting forecast only because current weather is already with it
   const weatherURL = `${BASE_URL}/forecast.json?key=${API_KEY}&q=${location}&days=3`;
-  const data = await fetchData(weatherURL);
+  const data = await fetchData(weatherURL, { mode: 'cors' });
   return data;
 };
 export const autocompleteData = async (userSearch) => {
