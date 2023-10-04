@@ -9,8 +9,8 @@
 
 .scrollBtn {
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 3rem;
+  right: 6rem;
 
   width: 3rem;
 
@@ -43,7 +43,7 @@
 }
 
 .hint {
-  animation: scrollHint 1s;
+  animation: scrollHint 1s 2;
 }
 
 @keyframes fadeIn {
@@ -65,7 +65,7 @@
   }
 
   70% {
-    transform: translate(0rem, 0.5rem);
+    transform: translate(0rem, 1.5rem);
   }
 
   100% {

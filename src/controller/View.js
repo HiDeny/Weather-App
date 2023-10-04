@@ -31,7 +31,7 @@ const handleWeatherCardBehavior = ({ locationSearched }) => {
   if (locationSearched <= 3) {
     setTimeout(() => {
       scrollBtn.classList.add('hint');
-    }, 1000);
+    }, 2000);
   }
 
   currentWeather.addEventListener('scroll', () => {
