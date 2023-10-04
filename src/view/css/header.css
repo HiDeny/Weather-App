@@ -17,16 +17,24 @@ header {
 
   justify-items: center;
   align-items: center;
-  border: solid #b3b3b31c 1px;
-  border-radius: 1.5rem;
 
-  background-color: rgba(234, 234, 234, 0.7);
+  transform: translateZ(0);
+}
+
+header::before {
+  z-index: -1;
+  position: absolute;
+  content: '';
+
+  height: 100%;
+  width: 100%;
 
   backdrop-filter: saturate(180%) blur(0.7rem);
   -webkit-backdrop-filter: saturate(180%) blur(0.7rem);
+  background-color: rgba(234, 234, 234, 0.7);
+  border: solid #b3b3b31c 1px;
+  border-radius: 1.5rem;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
-
-  transform: translateZ(0);
 }
 
 /* CLOCK */
