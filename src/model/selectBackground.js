@@ -122,12 +122,12 @@ const selectBackground = ({ weather, isDay }) => {
 
     setTimeout(() => {
       newBackground.classList.add('updateBackground');
-    }, 1100);
+    }, 500);
 
     setTimeout(() => {
       body.classList.remove('errorBackground');
       body.style.backgroundImage = newBackgroundImage;
-    }, 4000);
+    }, 3500);
 
     setTimeout(() => {
       newBackground.classList.remove('updateBackground');

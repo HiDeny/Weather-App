@@ -71,7 +71,11 @@ const getTodayData = (rawData, isMetric, format24H) => {
   const parseMoonset = parse(moonset, 'hh:mm a', new Date());
   const moonset24 = parseMoonset ? format(parseMoonset, 'HH:mm') : moonset;
 
-  const forecastHourly = parseForecastHour(forecastToday.hour, isMetric);
+  const forecastHourly = parseForecastHour(
+    forecastToday.hour,
+    isMetric,
+    format24H
+  );
 
   return {
     lastUpdate: format24H ? lastUpdateFormatted24 : lastUpdateFormatted12,

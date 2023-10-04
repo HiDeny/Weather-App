@@ -11,7 +11,7 @@ const createForecasts = async (forecastsData, isMetric) => {
   const forecastSection = createElementWithClass('section', 'forecasts');
 
   const forecastHourly = createElementWithClass('div', 'todayForecast');
-  forecastHourly.append(createForecastHourly(today, isMetric));
+  forecastHourly.append(createForecastHourly(today));
 
   const upcomingDays = createElementWithClass('div', 'upcoming');
   upcomingDays.append(await createUpcomingCard(firstDay, isMetric));
