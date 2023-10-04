@@ -55,7 +55,6 @@ const getTodayData = (rawData, isMetric, format24H) => {
   const { sunrise, sunset, moonrise, moonset, moon_illumination, moon_phase } =
     forecastToday.astro;
 
-  // Make it dry
   const parseSunrise = parse(sunrise, 'hh:mm a', new Date());
   const sunrise24 = parseSunrise ? format(parseSunrise, 'HH:mm') : sunrise;
 

@@ -24,7 +24,6 @@ const createSuggestionsElement = (suggestedItems, displaySelectedItem) => {
   return autocompleteDiv;
 };
 
-// Move this to view controller
 export const displaySuggestions = (
   container,
   suggestedItems,
@@ -36,7 +35,6 @@ export const displaySuggestions = (
   );
 };
 
-// Move this to view controller
 export const setActive = (suggestions, index) => {
   if (!suggestions || index < 0) return;
 
