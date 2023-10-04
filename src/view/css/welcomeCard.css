@@ -41,13 +41,13 @@
   display: flex;
 
   padding: 1.1rem 2rem;
-  border: solid #b3b3b31c 1px;
+  border: var(--default-border);
   border-radius: 1rem;
   color: white;
 
   background-color: rgba(193, 193, 193, 0.69);
-  backdrop-filter: saturate(180%) blur(0.7rem);
-  -webkit-backdrop-filter: saturate(180%) blur(0.7rem);
+  backdrop-filter: var(--backdrop);
+  -webkit-backdrop-filter: var(--backdrop);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
   font-size: 1.2rem;

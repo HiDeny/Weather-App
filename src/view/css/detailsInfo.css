@@ -13,12 +13,12 @@
 
   padding: 1rem;
   margin: 2rem auto 2rem;
-  border: solid #b3b3b31c 1px;
+  border: var(--default-border);
   border-radius: 2rem;
 
-  background-color: rgba(234, 234, 234, 0.7);
-  backdrop-filter: saturate(180%) blur(0.7rem);
-  -webkit-backdrop-filter: saturate(180%) blur(0.7rem);
+  background-color: var(--default-background-color);
+  backdrop-filter: var(--backdrop);
+  -webkit-backdrop-filter: var(--backdrop);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -32,7 +32,7 @@
   padding: 1rem;
 
   background: rgba(255, 255, 255, 0.22);
-  border: solid #b3b3b31c 1px;
+  border: var(--default-border);
   border-radius: 2rem;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }

@@ -17,6 +17,9 @@
   --font-normal: 'SF-Pro-Rounded-Regular';
   --font-bold: 'SF-Pro-Rounded-Bold';
   --font-light: 'SF-Pro-Rounded-Light';
+  --backdrop: saturate(180%) blur(0.7rem);
+  --default-background-color: rgba(234, 234, 234, 0.7);
+  --default-border: solid #b3b3b31c 1px;
 }
 
 html {

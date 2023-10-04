@@ -29,10 +29,10 @@ header::before {
   height: 100%;
   width: 100%;
 
-  backdrop-filter: saturate(180%) blur(0.7rem);
-  -webkit-backdrop-filter: saturate(180%) blur(0.7rem);
-  background-color: rgba(234, 234, 234, 0.7);
-  border: solid #b3b3b31c 1px;
+  backdrop-filter: var(--backdrop);
+  -webkit-backdrop-filter: var(--backdrop);
+  background-color: var(--default-background-color);
+  border: var(--default-border);
   border-radius: 1.5rem;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
 }
@@ -184,13 +184,13 @@ header::before {
   width: 25rem;
   margin: auto;
 
-  border: solid #b3b3b31c 1px;
+  border: var(--default-border);
   border-top: none;
   border-radius: 0.5rem;
 
-  background-color: rgba(234, 234, 234, 0.98);
-  backdrop-filter: saturate(180%) blur(0.7rem);
-  -webkit-backdrop-filter: saturate(180%) blur(0.7rem);
+  background-color: var(--default-background-color);
+  backdrop-filter: var(--backdrop);
+  -webkit-backdrop-filter: var(--backdrop);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
   transition: right ease-in-out 1s;
