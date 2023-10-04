@@ -91,7 +91,6 @@ export default class ViewController {
 
   static errorScreen = (error) => {
     displayComponent(createErrorCard(error.message));
-    selectBackground({}, true);
   };
 
   static welcomeScreen = () => {

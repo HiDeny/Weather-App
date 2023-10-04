@@ -1,4 +1,7 @@
 .weatherCard {
+  z-index: 10;
+  position: relative;
+  
   overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;

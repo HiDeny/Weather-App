@@ -50,12 +50,6 @@ const night = {
   fontColor: '#fff',
 };
 
-const error = {
-  background:
-    '/src/view/assets/background/error2-vecteezy_404-landing-page_6549647.jpg',
-  fontColor: '#fff',
-};
-
 const backgrounds = {
   Sunny: sunny,
   Clear: sunny,
@@ -108,48 +102,45 @@ const backgrounds = {
   'Moderate or heavy snow with thunder': snow,
 };
 
-const selectBackground = ({ weather, isDay }, isError = false) => {
+const selectBackground = ({ weather, isDay }) => {
   const body = document.querySelector('body');
-  const currentInfo = document.querySelector('#mainCurrentInfo');
+  const currentCard =
+    document.querySelector('#mainCurrentInfo') ||
+    document.querySelector('.errorCard');
+  const newBackground = document.createElement('div');
+  newBackground.classList.add('newBackground');
+  body.append(newBackground);
 
-  if (isError) {
-    body.style.backgroundColor = 'white';
-    body.style.backgroundImage = 'none';
-    document.querySelector(
-      '.errorCard'
-    ).style.backgroundImage = `url('${error.background}')`;
-    document.querySelector('.errorCard').style.color = error.fontColor;
-    return;
+  try {
+    const DAY_BACKGROUND = `url('${backgrounds[weather].background}')`;
+    const NIGHT_BACKGROUND = `url('${night.background}')`;
+    const FONT_COLOR = `url('${backgrounds[weather].fontColor}')`;
+    const newBackgroundImage = isDay ? DAY_BACKGROUND : NIGHT_BACKGROUND;
+
+    newBackground.style.backgroundImage = newBackgroundImage;
+    currentCard.style.color = FONT_COLOR;
+
+    setTimeout(() => {
+      newBackground.classList.add('updateBackground');
+    }, 1100);
+
+    setTimeout(() => {
+      body.classList.remove('errorBackground');
+      body.style.backgroundImage = newBackgroundImage;
+    }, 4000);
+
+    setTimeout(() => {
+      newBackground.classList.remove('updateBackground');
+    }, 5000);
+
+    setTimeout(() => {
+      newBackground.remove();
+    }, 8000);
+  } catch (err) {
+    body.classList.add('errorBackground');
+    newBackground.remove();
+    throw new Error(`${err} Background image is missing.`);
   }
-  if (!backgrounds[weather]) {
-    body.style.backgroundImage = `url('${backgrounds.Sunny.background}')`;
-    throw new Error('Background img missing!');
-  }
-  if (isDay) {
-    dynamicUpdate(backgrounds[weather].background);
-    // body.style.backgroundImage = `url('${backgrounds[weather].background}')`;
-    currentInfo.style.color = backgrounds[weather].fontColor;
-  }
-  if (!isDay) {
-    body.style.backgroundImage = `url('${night.background}')`;
-  }
-};
-
-const dynamicUpdate = (newBackground) => {
-  const body = document.querySelector('body');
-  console.log(window.getComputedStyle(body).backgroundImage);
-
-  body.style.setProperty(
-    '--old-background',
-    window.getComputedStyle(body).backgroundImage
-  );
-  body.style.setProperty('--new-background', `url('${newBackground}'`);
-
-  body.classList.add('dynamicUpdate');
-
-  setTimeout(() => {
-    body.style.backgroundImage = `url('${newBackground}')`;
-  }, 1500);
 };
 
 export default selectBackground;
