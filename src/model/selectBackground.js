@@ -4,49 +4,48 @@ const sunny = {
   fontColor: '#fff',
 };
 const cloudy = {
-  background:
-    '/src/view/assets/background/Cloudy-artem-anokhin-V4qjYCac7y8.jpg',
+  background: '../view/assets/background/Cloudy-artem-anokhin-V4qjYCac7y8.jpg',
   fontColor: '#fff',
 };
 
 const overcast = {
   background:
-    '/src/view/assets/background/Overcast-felipe-palacio-mK-LBRSG1rA.jpg',
+    '../view/assets/background/Overcast-felipe-palacio-mK-LBRSG1rA.jpg',
   fontColor: '#fff',
 };
 
 const storm = {
-  background: '/src/view/assets/background/Storm-johannes-plenio.jpg',
+  background: '../view/assets/background/Storm-johannes-plenio.jpg',
   fontColor: '#fff',
 };
 
 const misty = {
   background:
-    '/src/view/assets/background/Fog-mark-eder-T_gAmymcQFs-unsplash.jpg',
+    '../view/assets/background/Fog-mark-eder-T_gAmymcQFs-unsplash.jpg',
   fontColor: '#808080',
 };
 
 const rain = {
   background:
-    '/src/view/assets/background/Rain-stormseeker-vRCZ3DztaoA-unsplash.jpg',
+    '../view/assets/background/Rain-stormseeker-vRCZ3DztaoA-unsplash.jpg',
   fontColor: '#fff',
 };
 
 const snow = {
   background:
-    '/src/view/assets/background/Snow-alessio-soggetti-Pao8_rE4a44-unsplash.jpg',
+    '../view/assets/background/Snow-alessio-soggetti-Pao8_rE4a44-unsplash.jpg',
   fontColor: '#000',
 };
 
 const sleet = {
   background:
-    '/src/view/assets/background/Sleet-kelly-sikkema-hSPVuakrJqs-unsplash.jpg',
+    '../view/assets/background/Sleet-kelly-sikkema-hSPVuakrJqs-unsplash.jpg',
   fontColor: '#fff',
 };
 
 const night = {
   background:
-    '/src/view/assets/background/NightStars-paul-volkmer-qVotvbsuM_c-unsplash.jpg',
+    '../view/assets/background/NightStars-paul-volkmer-qVotvbsuM_c-unsplash.jpg',
   fontColor: '#fff',
 };
 
