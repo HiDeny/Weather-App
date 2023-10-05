@@ -8,18 +8,17 @@ Whether you're planning a trip or just want to know the weather in your area, Cl
 ![ClimaCheck](./src/view/assets/example/Screenshot%202023-10-04%20at%2017.33.08.png)
 ![ClimaCheck](./src/view/assets/example/Screenshot%202023-10-04%20at%2017.33.21.png)
 
-## Live Demo
 
-👉🏻 [Here](https://hideny.github.io/Weather-App/) !
 
 ## Table of Contents
 
 - [ClimaCheck](#climacheck)
-  - [Live Demo](#live-demo)
   - [Table of Contents](#table-of-contents)
+  - [Live Demo](#live-demo)
   - [Description](#description)
   - [Features](#features)
-    - [Weather Data:](#weather-data)
+      - [Key Features](#key-features)
+      - [Weather Data](#weather-data)
   - [Usage](#usage)
     - [Checking Weather in a Location](#checking-weather-in-a-location)
     - [Checking in your current location](#checking-in-your-current-location)
@@ -29,18 +28,26 @@ Whether you're planning a trip or just want to know the weather in your area, Cl
   - [Acknowledgments](#acknowledgments)
   - [License](#license)
 
-## Description
+## Live Demo
+👉🏻 [Here](https://hideny.github.io/Weather-App/) !
 
-ClimaCheck is weather app.
+## Description
+ClimaCheck is my take on the weather app project from The Odin Project cubiculum.
+Play around and let me know your opinions! 
+climasupport@diginey.com
+
+
 
 ## Features
+
+#### Key Features
 
 - Check clima in any location.
 - Check clima in your own location.
 - Set your favorite location accessible from home screen.
 - Pick preferred units and time format.
 
-### Weather Data:
+#### Weather Data
 - Current weather
 - Hourly forecast
 - Forecast of two following days
@@ -75,6 +82,13 @@ ClimaCheck is weather app.
 - JavaScript (ES6+)
 - Webpack
 - LocalStorage
+- Babel
+- Eslint
+- Favicons-webpack-plugin
+- Html-webpack-plugin
+- Chart.js
+- Date-fns
+- Normalize.css
 
 ## Installation
 
