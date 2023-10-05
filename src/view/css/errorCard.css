@@ -33,7 +33,7 @@
   top: 0.25rem;
 
   content: ' ';
-  background-image: url('/src/view/assets/icons/mail/icons8-mail-96.png');
+  background-image: url('../assets/icons/mail/icons8-mail-96.png');
   background-repeat: no-repeat;
   background-size: contain;
 }

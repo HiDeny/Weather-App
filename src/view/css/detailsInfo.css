@@ -75,11 +75,11 @@
   align-items: center;
 }
 .rainInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/rain/icons8-wet-48.png');
+  background-image: url('../assets/icons/rain/icons8-wet-48.png');
 }
 
 .cloudsInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/cloud/icons8-cloud-48.png');
+  background-image: url('../assets/icons/cloud/icons8-cloud-48.png');
 }
 
 .detailCard.windInfo {
@@ -100,7 +100,7 @@
 }
 
 .windInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/wind/icons8-wind-48.png');
+  background-image: url('../assets/icons/wind/icons8-wind-48.png');
 }
 
 .moonInfo > .astroIll,
@@ -109,11 +109,11 @@
   align-self: end;
 }
 .moonInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/moon/icons8-full-moon-48.png');
+  background-image: url('../assets/icons/moon/icons8-full-moon-48.png');
 }
 
 .sunInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/sun/icons8-sun-48.png');
+  background-image: url('../assets/icons/sun/icons8-sun-48.png');
 }
 
 .detailCard.cloudsInfo {
@@ -127,7 +127,7 @@
 }
 
 .feelsLikeInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/thermometer/icons8-thermometer-48.png');
+  background-image: url('../assets/icons/thermometer/icons8-thermometer-48.png');
 }
 
 .feelsLikeVal,
@@ -146,7 +146,7 @@
 }
 
 .humidityInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/humidity/icons8-humidity-48.png');
+  background-image: url('../assets/icons/humidity/icons8-humidity-48.png');
 }
 
 .detailCard.visibilityInfo {
@@ -155,7 +155,7 @@
 }
 
 .visibilityInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/vision/icons8-eye-48.png');
+  background-image: url('../assets/icons/vision/icons8-eye-48.png');
 }
 
 .detailCard.uvInfo {
@@ -165,7 +165,7 @@
 }
 
 .uvInfo > .titleDiv > i {
-  background-image: url('/src/view/assets/icons/error/icons8-error-48.png');
+  background-image: url('../assets/icons/error/icons8-error-48.png');
 }
 
 .uvVal {

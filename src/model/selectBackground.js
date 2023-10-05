@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const sunny = {
-  background: '/src/view/assets/background/Sunny.jpg',
+  background: '../view/assets/background/Sunny.jpg',
   fontColor: '#fff',
 };
 const cloudy = {
