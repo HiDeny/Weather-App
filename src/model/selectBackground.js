@@ -1,55 +1,20 @@
-/* eslint-disable camelcase */
-const sunny = {
-  background: '../view/assets/background/Sunny.jpg',
-  fontColor: '#fff',
-};
-const cloudy = {
-  background: '../view/assets/background/Cloudy-artem-anokhin-V4qjYCac7y8.jpg',
-  fontColor: '#fff',
-};
+import { createElementWithClass } from '../view/cardSections/helperFunc';
+import '../view/css/backgrounds.css';
 
-const overcast = {
-  background:
-    '../view/assets/background/Overcast-felipe-palacio-mK-LBRSG1rA.jpg',
-  fontColor: '#fff',
-};
-
-const storm = {
-  background: '../view/assets/background/Storm-johannes-plenio.jpg',
-  fontColor: '#fff',
-};
-
-const misty = {
-  background:
-    '../view/assets/background/Fog-mark-eder-T_gAmymcQFs-unsplash.jpg',
-  fontColor: '#808080',
-};
-
-const rain = {
-  background:
-    '../view/assets/background/Rain-stormseeker-vRCZ3DztaoA-unsplash.jpg',
-  fontColor: '#fff',
-};
-
-const snow = {
-  background:
-    '../view/assets/background/Snow-alessio-soggetti-Pao8_rE4a44-unsplash.jpg',
-  fontColor: '#000',
-};
-
-const sleet = {
-  background:
-    '../view/assets/background/Sleet-kelly-sikkema-hSPVuakrJqs-unsplash.jpg',
-  fontColor: '#fff',
-};
-
-const night = {
-  background:
-    '../view/assets/background/NightStars-paul-volkmer-qVotvbsuM_c-unsplash.jpg',
-  fontColor: '#fff',
-};
+const sunny = 'sunny';
+const cloudy = 'cloudy';
+const overcast = 'overcast';
+const storm = 'storm';
+const misty = 'misty';
+const rain = 'rain';
+const snow = 'snow';
+const sleet = 'sleet';
+const night = 'night';
+const error = 'error';
 
 const backgrounds = {
+  Error: error,
+  Night: night,
   Sunny: sunny,
   Clear: sunny,
   Cloudy: cloudy,
@@ -103,29 +68,20 @@ const backgrounds = {
 
 const selectBackground = ({ weather, isDay }) => {
   const body = document.querySelector('body');
-  const currentCard =
-    document.querySelector('#mainCurrentInfo') ||
-    document.querySelector('.errorCard');
-  const newBackground = document.createElement('div');
-  newBackground.classList.add('newBackground');
+  const newBackground = createElementWithClass('div', 'newBackground');
   body.append(newBackground);
 
   try {
-    const DAY_BACKGROUND = `url('${backgrounds[weather].background}')`;
-    const NIGHT_BACKGROUND = `url('${night.background}')`;
-    const FONT_COLOR = `url('${backgrounds[weather].fontColor}')`;
-    const newBackgroundImage = isDay ? DAY_BACKGROUND : NIGHT_BACKGROUND;
-
-    newBackground.style.backgroundImage = newBackgroundImage;
-    currentCard.style.color = FONT_COLOR;
+    const BACKGROUND = isDay ? backgrounds[weather] : backgrounds.Night;
+    newBackground.classList.add(BACKGROUND);
 
     setTimeout(() => {
       newBackground.classList.add('updateBackground');
     }, 500);
 
     setTimeout(() => {
-      body.classList.remove('errorBackground');
-      body.style.backgroundImage = newBackgroundImage;
+      if (body.classList[0]) body.classList.remove(body.classList[0]);
+      body.classList.add(BACKGROUND);
     }, 3500);
 
     setTimeout(() => {

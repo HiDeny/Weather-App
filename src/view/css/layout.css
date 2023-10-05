@@ -37,35 +37,3 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
-
-.newBackground {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  background-image: url('../assets/background/Intro-davies-designs-studio-G-6kwVnClsE-unsplash.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  z-index: 0;
-  opacity: 0;
-
-  transition: opacity ease-in-out 3s;
-  -webkit-transition: opacity ease-in-out 3s;
-}
-
-.errorBackground {
-  background-image: url('/src/view/assets/background/error2-vecteezy_404-landing-page_6549647.jpg');
-  background-size: contain;
-  background-position: bottom;
-
-  background-color: white;
-  color: #034656;
-}
-
-.updateBackground {
-  opacity: 1;
-}

@@ -1,0 +1,73 @@
+.newBackground {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: 0;
+  opacity: 0;
+
+  transition: opacity ease-in-out 2;
+  -webkit-transition: opacity ease-in-out 2s;
+}
+
+.updateBackground {
+  opacity: 1;
+}
+
+.sunny {
+  background-image: url('../assets/background/Sunny.jpg');
+  color: '#fff';
+}
+.cloudy {
+  background-image: url('../assets/background/Cloudy-artem-anokhin-V4qjYCac7y8.jpg');
+  color: '#fff';
+}
+
+.overcast {
+  background-image: url('../assets/background/Overcast-felipe-palacio-mK-LBRSG1rA.jpg');
+  color: '#fff';
+}
+
+.storm {
+  background-image: url('../assets/background/Storm-johannes-plenio.jpg');
+  color: '#fff';
+}
+
+.misty {
+  background-image: url('../assets/background/Fog-mark-eder-T_gAmymcQFs-unsplash.jpg');
+  color: '#808080';
+}
+
+.rain {
+  background-image: url('../assets/background/Rain-stormseeker-vRCZ3DztaoA-unsplash.jpg');
+  color: '#fff';
+}
+
+.snow {
+  background-image: url('../assets/background/Snow-alessio-soggetti-Pao8_rE4a44-unsplash.jpg');
+  color: '#000';
+}
+
+.sleet {
+  background-image: url('../assets/background/Sleet-kelly-sikkema-hSPVuakrJqs-unsplash.jpg');
+  color: '#fff';
+}
+
+.night {
+  background-image: url('../assets/background/NightStars-paul-volkmer-qVotvbsuM_c-unsplash.jpg');
+  color: '#fff';
+}
+
+.error {
+  background-image: url('/src/view/assets/background/error2-vecteezy_404-landing-page_6549647.jpg');
+  background-size: contain;
+  background-position: bottom;
+
+  background-color: white;
+}

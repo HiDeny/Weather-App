@@ -90,6 +90,7 @@ export default class ViewController {
   };
 
   static errorScreen = (error) => {
+    selectBackground({ weather: 'Error', isDay: 1 });
     displayComponent(createErrorCard(error.message));
   };
 
